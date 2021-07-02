@@ -7,7 +7,7 @@ Foxcord aims to be a beginner-friendly template, also applicable for experienced
  * [ ] Create dynamic logging system
  * [ ] Create bot configuration system
  * [ ] Create modular command system 
- * [ ] More to be added
+ * [x] More to be added
 
 # Key features
 - As stated in the description, a very modular system to use and design with
