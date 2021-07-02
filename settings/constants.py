@@ -1,0 +1,1 @@
+BOT_CONFIG_PATH = "C:\\Users\\Node\\Documents\\GitHub\\foxcord\configs\\bot\\foxcord.json"
