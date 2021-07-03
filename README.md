@@ -3,7 +3,7 @@ A template bot for discordpy with a completely isolated approach source side, as
 
 Foxcord aims to be a beginner-friendly template, also applicable for experienced users wanting an out-the-box setup whilst retaining modularity with good, clean code.
 
-Inspiration for this project is from the following project: https://github.com/06000208/sandplate - done in JavaScript. So, I thought why not do one in Python?
+Inspiration for this project is from the following project: [Sandplate](https://github.com/06000208/sandplate) by [006000208](https://github.com/06000208) - done in JavaScript and a great project. So, I thought why not do one in Python?
 
 # Roadmap
  * [ ] Create dynamic logging system
