@@ -1,4 +1,7 @@
-# Foxcord
+<p align="center">
+<img src="https://i.imgur.com/DGLrWwX.png/" height="500" width="500" >
+</p>
+# Description
 A template bot for discordpy with a completely isolated approach source side, as well as the system the bot will host from. 
 
 Foxcord aims to be a beginner-friendly practical for experienced users and beginners alike. Providing a "straight out the box" setup whilst retaining modularity with good, clean code.
