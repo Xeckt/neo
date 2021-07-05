@@ -3,11 +3,11 @@
 </p>
 
 # Description
-A template bot for discordpy with a completely isolated approach source side, as well as the system the bot will host from. 
+A template bot for discordpy with a completely isolated approach source side, as well configurations for the host the bot will run on i.e Linux/Windows. 
 
-Foxcord aims to be beginner-friendly and target experienced users. Providing a "straight out the box" setup whilst retaining modularity with good, clean code.
+Foxcord aims to be beginner-friendly whilst targeting experienced users. Providing a "straight out of the box" solution with a modular and dynamic code base.
 
-Inspiration for this project is from the following project: [Sandplate](https://github.com/06000208/sandplate) by [006000208](https://github.com/06000208) - done in JavaScript and a great project. So, I thought why not do one in Python?
+Inspiration for this stemmed from the following project: [Sandplate](https://github.com/06000208/sandplate) by [006000208](https://github.com/06000208) - done in JavaScript and a great project. So, I thought why not do one in Python?
 
 # Roadmap
  * [ ] Create dynamic logging system
@@ -15,6 +15,8 @@ Inspiration for this project is from the following project: [Sandplate](https://
  * [ ] Create modular command system 
  * [ ] Create project setup scripts for linux, macos, windows.
  * [ ] Create docker build images and docker-compose for launching the bot
+ * [ ] Create setup for bot configuration
+ * [ ] Create project setup ready for contributions
  * [ ] Realtime interface directly with the bot server sided for elevated interaction
  * [x] More to be added
 
