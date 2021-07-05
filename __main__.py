@@ -16,8 +16,8 @@ class Foxcord(discord.Client):
     async def on_ready(self):
         print(f"[BOT] -> {self.user} connected to guild {discord.utils.get(self.guilds)}")
 
-    async def on_message(self, ctx, error):
-        pass
+    async def on_message(self, ctx):
+        print(ctx.author)
 
     def prepare_bot(self):
         bot_data.read_bot_config()
