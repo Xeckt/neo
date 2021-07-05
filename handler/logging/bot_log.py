@@ -12,9 +12,12 @@ class BotLog:
     def setup_log(self, name, log_file, level=logging.INFO):
         log_file_handler = logging.FileHandler(log_file)
         log_file_handler.setFormatter(self.log_format)
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(self.log_format)
 
         logger = logging.getLogger(name)
         logger.setLevel(level)
         logger.addHandler(log_file_handler)
+        logger.addHandler(console_handler)
         return logger
 

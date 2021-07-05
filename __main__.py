@@ -1,28 +1,28 @@
 import discord
-from discord.ext import commands
-
 import handler.config.data
 import handler.logging.bot_log
 import settings.constants
 
-bot_data = handler.config.data.BotData()
-
 
 class Foxcord(discord.Client):
+
+    bot_data = handler.config.data.BotData()
     constants = settings.constants
-    bot_log = handler.logging.bot_log.BotLog()
-    log = bot_log.setup_log(__name__, constants.BOT_LOG_PATH)
+    log = handler.logging.bot_log.BotLog().setup_log(__name__, constants.BOT_LOG_PATH)
 
     async def on_ready(self):
-        print(f"[BOT] -> {self.user} connected to guild {discord.utils.get(self.guilds)}")
+        self.log.info(f"[BOT] -> {self.user} connected to guild {discord.utils.get(self.guilds)}")
 
     async def on_message(self, ctx):
-        print(ctx.author)
+        pass
 
     def prepare_bot(self):
-        bot_data.read_bot_config()
+        self.bot_data.read_bot_config()
+
+    def init(self):
+        self.prepare_bot()
+        self.run(self.bot_data.get_token())
 
 
 if __name__ == "__main__":
-    Foxcord().prepare_bot()
-    Foxcord().run(bot_data.get_token())
+    Foxcord().init()
