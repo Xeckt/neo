@@ -16,20 +16,20 @@ class BotData:
                 if bot_data["token"] == "" or bot_data["prefix"] == "":
                     # TODO LOG RETURN EMPTY VALUES
                     return
-                self.set_bot_prefix(bot_data["prefix"])
-                self.set_bot_token(bot_data["token"])
+                self.set_prefix(bot_data["prefix"])
+                self.set_token(bot_data["token"])
         bot_config.close()
 
-    def get_bot_prefix(self):
+    def get_prefix(self):
         return BotData.bot_prefix
 
-    def set_bot_prefix(self, prefix):
+    def set_prefix(self, prefix):
         BotData.bot_prefix = prefix
         return BotData.bot_prefix
 
-    def set_bot_token(self, token):
+    def set_token(self, token):
         BotData.bot_token = token
         return BotData.bot_token
 
-    def get_bot_token(self):
+    def get_token(self):
         return BotData.bot_token
