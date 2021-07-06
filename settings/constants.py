@@ -6,3 +6,7 @@ SYSTEM_LOG_PATH="logs/system.log"
 COGS_USER_PATH = "handler/commands/cogs/user"
 COGS_MOD_PATH = "handler/commands/cogs/mod"
 COGS_ADMIN_PATH = "handler/commands/cogs/admin"
+
+MEMBER_ROLE_ID = 0
+MOD_ROLE_ID = 0
+ADMIN_ROLE_ID = 0
