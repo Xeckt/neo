@@ -27,7 +27,7 @@ class Foxcord:
     def init(self):
         commands = handler.commands.controller.FoxcordCommands(self.foxcord)
         commands.load()
-        self.bot_log.info(f"Commands loaded: {commands.amount_loaded}")
+        self.bot_log.info(f"Commands loaded: {commands.commands_loaded}")
         self.foxcord.run(bot_data.get_token())
 
 
