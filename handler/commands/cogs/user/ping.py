@@ -11,7 +11,7 @@ class Ping(commands.Cog):
         pass
 
     @commands.command(description="Ping bot")
-    @commands.has_any_role(constants.MEMBER_ROLE_ID)
+    @commands.has_any_role(constants.USER_ROLE_ID)
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def ping(self, ctx):
         await ctx.send("Pong!")
