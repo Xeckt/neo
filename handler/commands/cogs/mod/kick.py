@@ -1,5 +1,5 @@
 import discord
-import handler.logging.bot_log
+import handler.logging.foxlog
 from discord.ext import commands
 import settings.constants as constants
 
