@@ -10,6 +10,7 @@ class Ban(commands.Cog):
     async def on_ready(self):
         pass
 
+    @commands.is_owner()
     @commands.command(
         description="Ban a given user.",
         hidden=True
