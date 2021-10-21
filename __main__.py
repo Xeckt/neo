@@ -20,7 +20,7 @@ async def on_ready():
     command_log.info(f"Commands loaded: {foxcord_commands.total_loaded}")
 
 
-@foxcord.event
+
 async def on_message(ctx):
     pass
 
