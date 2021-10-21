@@ -26,7 +26,6 @@ async def on_message(ctx):
 
 @foxcord.event
 async def on_command(ctx):
-
     if bot_data.command_debug:
         command_log.debug(f"Command invoked by {ctx.author}: {ctx.message.content}")
 
