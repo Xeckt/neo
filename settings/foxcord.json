@@ -1,0 +1,37 @@
+{
+  "bot": [
+    {
+      "version": "0.1.1",
+      "token": "",
+      "prefix":"f.",
+      "enableBotLog": true
+    }
+  ],
+  "logData": [
+    {
+      "botLog": "logs/bot.log",
+      "commandLog": "logs/commands.log",
+      "systemLog": "logs/system.log"
+    }
+  ],
+  "commandData": [
+    {
+      "cogPath": "handler.commands.cogs",
+      "userCog": "user",
+      "modCog": "mod",
+      "adminCog": "admin",
+      "enableUserCommands": true,
+      "enableModCommands": true,
+      "enableAdminCommands": true,
+      "enableCommandWarnings": true,
+      "enableCommandDebug": true
+    }
+  ],
+  "roleData": [
+    {
+      "userId": 0,
+      "modId": 0,
+      "adminId": 1621
+    }
+  ]
+}

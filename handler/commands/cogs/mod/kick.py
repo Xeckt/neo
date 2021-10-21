@@ -12,7 +12,6 @@ class Kick(commands.Cog):
     async def on_ready(self):
         pass
 
-    @commands.is_owner()
     @commands.command(description="Ping bot")
     @commands.has_any_role(constants.MOD_ROLE_ID)
     @commands.cooldown(1, 5, commands.BucketType.guild)
