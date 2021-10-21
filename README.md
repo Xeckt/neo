@@ -2,10 +2,14 @@
 <img src="https://i.imgur.com/DGLrWwX.png/" height="500" width="500" >
 </p>
 
-# Version
-Currently Foxcord is versioned at: 0.1.1
+# Requirements
+- Python: 3.10
+- Discordpy: >=1.7.3 
+
 
 # Description
+- Foxcord Version: 0.1.1
+
 A template bot for discordpy with a completely isolated approach source side, as well configurations for the host the bot will run on i.e Linux/Windows. 
 
 Foxcord aims to be beginner-friendly whilst targeting experienced users. Providing a "straight out of the box" solution with a modular and dynamic code base.
