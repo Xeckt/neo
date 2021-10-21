@@ -22,9 +22,9 @@ class FoxcordData:
     mod_cog = ''
     admin_cog = ''
 
-    userId = 0
-    modId = 0
-    adminId = 0
+    user_id = 0
+    mod_id = 0
+    admin_id = 0
 
     def read_bot_config(self):
         with open("settings/foxcord.json", "r") as bot_config:
