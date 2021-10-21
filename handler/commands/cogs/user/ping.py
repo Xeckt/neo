@@ -1,6 +1,7 @@
 from discord.ext import commands
 import settings.constants as constants
 
+
 class Ping(commands.Cog):
 
     def __init__(self, bot):
@@ -9,7 +10,6 @@ class Ping(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         pass
-
 
     @commands.command(description="Ping bot")
     @commands.has_any_role(constants.USER_ROLE_ID)

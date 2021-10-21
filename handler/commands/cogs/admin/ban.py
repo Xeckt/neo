@@ -2,6 +2,7 @@ import discord
 import settings.constants as constants
 from discord.ext import commands
 
+
 class Ban(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -10,7 +11,6 @@ class Ban(commands.Cog):
     async def on_ready(self):
         pass
 
-    @commands.is_owner()
     @commands.command(
         description="Ban a given user.",
         hidden=True

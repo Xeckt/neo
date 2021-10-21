@@ -1,35 +1,61 @@
 import json
-import handler.logging.foxlog
-import settings.constants as constants
 
 
-class BotData:
-    foxlog = handler.logging.foxlog.BotLog().setup_log(__name__, constants.BOT_LOG_PATH)
-    bot_token = ''
-    bot_prefix = ''
+class FoxcordData:
+    version = ''
+    token = ''
+    prefix = ''
 
-    def __init__(self):
-        self.bot_config_path = constants.BOT_CONFIG_PATH
+    enable_bot_log = False
+    user_commands = False
+    mod_commands = False
+    admin_commands = False
+    command_warnings = False
+    command_debug = False
+
+    log = ''
+    command_log = ''
+    system_log = ''
+
+    cog_path = ''
+    user_cog = ''
+    mod_cog = ''
+    admin_cog = ''
+
+    user_id = 0
+    mod_id = 0
+    admin_id = 0
 
     def read_bot_config(self):
-        self.foxlog.info("Reading Foxcord config")
-        with open(self.bot_config_path, "r") as bot_config:
+        with open("settings/foxcord.json", "r") as bot_config:
             data = json.load(bot_config)
-            for bot_data in data["bot"]:
-                self.set_prefix(bot_data["prefix"])
-                self.set_token(bot_data["token"])
+            for (bot_data, log_data, cmd_data, role_data) in zip(
+                    data["bot"],
+                    data["logData"],
+                    data["commandData"],
+                    data["roleData"],
+            ):
+                FoxcordData().version = bot_data['version']
+                FoxcordData.token = bot_data['token']
+                FoxcordData.prefix = bot_data['prefix']
+
+                FoxcordData.enable_bot_log = bot_data['enableBotLog']
+                FoxcordData.user_commands = cmd_data['enableUserCommands']
+                FoxcordData.mod_commands = cmd_data['enableModCommands']
+                FoxcordData.admin_commands = cmd_data['enableAdminCommands']
+                FoxcordData.command_warnings = cmd_data['enableCommandWarnings']
+                FoxcordData.command_debug = cmd_data['enableCommandDebug']
+
+                FoxcordData.log = log_data['botLog']
+                FoxcordData.command_log = log_data['commandLog']
+                FoxcordData.system_log = log_data['systemLog']
+
+                FoxcordData.cog_path = cmd_data['cogPath']
+                FoxcordData.user_cog = cmd_data['userCog']
+                FoxcordData.mod_cog = cmd_data['modCog']
+                FoxcordData.admin_cog = cmd_data['adminCog']
+
+                FoxcordData.userId = role_data['userId']
+                FoxcordData.modId = role_data['modId']
+                FoxcordData.adminId = role_data['adminId']
         bot_config.close()
-
-    def get_prefix(self):
-        return BotData.bot_prefix
-
-    def get_token(self):
-        return BotData.bot_token
-
-    def set_prefix(self, prefix):
-        BotData.bot_prefix = prefix
-        return BotData.bot_prefix
-
-    def set_token(self, token):
-        BotData.bot_token = token
-        return BotData.bot_token
