@@ -1,3 +1,4 @@
+import sys
 import handler.config.data
 import handler.logging.foxlog
 import handler.commands.controller
@@ -60,4 +61,7 @@ def check():
 
 
 if __name__ == "__main__":
+    if sys.version_info[0:2] != (3, 10):
+        foxlog.error(f"Python version must be minimum 3.10. Currently detected version: {str(sys.version_info.major)+ '.' + str(sys.version_info.minor)}")
+        exit(1)
     init()
