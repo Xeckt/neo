@@ -1,9 +1,11 @@
 import discord
-import handler.logging.foxlog
+import handler.config.data
 from discord.ext import commands
-import settings.constants as constants
+
 
 class Kick(commands.Cog):
+
+    bot_data = handler.config.data.FoxcordData()
 
     def __init__(self, bot):
         self.bot = bot
@@ -13,7 +15,7 @@ class Kick(commands.Cog):
         pass
 
     @commands.command(description="Ping bot")
-    @commands.has_any_role(constants.MOD_ROLE_ID)
+    @commands.has_any_role(bot_data.mod_id, bot_data.admin_id)
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def kick(self, ctx, user: discord.User):
         try:

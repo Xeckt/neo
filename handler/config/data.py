@@ -10,6 +10,7 @@ class FoxcordData:
     user_commands = False
     mod_commands = False
     admin_commands = False
+    dev_commands = False
     command_warnings = False
     command_debug = False
 
@@ -25,6 +26,7 @@ class FoxcordData:
     user_id = 0
     mod_id = 0
     admin_id = 0
+    dev_id = 0
 
     def read_bot_config(self):
         with open("settings/foxcord.json", "r") as bot_config:
@@ -43,6 +45,7 @@ class FoxcordData:
                 FoxcordData.user_commands = cmd_data['enableUserCommands']
                 FoxcordData.mod_commands = cmd_data['enableModCommands']
                 FoxcordData.admin_commands = cmd_data['enableAdminCommands']
+                FoxcordData.dev_commands = cmd_data['enableDevCommands']
                 FoxcordData.command_warnings = cmd_data['enableCommandWarnings']
                 FoxcordData.command_debug = cmd_data['enableCommandDebug']
 
@@ -55,7 +58,8 @@ class FoxcordData:
                 FoxcordData.mod_cog = cmd_data['modCog']
                 FoxcordData.admin_cog = cmd_data['adminCog']
 
-                FoxcordData.userId = role_data['userId']
-                FoxcordData.modId = role_data['modId']
-                FoxcordData.adminId = role_data['adminId']
+                FoxcordData.user_id = role_data['userId']
+                FoxcordData.mod_id = role_data['modId']
+                FoxcordData.admin_id = role_data['adminId']
+                FoxcordData.dev_id = role_data['devId']
         bot_config.close()
