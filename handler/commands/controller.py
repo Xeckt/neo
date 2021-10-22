@@ -12,6 +12,8 @@ class FoxcordCommands:
         self.bot = bot
 
     def load(self):
+        if self.bot_data.dev_commands:
+            self.set_module('dev', 'load')
         if self.bot_data.admin_commands:
             self.set_module('admin', 'load')
         if self.bot_data.mod_commands:
