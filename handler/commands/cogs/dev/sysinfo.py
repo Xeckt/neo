@@ -14,14 +14,14 @@ class SysInfo(commands.Cog):
 
     @commands.command(
         description="Get system information foxcord is running on.",
-        aliases=['sysinfo', 'si']
+        aliases=['si']
     )
     @commands.has_any_role(
         bot_data.dev_id
     )
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def sysinfo(self, ctx):
-        await ctx.send(f""
+        await ctx.send(f"dsffdsfssddsfdsf"
                        f""
                        f""
                        f""

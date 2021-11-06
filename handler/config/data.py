@@ -22,6 +22,7 @@ class FoxcordData:
     user_cog = ''
     mod_cog = ''
     admin_cog = ''
+    dev_cog = ''
 
     user_id = 0
     mod_id = 0
@@ -57,6 +58,7 @@ class FoxcordData:
                 FoxcordData.user_cog = cmd_data['userCog']
                 FoxcordData.mod_cog = cmd_data['modCog']
                 FoxcordData.admin_cog = cmd_data['adminCog']
+                FoxcordData.dev_cog = cmd_data['devCog']
 
                 FoxcordData.user_id = role_data['userId']
                 FoxcordData.mod_id = role_data['modId']

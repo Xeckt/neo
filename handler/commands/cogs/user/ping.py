@@ -15,10 +15,7 @@ class Ping(commands.Cog):
 
     @commands.command(description="Ping bot")
     @commands.has_any_role(
-        bot_data.user_id,
-        bot_data.mod_id,
-        bot_data.admin_id,
-        bot_data.dev_id
+        bot_data.user_id
     )
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def ping(self, ctx):

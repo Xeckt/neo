@@ -24,9 +24,9 @@ class CommandTool(commands.Cog):
         bot_data.admin_id,
         bot_data.dev_id
     )
-    async def commandtool(self, ctx, command_rank, command, parameter):
-        self.commands.set_command(command_rank, parameter, command)
-        await ctx.send(f"Command operation: `{parameter}` on `{command}` successful")
+    async def commandtool(self, ctx, command_rank, state, command):
+        self.commands.set_command_state(command_rank, state, command)
+        await ctx.send(f"Command state: `{state}` on `{command}` successful")
 
 
 def setup(bot):

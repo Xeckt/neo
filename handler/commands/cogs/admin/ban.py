@@ -25,11 +25,11 @@ class Ban(commands.Cog):
     )
     async def ban(self, ctx, user: discord.User):
         if user == ctx.message.author:
-            await ctx.send(f"You can't ban yourself, {ctx.message.author.name}")
+            await ctx.send(f"You can't ban yourself, {ctx.message.author.mention}")
             return
         await ctx.guild.ban(user)
         self.foxlog.warning(f"{user} has been banned!")
-        await ctx.send(f"{ctx.author.mention} gave the banhammer to {user}")
+        await ctx.send(f"{ctx.message.author.mention} gave the banhammer to {user}")
 
 
 def setup(bot):

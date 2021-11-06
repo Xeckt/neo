@@ -1,3 +1,4 @@
+import string
 import handler.config.data
 import handler.logging.foxlog
 import os
@@ -13,31 +14,22 @@ class FoxcordCommands:
 
     def load(self):
         if self.bot_data.dev_commands:
-            self.set_module('dev', 'load')
+            self.set_command_state(self.bot_data.dev_cog, 'load')
         if self.bot_data.admin_commands:
-            self.set_module('admin', 'load')
+            self.set_command_state(self.bot_data.admin_cog, 'load')
         if self.bot_data.mod_commands:
-            self.set_module('mod', 'load')
+            self.set_command_state(self.bot_data.mod_cog, 'load')
         if self.bot_data.user_commands:
-            self.set_module('user', 'load')
+            self.set_command_state(self.bot_data.user_cog, 'load')
 
-    def set_module(self, module, state):
-        for cog in os.listdir(self.bot_data.cog_path.replace('.', '/') + '/' + module):
-            if cog.endswith('.py'):
-                match state:
-                    case "load":
-                        self.bot.load_extension(f"{self.bot_data.cog_path + '.' + module + '.' + cog[:-3]}")
-                        self.total_loaded += 1
-                    case "reload":
-                        self.bot.reload_extension(f"{self.bot_data.cog_path + '.' + module + '.' + cog[:-3]}")
-                    case "unload":
-                        self.bot.unload_extension(f"{self.bot_data.cog_path + '.' + module + '.' + cog[:-3]}")
-
-    def set_command(self, module, state, command):
-        match state:
-            case "load":
-                self.bot.load_extension(f"{self.bot_data.cog_path + '.' + module + '.' + command}")
-            case "reload":
-                self.bot.reload_extension(f"{self.bot_data.cog_path + '.' + module + '.' + command}")
-            case "unload":
-                self.bot.unload_extension(f"{self.bot_data.cog_path + '.' + module + '.' + command}")
+    def set_command_state(self, module, state, command=None):
+        path_string = self.bot_data.cog_path + '.' + module
+        if command and isinstance(command, str):
+            arg = {path_string + '.' + command}
+            getattr(self.bot, "%s_extension" % state)(*arg)
+        else:
+            for cmd in os.listdir(self.bot_data.cog_path.replace('.', '/') + '/' + module):
+                if cmd.endswith('.py'):
+                    arg = {path_string + '.' + cmd[:-3]}
+                    getattr(self.bot, "%s_extension" % state)(*arg)
+                    self.total_loaded += 1

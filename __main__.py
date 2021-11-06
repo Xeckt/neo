@@ -23,7 +23,6 @@ async def on_ready():
     command_log.info(f"Commands loaded: {foxcord_commands.total_loaded}")
 
 
-
 async def on_message(ctx):
     pass
 
@@ -65,6 +64,8 @@ def check():
 
 if __name__ == "__main__":
     if sys.version_info[0:2] != (3, 10):
-        foxlog.error(f"Python version must be minimum 3.10. Currently detected version: {str(sys.version_info.major)+ '.' + str(sys.version_info.minor)}")
+        foxlog.error(
+            f"Python version must be minimum 3.10. Currently detected version: "
+            f"{str(sys.version_info.major) + '.' + str(sys.version_info.minor)}")
         exit(1)
     init()
