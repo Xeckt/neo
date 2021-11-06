@@ -38,7 +38,7 @@ class FoxcordData:
                     data["commandData"],
                     data["roleData"],
             ):
-                FoxcordData().version = bot_data['version']
+                FoxcordData.version = bot_data['version']
                 FoxcordData.token = bot_data['token']
                 FoxcordData.prefix = bot_data['prefix']
 
