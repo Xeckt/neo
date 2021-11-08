@@ -23,15 +23,17 @@
       "enableUserCommands": true,
       "enableModCommands": true,
       "enableAdminCommands": true,
+      "enableDevCommands": true,
       "enableCommandWarnings": true,
       "enableCommandDebug": true
     }
   ],
   "roleData": [
     {
-      "userId": 0,
-      "modId": 0,
-      "adminId": 1621
+      "userId": 900157981579173888,
+      "modId": 900157981579173888,
+      "adminId": 900157981579173888,
+      "devId": 900157981579173888
     }
   ]
 }

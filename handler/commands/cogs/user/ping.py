@@ -1,8 +1,10 @@
 from discord.ext import commands
-import settings.constants as constants
+import handler.config.data
 
 
 class Ping(commands.Cog):
+
+    bot_data = handler.config.data.FoxcordData()
 
     def __init__(self, bot):
         self.bot = bot
@@ -12,7 +14,9 @@ class Ping(commands.Cog):
         pass
 
     @commands.command(description="Ping bot")
-    @commands.has_any_role(constants.USER_ROLE_ID)
+    @commands.has_any_role(
+        bot_data.user_id
+    )
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def ping(self, ctx):
         await ctx.send("Pong!")

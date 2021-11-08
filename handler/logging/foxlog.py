@@ -2,7 +2,7 @@ import logging
 import sys
 
 
-class BotLog:
+class Log:
 
     bot_log_path = "logs/bot.log"
     commands_log_path = "logs/commands.log"

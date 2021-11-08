@@ -1,10 +1,11 @@
 from discord.ext import commands
-import settings.constants as constants
 import handler.commands.controller
-import string
+import handler.config.data
 
 
 class CommandTool(commands.Cog):
+
+    bot_data = handler.config.data.FoxcordData()
 
     def __init__(self, bot):
         self.bot = bot
@@ -14,20 +15,19 @@ class CommandTool(commands.Cog):
     async def on_ready(self):
         pass
 
-    @commands.has_any_role(constants.ADMIN_ROLE_ID)
     @commands.command(
         description="Load a command module",
+        aliases=['cmdtool', 'ctool'],
         hidden=True
     )
-    @commands.has_any_role(constants.ADMIN_ROLE_ID)
-    async def cmdtool(self, ctx, command_rank, command, parameter):
-        if parameter.lower() == "load":
-            self.commands.load_command(command_rank, command)
-        if parameter.lower() == "reload":
-            self.commands.reload_command(command_rank, command)
-        if parameter.lower() == "unload":
-            self.commands.unload_command(command_rank, command)
-        ctx.send(f"Command: {command} reloaded for: {command_rank}")
+    @commands.has_any_role(
+        bot_data.admin_id,
+        bot_data.dev_id
+    )
+    async def commandtool(self, ctx, command_rank, state, command):
+        self.commands.set_command_state(command_rank, state, command)
+        await ctx.send(f"Command state: `{state}` on `{command}` successful")
+
 
 def setup(bot):
     bot.add_cog(CommandTool(bot))

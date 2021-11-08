@@ -1,3 +1,7 @@
+import sys
+
+import discord
+
 import handler.config.data
 import handler.logging.foxlog
 import handler.commands.controller
@@ -6,8 +10,8 @@ from discord.ext import commands
 bot_data = handler.config.data.FoxcordData()
 bot_data.read_bot_config()
 
-command_log = handler.logging.foxlog.BotLog().setup_log("COMMANDS", bot_data.command_log)
-foxlog = handler.logging.foxlog.BotLog().setup_log(__name__, bot_data.log)
+command_log = handler.logging.foxlog.Log().setup_log("COMMANDS", bot_data.command_log)
+foxlog = handler.logging.foxlog.Log().setup_log(__name__, bot_data.log)
 
 foxcord = commands.Bot(command_prefix=bot_data.prefix)
 foxcord_commands = handler.commands.controller.FoxcordCommands(foxcord)
@@ -19,7 +23,6 @@ async def on_ready():
     command_log.info(f"Commands loaded: {foxcord_commands.total_loaded}")
 
 
-@foxcord.event
 async def on_message(ctx):
     pass
 
@@ -60,4 +63,9 @@ def check():
 
 
 if __name__ == "__main__":
+    if sys.version_info[0:2] != (3, 10):
+        foxlog.error(
+            f"Python version must be minimum 3.10. Currently detected version: "
+            f"{str(sys.version_info.major) + '.' + str(sys.version_info.minor)}")
+        exit(1)
     init()
