@@ -4,8 +4,8 @@ import mysql.connector.pooling
 
 
 class Sql:
-    foxcord_data = handler.config.data.FoxcordData
-    foxlog = handler.logging.foxlog.Log().create_logger(__name__, foxcord_data.database_log)
+    foxcord_data = handler.config.data.FoxcordData()
+    #foxlog = handler.logging.foxlog.Log().create_logger(__name__, foxcord_data.database_log)
 
     def __init__(self):
         self.pool = None
@@ -23,6 +23,7 @@ class Sql:
                                             user=self.foxcord_data.database_user,
                                             password=self.foxcord_data.database_password,
                                             charset='utf8mb4')
+        foxlog.info("MySQL pool spawned")
 
     def example_query(self):
         query = "SELECT * FROM *" # Set your query

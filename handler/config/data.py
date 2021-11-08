@@ -40,23 +40,23 @@ class FoxcordData:
     def read_bot_config(self):
         with open("settings/foxcord.json", "r") as bot_config:
             data = json.load(bot_config)
-            for (bot_data, log_data, cmd_data, role_data) in zip(
+            for (bot_data, log_data, cmd_data, role_data, db_data) in zip(
                     data["bot"],
-                    data["database"],
                     data["logData"],
                     data["commandData"],
                     data["roleData"],
+                    data["database"],
             ):
                 FoxcordData.version = bot_data['version']
                 FoxcordData.token = bot_data['token']
                 FoxcordData.prefix = bot_data['prefix']
 
-                FoxcordData.database_enabled = bot_data['databaseEnabled']
-                FoxcordData.database_host = bot_data['databaseHost']
-                FoxcordData.database_port = bot_data['databasePort']
-                FoxcordData.database_name = bot_data['databaseName']
-                FoxcordData.database_user = bot_data['databaseUser']
-                FoxcordData.database_password = bot_data['databasePassword']
+                FoxcordData.database_enabled = db_data['databaseEnabled']
+                FoxcordData.database_host = db_data['databaseHost']
+                FoxcordData.database_port = db_data['databasePort']
+                FoxcordData.database_name = db_data['databaseName']
+                FoxcordData.database_user = db_data['databaseUser']
+                FoxcordData.database_password = db_data['databasePassword']
 
                 FoxcordData.enable_bot_log = bot_data['enableBotLog']
                 FoxcordData.user_commands = cmd_data['enableUserCommands']

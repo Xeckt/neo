@@ -8,14 +8,13 @@ from discord.ext import commands
 foxcord_data = handler.config.data.FoxcordData()
 foxcord_data.read_bot_config()
 
-foxcord_database = handler.database.sql.Sql()
-
 command_log = handler.logging.foxlog.Log().create_logger("COMMANDS", foxcord_data.command_log)
 foxlog = handler.logging.foxlog.Log().create_logger(__name__, foxcord_data.log)
 
 foxcord = commands.Bot(command_prefix=foxcord_data.prefix)
 foxcord_commands = handler.commands.controller.FoxcordCommands(foxcord)
 
+foxcord_db = handler.database.sql.Sql()
 
 @foxcord.event
 async def on_ready():
@@ -51,7 +50,7 @@ def init():
     check()
     foxcord_commands.load()
     if foxcord_data.database_enabled:
-        foxcord_database.create_pool()
+        foxcord_db.create_pool()
     foxcord.run(foxcord_data.token)
 
 
