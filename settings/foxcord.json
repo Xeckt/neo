@@ -20,6 +20,7 @@
       "userCog": "user",
       "modCog": "mod",
       "adminCog": "admin",
+      "devCog": "dev",
       "enableUserCommands": true,
       "enableModCommands": true,
       "enableAdminCommands": true,
