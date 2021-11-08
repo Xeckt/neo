@@ -1,7 +1,4 @@
 import sys
-
-import discord
-
 import handler.config.data
 import handler.logging.foxlog
 import handler.commands.controller
@@ -10,8 +7,8 @@ from discord.ext import commands
 bot_data = handler.config.data.FoxcordData()
 bot_data.read_bot_config()
 
-command_log = handler.logging.foxlog.Log().setup_log("COMMANDS", bot_data.command_log)
-foxlog = handler.logging.foxlog.Log().setup_log(__name__, bot_data.log)
+command_log = handler.logging.foxlog.Log().create_logger("COMMANDS", bot_data.command_log)
+foxlog = handler.logging.foxlog.Log().create_logger(__name__, bot_data.log)
 
 foxcord = commands.Bot(command_prefix=bot_data.prefix)
 foxcord_commands = handler.commands.controller.FoxcordCommands(foxcord)
