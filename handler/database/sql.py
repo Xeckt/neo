@@ -23,7 +23,7 @@ class Sql:
                                             user=self.foxcord_data.database_user,
                                             password=self.foxcord_data.database_password,
                                             charset='utf8mb4')
-        foxlog.info("MySQL pool spawned")
+        #self.foxlog.info("MySQL pool spawned")
 
     def example_query(self):
         query = "SELECT * FROM *" # Set your query

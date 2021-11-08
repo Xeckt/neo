@@ -50,7 +50,7 @@ def init():
     check()
     foxcord_commands.load()
     if foxcord_data.database_enabled:
-        foxcord_db.create_pool()
+        foxcord_db.start()
     foxcord.run(foxcord_data.token)
 
 
