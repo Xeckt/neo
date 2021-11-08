@@ -6,6 +6,13 @@ class FoxcordData:
     token = ''
     prefix = ''
 
+    database_enabled = False
+    database_host = ''
+    database_port = ''
+    database_user = ''
+    database_password = ''
+    database_name = ''
+
     enable_bot_log = False
     user_commands = False
     mod_commands = False
@@ -15,6 +22,7 @@ class FoxcordData:
     command_debug = False
 
     log = ''
+    database_log = ''
     command_log = ''
     system_log = ''
 
@@ -34,6 +42,7 @@ class FoxcordData:
             data = json.load(bot_config)
             for (bot_data, log_data, cmd_data, role_data) in zip(
                     data["bot"],
+                    data["database"],
                     data["logData"],
                     data["commandData"],
                     data["roleData"],
@@ -41,6 +50,13 @@ class FoxcordData:
                 FoxcordData.version = bot_data['version']
                 FoxcordData.token = bot_data['token']
                 FoxcordData.prefix = bot_data['prefix']
+
+                FoxcordData.database_enabled = bot_data['databaseEnabled']
+                FoxcordData.database_host = bot_data['databaseHost']
+                FoxcordData.database_port = bot_data['databasePort']
+                FoxcordData.database_name = bot_data['databaseName']
+                FoxcordData.database_user = bot_data['databaseUser']
+                FoxcordData.database_password = bot_data['databasePassword']
 
                 FoxcordData.enable_bot_log = bot_data['enableBotLog']
                 FoxcordData.user_commands = cmd_data['enableUserCommands']
@@ -51,6 +67,7 @@ class FoxcordData:
                 FoxcordData.command_debug = cmd_data['enableCommandDebug']
 
                 FoxcordData.log = log_data['botLog']
+                FoxcordData.database_log = log_data['databaseLog']
                 FoxcordData.command_log = log_data['commandLog']
                 FoxcordData.system_log = log_data['systemLog']
 
