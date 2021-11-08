@@ -9,7 +9,7 @@ class Log:
     system_log_path = "logs/system.log"
     log_format = logging.Formatter("%(asctime)s | Module: %(name)s | %(levelname)s | %(message)s")
 
-    def setup_log(self, name, log_file, level=logging.INFO):
+    def create_logger(self, name, log_file, level=logging.INFO):
         log_file_handler = logging.FileHandler(log_file)
         log_file_handler.setFormatter(self.log_format)
         console_handler = logging.StreamHandler()
