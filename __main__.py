@@ -1,4 +1,5 @@
 import sys
+import asyncio
 import handler.config.data
 import handler.logging.foxlog
 import handler.commands.controller
@@ -49,8 +50,6 @@ async def on_command_error(ctx, error):
 def init():
     check()
     foxcord_commands.load()
-    if foxcord_data.database_enabled:
-        foxcord_db.start()
     foxcord.run(foxcord_data.token)
 
 
@@ -69,4 +68,6 @@ if __name__ == "__main__":
             f"Python version must be minimum 3.10. Currently detected version: "
             f"{str(sys.version_info.major) + '.' + str(sys.version_info.minor)}")
         exit(1)
+    if foxcord_data.database_enabled:
+        asyncio.run(foxcord_db.start())
     init()
