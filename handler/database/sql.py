@@ -1,35 +1,35 @@
+import asyncpg
 import handler.config.data
 import handler.logging.foxlog
-import mysql.connector.pooling
 
 
 class Sql:
-    foxcord_data = handler.config.data.FoxcordData()
-    #foxlog = handler.logging.foxlog.Log().create_logger(__name__, foxcord_data.database_log)
 
     def __init__(self):
+        self.foxcord_data = handler.config.data.FoxcordData()
+        self.foxlog = handler.logging.foxlog.Log().create_logger(__name__, self.foxcord_data.database_log)
         self.pool = None
-        self.pool_size = 5
 
-    def start(self):
-        self.create_pool()
+    async def start(self):
+        self.foxlog.info("Starting PostgreSQL Pool")
+        await self.create_pool()
 
-    def create_pool(self):
-        self.pool = mysql.connector.connect(pool_name = 'foxcord',
-                                            pool_size=self.pool_size,
-                                            database=self.foxcord_data.database_name,
-                                            host=self.foxcord_data.database_host,
-                                            port=self.foxcord_data.database_port,
-                                            user=self.foxcord_data.database_user,
-                                            password=self.foxcord_data.database_password,
-                                            charset='utf8mb4')
-        #self.foxlog.info("MySQL pool spawned")
+    async def create_pool(self):
+        return await asyncpg.create_pool(
+            f'postgresql://{self.foxcord_data.database_user}'
+            f':{self.foxcord_data.database_password}'
+            f'@{self.foxcord_data.database_host}/'
+            f'{self.foxcord_data.database_name}',
+            min_size=0,
+            max_size=5,
+            max_queries=30,
+            timeout=5,
+            command_timeout=7,
+            max_inactive_connection_lifetime=60
+        )
 
-    def example_query(self):
-        query = "SELECT * FROM *" # Set your query
-        cursor = self.pool.cursor(buffered=True) # Instantiate a cursor with the instanced pool object
-        cursor.execute(query) # execute the query on the database once you have a cursor
-        # https://dev.mysql.com/doc/connector-python/en/connector-python-tutorial-cursorbuffered.html
-
-
-
+    async def example_query(self, query):
+        if self.pool is None: # If the pool isn't spawned when running query, create one
+            self.pool = await self.create_pool()
+        async with self.pool.acquire() as connection: # Acquire a pool resource and fetch a query against the DB
+            return await connection.fetch(query) # Return the value for manipulation
