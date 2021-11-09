@@ -32,4 +32,4 @@ class Sql:
         if self.pool is None: # If the pool isn't spawned when running query, create one
             self.pool = await self.create_pool()
         async with self.pool.acquire() as connection: # Acquire a pool resource and fetch a query against the DB
-            return await connection.fetch(query) # Return the value for manipulation
+            return await connection.fetch(query) # Fetch query return value(s) and return them. Check fetchval() in doc
