@@ -11,7 +11,7 @@ Check [requirements.txt](https://github.com/Atomic-Molecule/foxcord/blob/main-(s
 
 Foxcord aims to be beginner-friendly, but will also fall in the category for experienced users. 
 
-Foxcord aims to provide a "straight out of the box" solution with a modular and dynamic code base.
+The objective of this bot is to keep the code as dynamic and modular as possible whilst minimising reliability between code.
 
 Inspiration for this stemmed from the following project: [Sandplate](https://github.com/06000208/sandplate) by [006000208](https://github.com/06000208) - done in JavaScript and a great project. So, I thought why not do one in Python?
 
