@@ -3,37 +3,31 @@
 </p>
 
 # Requirements
-- Python: 3.10
-- Discordpy: >=1.7.3 
+Check [requirements.txt](https://github.com/Atomic-Molecule/foxcord/blob/main-(stable)/requirements.txt)
 
 
 # Description
-- Foxcord Version: 0.1.1
+- Foxcord Version: 0.0.4
 
-A template bot for discordpy with a completely isolated approach source side, as well configurations for the host the bot will run on i.e Linux/Windows. 
+Foxcord aims to be beginner-friendly, but will also fall in the category for experienced users. 
 
-Foxcord aims to be beginner-friendly whilst targeting experienced users. Providing a "straight out of the box" solution with a modular and dynamic code base.
+Foxcord aims to provide a "straight out of the box" solution with a modular and dynamic code base.
 
 Inspiration for this stemmed from the following project: [Sandplate](https://github.com/06000208/sandplate) by [006000208](https://github.com/06000208) - done in JavaScript and a great project. So, I thought why not do one in Python?
 
 # Roadmap
  * [x] Create basic dynamic logging system
  * [x] Create bot configuration system
- * [x] Create modular command system 
- * [ ] Create project setup scripts for linux, macos, windows.
+ * [x] Create modular command system
  * [ ] Create docker build images and docker-compose for launching the bot
- * [ ] Create setup for bot configuration
  * [x] Create project setup ready for contributions
  * [ ] Realtime interface directly with the bot server sided for elevated backend interaction
  * [x] More to be added
 
 # Key features
 - As stated in the description, a very modular system to use and design with
-- Support for all operating systems (MacOS, Linux, Windows) including Linux distributions
-  - Further support for Linux means the bot can be set up as a systemd service, the same goes for Windows with it's services or as a docker container
 - Beginner-friendly
 - Useful base features
-- Built-in bot debugging tools
 
 # Support
 TBD
