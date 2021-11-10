@@ -6,7 +6,7 @@ from discord.ext import commands
 class Unban(commands.Cog):
 
     bot_data = handler.config.data.FoxcordData()
-    foxlog = handler.logging.foxlog.Log().setup_log(__name__, bot_data.log)
+    foxlog = handler.logging.foxlog.Log().create_logger(__name__, bot_data.log)
 
 
     def __init__(self, bot):

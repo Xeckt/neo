@@ -1,16 +1,13 @@
 import logging
-import sys
+import time
 
 
 class Log:
 
-    bot_log_path = "logs/bot.log"
-    commands_log_path = "logs/commands.log"
-    system_log_path = "logs/system.log"
     log_format = logging.Formatter("%(asctime)s | Module: %(name)s | %(levelname)s | %(message)s")
 
-    def setup_log(self, name, log_file, level=logging.INFO):
-        log_file_handler = logging.FileHandler(log_file)
+    def create_logger(self, name, log_file, level=logging.INFO):
+        log_file_handler = logging.FileHandler(log_file + time.strftime("_%Y-%m-%d-%H"))
         log_file_handler.setFormatter(self.log_format)
         console_handler = logging.StreamHandler()
         console_handler.setFormatter(self.log_format)

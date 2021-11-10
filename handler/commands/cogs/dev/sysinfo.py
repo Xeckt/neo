@@ -1,5 +1,6 @@
 from discord.ext import commands
 import handler.config.data
+import platform
 
 class SysInfo(commands.Cog):
 
@@ -21,16 +22,9 @@ class SysInfo(commands.Cog):
     )
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def sysinfo(self, ctx):
-        await ctx.send(f"dsffdsfssddsfdsf"
-                       f""
-                       f""
-                       f""
-                       f""
-                       f""
-                       f""
-                       f""
-                       f"")
-
+        await ctx.send(f"OS: {platform.system()}\n"
+                       f"OS Version: {platform.version()}\n"
+                       f"{'OS Edition: ' + platform.win32_edition() if platform.system() == 'Windows' else ''}\n")
 
 def setup(bot):
     bot.add_cog(SysInfo(bot))

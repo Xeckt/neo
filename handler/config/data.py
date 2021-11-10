@@ -1,12 +1,20 @@
-import json
+import yaml
+import dotenv
 
 
 class FoxcordData:
     version = ''
     token = ''
     prefix = ''
+    mode = None
 
-    enable_bot_log = False
+    sql_enabled = False
+    sql_host = ''
+    sql_port = ''
+    sql_user = ''
+    sql_pass = ''
+    sql_db = ''
+
     user_commands = False
     mod_commands = False
     admin_commands = False
@@ -14,9 +22,10 @@ class FoxcordData:
     command_warnings = False
     command_debug = False
 
+    enable_logging = False
     log = ''
+    database_log = ''
     command_log = ''
-    system_log = ''
 
     cog_path = ''
     user_cog = ''
@@ -29,20 +38,28 @@ class FoxcordData:
     admin_id = 0
     dev_id = 0
 
-    def read_bot_config(self):
-        with open("settings/foxcord.json", "r") as bot_config:
-            data = json.load(bot_config)
-            for (bot_data, log_data, cmd_data, role_data) in zip(
-                    data["bot"],
-                    data["logData"],
-                    data["commandData"],
-                    data["roleData"],
-            ):
-                FoxcordData.version = bot_data['version']
-                FoxcordData.token = bot_data['token']
-                FoxcordData.prefix = bot_data['prefix']
+    def read_settings(self):
+        env_data = dotenv.dotenv_values('settings/.env')
+        FoxcordData.token = env_data.get('TOKEN')
+        FoxcordData.sql_host = env_data.get('SQL_HOST')
+        FoxcordData.sql_port = env_data.get('SQL_PORT')
+        FoxcordData.sql_user = env_data.get('SQL_USER')
+        FoxcordData.sql_pass = env_data.get('SQL_PASS')
+        FoxcordData.sql_db = env_data.get('SQL_DB')
 
-                FoxcordData.enable_bot_log = bot_data['enableBotLog']
+        with open("settings/foxcord.yaml", "r") as settings:
+            yaml_data = yaml.load(settings, Loader=yaml.loader.Loader)
+            for (foxcord_data, log_data, cmd_data, role_data) in zip(
+                    yaml_data["foxcord"],
+                    yaml_data["logData"],
+                    yaml_data["commandData"],
+                    yaml_data["roleData"],
+            ):
+                FoxcordData.version = foxcord_data['version']
+                FoxcordData.prefix = foxcord_data['prefix']
+                FoxcordData.sql_enabled = foxcord_data['databaseEnabled']
+                FoxcordData.mode = foxcord_data['mode']
+
                 FoxcordData.user_commands = cmd_data['enableUserCommands']
                 FoxcordData.mod_commands = cmd_data['enableModCommands']
                 FoxcordData.admin_commands = cmd_data['enableAdminCommands']
@@ -50,9 +67,10 @@ class FoxcordData:
                 FoxcordData.command_warnings = cmd_data['enableCommandWarnings']
                 FoxcordData.command_debug = cmd_data['enableCommandDebug']
 
+                FoxcordData.enable_logging = log_data['enableLogging']
                 FoxcordData.log = log_data['botLog']
+                FoxcordData.database_log = log_data['databaseLog']
                 FoxcordData.command_log = log_data['commandLog']
-                FoxcordData.system_log = log_data['systemLog']
 
                 FoxcordData.cog_path = cmd_data['cogPath']
                 FoxcordData.user_cog = cmd_data['userCog']
@@ -60,8 +78,8 @@ class FoxcordData:
                 FoxcordData.admin_cog = cmd_data['adminCog']
                 FoxcordData.dev_cog = cmd_data['devCog']
 
-                FoxcordData.user_id = role_data['userId']
-                FoxcordData.mod_id = role_data['modId']
-                FoxcordData.admin_id = role_data['adminId']
-                FoxcordData.dev_id = role_data['devId']
-        bot_config.close()
+                FoxcordData.user_id = role_data['memberRoleId']
+                FoxcordData.mod_id = role_data['modRoleId']
+                FoxcordData.admin_id = role_data['adminRoleId']
+                FoxcordData.dev_id = role_data['devRoleId']
+        settings.close()
