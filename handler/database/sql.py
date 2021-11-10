@@ -12,7 +12,7 @@ class Sql:
 
     async def start(self):
         self.foxlog.info("Starting PostgreSQL Pool")
-        await self.create_pool()
+        self.pool = await self.create_pool()
 
     async def create_pool(self):
         return await asyncpg.create_pool(
