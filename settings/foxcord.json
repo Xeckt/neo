@@ -7,9 +7,20 @@
       "enableBotLog": true
     }
   ],
+  "database": [
+    {
+      "databaseEnabled": false,
+      "databaseHost": "",
+      "databasePort": "",
+      "databaseUser": "",
+      "databasePassword": "",
+      "databaseName": ""
+    }
+  ],
   "logData": [
     {
       "botLog": "logs/bot.log",
+      "databaseLog": "logs/sql.log",
       "commandLog": "logs/commands.log",
       "systemLog": "logs/system.log"
     }
