@@ -1,0 +1,32 @@
+foxcord:
+- version: 0.0.1
+  token:
+  prefix: f.
+  databaseEnabled: false
+  mode: live
+
+logData:
+- enableLogging: true
+  botLog: logs/bot.log
+  databaseLog: logs/sql.log
+  commandLog: logs/commands.log
+  systemLog: logs/system.log
+
+commandData:
+- cogPath: handler.commands.cogs
+  userCog: user
+  modCog: mod
+  adminCog: admin
+  devCog: dev
+  enableUserCommands: true
+  enableModCommands: true
+  enableAdminCommands: true
+  enableDevCommands: true
+  enableCommandWarnings: true
+  enableCommandDebug: true
+
+roleData:
+- memberRoleId: 900157981579173900
+  modRoleId: 900157981579173900
+  adminRoleId: 900157981579173900
+  devRoleId: 900157981579173900

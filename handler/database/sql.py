@@ -16,10 +16,10 @@ class Sql:
 
     async def create_pool(self):
         return await asyncpg.create_pool(
-            f'postgresql://{self.foxcord_data.database_user}'
-            f':{self.foxcord_data.database_password}'
-            f'@{self.foxcord_data.database_host}/'
-            f'{self.foxcord_data.database_name}',
+            f'postgresql://{self.foxcord_data.sql_user}'
+            f':{self.foxcord_data.sql_pass}'
+            f'@{self.foxcord_data.sql_host}/'
+            f'{self.foxcord_data.sql_db}',
             min_size=0,
             max_size=5,
             max_queries=30,

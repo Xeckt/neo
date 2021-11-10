@@ -7,7 +7,7 @@ import handler.database.sql
 from discord.ext import commands
 
 foxcord_data = handler.config.data.FoxcordData()
-foxcord_data.read_bot_config()
+foxcord_data.read_settings()
 
 command_log = handler.logging.foxlog.Log().create_logger("COMMANDS", foxcord_data.command_log)
 foxlog = handler.logging.foxlog.Log().create_logger(__name__, foxcord_data.log)
@@ -47,19 +47,23 @@ async def on_command_error(ctx, error):
         await ctx.send(f"{ctx.author.mention}, you don't have the required permissions for this command!")
 
 
+def check():
+    if not foxcord_data.prefix:
+        foxlog.error("Cannot find prefix in Foxcord configuration")
+        exit(1)
+    if not foxcord_data.token:
+        print(foxcord_data.token)
+        foxlog.error("Cannot find token in Foxcord configuration")
+        exit(1)
+
+
 def init():
     check()
     foxcord_commands.load()
+    foxlog.info(f"Token: {foxcord_data.token if foxcord_data.mode == 'development' else '********'}")
+    foxlog.info(f"SQL Host: {foxcord_data.sql_host if foxcord_data.mode == 'development' else '********'}")
     foxcord.run(foxcord_data.token)
 
-
-def check():
-    if not str(foxcord_data.prefix):
-        foxlog.error("Cannot find prefix in Foxcord configuration")
-        exit(1)
-    if not str(foxcord_data.token):
-        foxlog.error("Cannot find token in Foxcord configuration")
-        exit(1)
 
 
 if __name__ == "__main__":
@@ -68,6 +72,6 @@ if __name__ == "__main__":
             f"Python version must be minimum 3.10. Currently detected version: "
             f"{str(sys.version_info.major) + '.' + str(sys.version_info.minor)}")
         exit(1)
-    if foxcord_data.database_enabled:
+    if foxcord_data.sql_enabled:
         asyncio.run(foxcord_db.start())
     init()
