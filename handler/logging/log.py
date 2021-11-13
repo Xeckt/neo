@@ -6,7 +6,7 @@ class Log:
 
     log_format = logging.Formatter("%(asctime)s | Module: %(name)s | %(levelname)s | %(message)s")
 
-    def create_logger(self, name, log_file, level=logging.INFO):
+    def create(self, name, log_file, level=logging.INFO):
         log_file_handler = logging.FileHandler(log_file + time.strftime("_%Y-%m-%d-%H"))
         log_file_handler.setFormatter(self.log_format)
         console_handler = logging.StreamHandler()
@@ -17,4 +17,5 @@ class Log:
         logger.addHandler(log_file_handler)
         logger.addHandler(console_handler)
         return logger
+
 

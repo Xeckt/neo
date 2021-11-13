@@ -1,10 +1,10 @@
-from discord.ext import commands
-import handler.config.data
+from disnake.ext import commands
+from handler.config.data import Data
 
 
 class Ping(commands.Cog):
 
-    bot_data = handler.config.data.FoxcordData()
+    data = Data()
 
     def __init__(self, bot):
         self.bot = bot
@@ -13,9 +13,9 @@ class Ping(commands.Cog):
     async def on_ready(self):
         pass
 
-    @commands.command(description="Ping bot")
+    @commands.slash_command(description="Ping bot")
     @commands.has_any_role(
-        bot_data.user_id
+        data.user_id
     )
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def ping(self, ctx):

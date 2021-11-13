@@ -1,11 +1,10 @@
-import discord
-import handler.config.data
-from discord.ext import commands
-
+from handler.config.data import Data
+from disnake.ext import commands
+import disnake as discord
 
 class Kick(commands.Cog):
 
-    bot_data = handler.config.data.FoxcordData()
+    data = Data()
 
     def __init__(self, bot):
         self.bot = bot
@@ -14,8 +13,8 @@ class Kick(commands.Cog):
     async def on_ready(self):
         pass
 
-    @commands.command(description="Ping bot")
-    @commands.has_any_role(bot_data.mod_id, bot_data.admin_id)
+    @commands.slash_command(description="Ping bot")
+    @commands.has_any_role(data.mod_id, data.admin_id)
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def kick(self, ctx, user: discord.User):
         try:

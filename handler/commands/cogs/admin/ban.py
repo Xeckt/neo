@@ -1,27 +1,26 @@
-import discord
-import handler.config.data
-import handler.logging.foxlog
-from discord.ext import commands
+from handler.config.data import Data
+from handler.logging.log import Log
+from disnake.ext import commands
+import disnake as discord
 
 
 class Ban(commands.Cog):
-
-    bot_data = handler.config.data.FoxcordData()
-    foxlog = handler.logging.foxlog.Log().create_logger(__name__, bot_data.log)
+    data = Data()
 
     def __init__(self, bot):
         self.bot = bot
+        self.foxlog = Log().create(__name__, self.data.bot_log)
 
     @commands.Cog.listener()
     async def on_ready(self):
         pass
 
-    @commands.command(
+    @commands.slash_command(
         description="Ban a given user.",
         hidden=True
     )
     @commands.has_any_role(
-        bot_data.admin_id
+        data.admin_id
     )
     async def ban(self, ctx, user: discord.User):
         if user == ctx.message.author:

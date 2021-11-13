@@ -2,7 +2,7 @@ import yaml
 import dotenv
 
 
-class FoxcordData:
+class Data:
     version = ''
     token = ''
     prefix = ''
@@ -23,7 +23,7 @@ class FoxcordData:
     command_debug = False
 
     enable_logging = False
-    log = ''
+    bot_log = ''
     database_log = ''
     command_log = ''
 
@@ -38,14 +38,14 @@ class FoxcordData:
     admin_id = 0
     dev_id = 0
 
-    def read_settings(self):
+    def read(self):
         env_data = dotenv.dotenv_values('settings/.env')
-        FoxcordData.token = env_data.get('TOKEN')
-        FoxcordData.sql_host = env_data.get('SQL_HOST')
-        FoxcordData.sql_port = env_data.get('SQL_PORT')
-        FoxcordData.sql_user = env_data.get('SQL_USER')
-        FoxcordData.sql_pass = env_data.get('SQL_PASS')
-        FoxcordData.sql_db = env_data.get('SQL_DB')
+        Data.token = env_data.get('TOKEN')
+        Data.sql_host = env_data.get('SQL_HOST')
+        Data.sql_port = env_data.get('SQL_PORT')
+        Data.sql_user = env_data.get('SQL_USER')
+        Data.sql_pass = env_data.get('SQL_PASS')
+        Data.sql_db = env_data.get('SQL_DB')
 
         with open("settings/foxcord.yaml", "r") as settings:
             yaml_data = yaml.load(settings, Loader=yaml.loader.Loader)
@@ -55,31 +55,32 @@ class FoxcordData:
                     yaml_data["commandData"],
                     yaml_data["roleData"],
             ):
-                FoxcordData.version = foxcord_data['version']
-                FoxcordData.prefix = foxcord_data['prefix']
-                FoxcordData.sql_enabled = foxcord_data['databaseEnabled']
-                FoxcordData.mode = foxcord_data['mode']
+                Data.version = foxcord_data['version']
+                Data.prefix = foxcord_data['prefix']
+                Data.sql_enabled = foxcord_data['databaseEnabled']
+                Data.mode = foxcord_data['mode']
 
-                FoxcordData.user_commands = cmd_data['enableUserCommands']
-                FoxcordData.mod_commands = cmd_data['enableModCommands']
-                FoxcordData.admin_commands = cmd_data['enableAdminCommands']
-                FoxcordData.dev_commands = cmd_data['enableDevCommands']
-                FoxcordData.command_warnings = cmd_data['enableCommandWarnings']
-                FoxcordData.command_debug = cmd_data['enableCommandDebug']
+                Data.user_commands = cmd_data['enableUserCommands']
+                Data.mod_commands = cmd_data['enableModCommands']
+                Data.admin_commands = cmd_data['enableAdminCommands']
+                Data.dev_commands = cmd_data['enableDevCommands']
+                Data.command_warnings = cmd_data['enableCommandWarnings']
+                Data.command_debug = cmd_data['enableCommandDebug']
 
-                FoxcordData.enable_logging = log_data['enableLogging']
-                FoxcordData.log = log_data['botLog']
-                FoxcordData.database_log = log_data['databaseLog']
-                FoxcordData.command_log = log_data['commandLog']
+                Data.enable_logging = log_data['enableLogging']
+                Data.bot_log = log_data['botLog']
+                Data.database_log = log_data['databaseLog']
+                Data.command_log = log_data['commandLog']
 
-                FoxcordData.cog_path = cmd_data['cogPath']
-                FoxcordData.user_cog = cmd_data['userCog']
-                FoxcordData.mod_cog = cmd_data['modCog']
-                FoxcordData.admin_cog = cmd_data['adminCog']
-                FoxcordData.dev_cog = cmd_data['devCog']
+                Data.cog_path = cmd_data['cogPath']
+                Data.user_cog = cmd_data['userCog']
+                Data.mod_cog = cmd_data['modCog']
+                Data.admin_cog = cmd_data['adminCog']
+                Data.dev_cog = cmd_data['devCog']
 
-                FoxcordData.user_id = role_data['memberRoleId']
-                FoxcordData.mod_id = role_data['modRoleId']
-                FoxcordData.admin_id = role_data['adminRoleId']
-                FoxcordData.dev_id = role_data['devRoleId']
+                Data.user_id = role_data['memberRoleId']
+                Data.mod_id = role_data['modRoleId']
+                Data.admin_id = role_data['adminRoleId']
+                Data.dev_id = role_data['devRoleId']
         settings.close()
+        return Data
