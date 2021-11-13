@@ -1,21 +1,21 @@
-from discord.ext import commands
-import handler.commands.controller
-import handler.config.data
+from disnake.ext import commands
+from handler.commands.controller import FoxcordCommands
+from handler.config.data import Data
+
 
 
 class CommandTool(commands.Cog):
-
-    bot_data = handler.config.data.FoxcordData()
+    bot_data = Data()
 
     def __init__(self, bot):
         self.bot = bot
-        self.commands = handler.commands.controller.FoxcordCommands(self.bot)
+        self.commands = FoxcordCommands(self.bot)
 
     @commands.Cog.listener()
     async def on_ready(self):
         pass
 
-    @commands.command(
+    @commands.slash_command(
         description="Load a command module",
         aliases=['cmdtool', 'ctool'],
         hidden=True

@@ -1,6 +1,5 @@
 foxcord:
 - version: 0.0.4
-  token:
   prefix: f.
   databaseEnabled: false
   mode: live

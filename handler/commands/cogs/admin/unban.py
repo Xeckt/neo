@@ -1,12 +1,12 @@
-import handler.logging.foxlog
-import handler.config.data
-from discord.ext import commands
+from handler.logging.log import Log
+from handler.config.data import Data
+from disnake.ext import commands
 
 
 class Unban(commands.Cog):
 
-    bot_data = handler.config.data.FoxcordData()
-    foxlog = handler.logging.foxlog.Log().create_logger(__name__, bot_data.log)
+    bot_data = Data()
+    foxlog = Log().create(__name__, bot_data.bot_log)
 
 
     def __init__(self, bot):
@@ -16,7 +16,7 @@ class Unban(commands.Cog):
     async def on_ready(self):
         pass
 
-    @commands.command(
+    @commands.slash_command(
         description="Unban a given user.",
         hidden=True
     )
