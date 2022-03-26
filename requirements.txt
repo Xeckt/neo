@@ -1,4 +1,4 @@
 asyncpg~=0.24.0
 PyYAML~=6.0
 python-dotenv~=0.19.1
-disnake~=2.2.1
+disnake~=2.4.0

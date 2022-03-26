@@ -1,5 +1,6 @@
 import yaml
 import dotenv
+from disnake.ext import commands
 
 
 class Data:
@@ -49,16 +50,16 @@ class Data:
 
         with open("settings/foxcord.yaml", "r") as settings:
             yaml_data = yaml.load(settings, Loader=yaml.loader.Loader)
-            for (foxcord_data, log_data, cmd_data, role_data) in zip(
+            for (bot_data, log_data, cmd_data, role_data) in zip(
                     yaml_data["foxcord"],
                     yaml_data["logData"],
                     yaml_data["commandData"],
                     yaml_data["roleData"],
             ):
-                Data.version = foxcord_data['version']
-                Data.prefix = foxcord_data['prefix']
-                Data.sql_enabled = foxcord_data['databaseEnabled']
-                Data.mode = foxcord_data['mode']
+                Data.version = bot_data['version']
+                Data.prefix = bot_data['prefix']
+                Data.sql_enabled = bot_data['databaseEnabled']
+                Data.mode = bot_data['mode']
 
                 Data.user_commands = cmd_data['enableUserCommands']
                 Data.mod_commands = cmd_data['enableModCommands']
@@ -83,4 +84,4 @@ class Data:
                 Data.admin_id = role_data['adminRoleId']
                 Data.dev_id = role_data['devRoleId']
         settings.close()
-        return Data
+        return Data()

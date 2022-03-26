@@ -18,8 +18,8 @@ class Ping(commands.Cog):
         data.user_id
     )
     @commands.cooldown(1, 5, commands.BucketType.guild)
-    async def ping(self, ctx):
-        await ctx.send("Pong!")
+    async def ping(self, inter):
+        await inter.send("Pong!")
 
 
 def setup(bot):

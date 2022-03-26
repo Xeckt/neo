@@ -2,7 +2,7 @@ foxcord:
 - version: 0.0.4
   prefix: f.
   databaseEnabled: false
-  mode: live
+  mode: development
 
 logData:
 - enableLogging: true
@@ -25,7 +25,7 @@ commandData:
   enableCommandDebug: true
 
 roleData:
-- memberRoleId: 900157981579173900
-  modRoleId: 900157981579173900
-  adminRoleId: 900157981579173900
-  devRoleId: 900157981579173900
+- memberRoleId: 909588707663839302
+  modRoleId: 909588707663839302
+  adminRoleId: 909588707663839302
+  devRoleId: 909588707663839302
