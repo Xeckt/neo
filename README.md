@@ -15,6 +15,7 @@ The objective of this bot is to keep the code as dynamic and modular as possible
 
 Inspiration for this stemmed from the following project: [Sandplate](https://github.com/06000208/sandplate) by [006000208](https://github.com/06000208) - done in JavaScript and a great project. So, I thought why not do one in Python?
 
+This project isn't maintained consistently, it's a hobby project to work on over time.
 # Roadmap
  * [x] Create basic dynamic logging system
  * [x] Create bot configuration system
