@@ -6,7 +6,7 @@ from disnake.ext import commands
 class Unban(commands.Cog):
 
     bot_data = Data()
-    foxlog = Log().create(__name__, bot_data.bot_log)
+    yadps_log = Log().create(__name__, bot_data.bot_log)
 
 
     def __init__(self, bot):
@@ -26,7 +26,7 @@ class Unban(commands.Cog):
     async def unban(self, ctx, userid):
         user = await self.bot.fetch_user(userid)
         await ctx.guild.unban(user)
-        self.foxlog.warning(f"{user} has been unbanned!")
+        self.yadps_log.warning(f"{user} has been unbanned!")
         await ctx.send(f"{user} is now unbanned.")
 
 

@@ -14,7 +14,7 @@ class SysInfo(commands.Cog):
         pass
 
     @commands.slash_command(
-        description="Get system information Foxcord is running on.",
+        description="Get system information yadps-chan is running on.",
         aliases=['si']
     )
     @commands.has_any_role(

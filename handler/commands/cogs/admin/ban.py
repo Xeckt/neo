@@ -9,7 +9,7 @@ class Ban(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.foxlog = Log().create(__name__, self.data.bot_log)
+        self.yadps_log = Log().create(__name__, self.data.bot_log)
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -27,7 +27,7 @@ class Ban(commands.Cog):
             await ctx.send(f"You can't ban yourself, {ctx.message.author.mention}")
             return
         await ctx.guild.ban(user)
-        self.foxlog.warning(f"{user} has been banned!")
+        self.yadps_log.warning(f"{user} has been banned!")
         await ctx.send(f"{ctx.message.author.mention} gave the banhammer to {user}")
 
 

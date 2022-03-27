@@ -48,10 +48,10 @@ class Data:
         Data.sql_pass = env_data.get('SQL_PASS')
         Data.sql_db = env_data.get('SQL_DB')
 
-        with open("settings/foxcord.yaml", "r") as settings:
+        with open("settings/yadps.yaml", "r") as settings:
             yaml_data = yaml.load(settings, Loader=yaml.loader.Loader)
             for (bot_data, log_data, cmd_data, role_data) in zip(
-                    yaml_data["foxcord"],
+                    yaml_data["yadps"],
                     yaml_data["logData"],
                     yaml_data["commandData"],
                     yaml_data["roleData"],

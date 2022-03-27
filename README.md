@@ -1,23 +1,13 @@
-<p align="center">
-<img src="https://i.imgur.com/DGLrWwX.png/" height="500" width="500" >
-</p>
-
 # Requirements
-Check [requirements.txt](https://github.com/Atomic-Molecule/foxcord/blob/main-(stable)/requirements.txt)
+Check [requirements.txt](https://github.com/pritam42069/yadps-chan/blob/main-(stable)/requirements.txt)
 
 
 # Description
-- Foxcord Version: 0.0.4
-
-Foxcord aims to be beginner-friendly, but will also fall in the category for experienced users. 
-
-The objective of this bot is to keep the code as dynamic and modular as possible whilst minimising reliability between code.
-
-Inspiration for this stemmed from the following project: [Sandplate](https://github.com/06000208/sandplate) by [006000208](https://github.com/06000208) - done in JavaScript and a great project. So, I thought why not do one in Python?
-
+- YADPS-Chan Version: 0.0.4
 This project isn't maintained consistently, it's a hobby project to work on over time.
+
 # Roadmap
- * [x] Create basic dynamic logging system
+ * [x] Create basic logging system
  * [x] Create bot configuration system
  * [x] Create modular command system
  * [ ] Create docker build images and docker-compose for launching the bot

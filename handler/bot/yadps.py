@@ -6,14 +6,14 @@ from handler.commands.controller import CommandController
 from disnake.ext import commands
 
 
-class Foxcord(commands.Bot):
+class Yadps(commands.Bot):
     f_data = Data().read()
     f_bot_log = Log().create(__name__, f_data.bot_log)
     f_sql = Sql()
     f_cmd_controller = CommandController
 
     def init(self):
-        self.f_bot_log.info("Initing Foxcord")
+        self.f_bot_log.info("Initing yadps-chan")
         self.f_cmd_controller(self).init()
         self.f_sql.init()
         if self.f_data.token == "":
@@ -24,7 +24,7 @@ class Foxcord(commands.Bot):
         self.f_bot_log.info("Valid .env configuration detected")
 
     async def on_ready(self):
-        self.f_bot_log.info("Foxcord is connected")
+        self.f_bot_log.info("yadps-chan is connected")
 
     async def on_message(self, message: disnake.Message):
         if message.author == self.user:
