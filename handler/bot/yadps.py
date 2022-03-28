@@ -13,7 +13,6 @@ class Yadps(commands.Bot):
     cmd_controller = CommandController
 
     def init(self):
-        print(self.data.config["prefix"])
         self.bot_log.info("Initing yadps-chan")
         self.cmd_controller(self).init()
         if self.data.config["sql_enabled"]:
