@@ -11,5 +11,6 @@ if __name__ == "__main__":
         exit(1)
     bot = Yadps(command_prefix=Yadps.f_data.prefix, test_guilds=[909578544869437460])
     bot.init()
+    print(bot.f_data.token)
     bot.run(bot.f_data.token)
 
