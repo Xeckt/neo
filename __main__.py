@@ -1,6 +1,7 @@
 import sys
 from handler.bot.yadps import Yadps
 from handler.commands.controller import CommandController
+from handler.config.newdata import NewData
 import disnake
 
 if __name__ == "__main__":
@@ -9,8 +10,7 @@ if __name__ == "__main__":
             f"Python version must be minimum 3.10. Currently detected version: "
             f"{str(sys.version_info.major) + '.' + str(sys.version_info.minor)}")
         exit(1)
-    bot = Yadps(command_prefix=Yadps.f_data.prefix, test_guilds=[909578544869437460])
+    bot = Yadps(command_prefix=Yadps.data.prefix)
     bot.init()
-    print(bot.f_data.token)
-    bot.run(bot.f_data.token)
+    bot.run(bot.data.token)
 

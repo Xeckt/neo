@@ -5,8 +5,8 @@ from disnake.ext import commands
 
 class Unban(commands.Cog):
 
-    bot_data = Data()
-    yadps_log = Log().create(__name__, bot_data.bot_log)
+    data = Data()
+    yadps_log = Log().create(__name__, data.bot_log)
 
 
     def __init__(self, bot):
@@ -21,7 +21,7 @@ class Unban(commands.Cog):
         hidden=True
     )
     @commands.has_any_role(
-        bot_data.admin_id
+        data.admin_id
     )
     async def unban(self, ctx, userid):
         user = await self.bot.fetch_user(userid)

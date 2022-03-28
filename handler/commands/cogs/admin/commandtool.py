@@ -4,8 +4,10 @@ from handler.commands.controller import CommandController
 from handler.config.data import Data
 
 
+# This command is in progress so may look unfinished.
+
 class CommandTool(commands.Cog):
-    f_data = Data()
+    data = Data()
 
     def __init__(self, bot):
         self.bot = bot
@@ -20,8 +22,8 @@ class CommandTool(commands.Cog):
         aliases=['cmdtool', 'ctool'],
     )
     @commands.has_any_role(
-        f_data.admin_id,
-        f_data.dev_id
+        data.admin_id,
+        data.dev_id
     )
     async def commandtool(self, interaction: disnake.ApplicationCommandInteraction, command_rank, command,
                           state: str):
