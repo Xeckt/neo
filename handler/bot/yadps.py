@@ -38,10 +38,9 @@ class Yadps(commands.Bot):
         self.bot_log.info(f"Slash command: {inter.data.name} invoked by {inter.author} successful")
 
     async def on_slash_command_error(self, inter, error):
-        self.bot_log.error(inter, error)
         if isinstance(error, commands.MissingAnyRole):
             if self.data.config["enableCommandWarnings"]:
-                self.bot_log.warning(f"{inter.author} is missing roles for slash command: {inter.data.name}")
+                self.bot_log.warning(f"{inter.author} is missing roles for command: {inter.data.name}")
             if self.data.config["enableCommandDebug"] or self.data.config["mode"] == "development":
                 self.bot_log.debug(f"Command -> {inter.data.name} | Invoked from -> {inter.channel_id} | By user"
                                      f"-> {inter.author} | Error -> {inter.author} missing roles")
