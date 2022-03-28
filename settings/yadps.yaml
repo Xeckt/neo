@@ -3,6 +3,7 @@ yadps:
   prefix: f.
   databaseEnabled: false
   mode: development
+  envFile: settings/.env
 
 logData:
 - enableLogging: true
@@ -25,7 +26,8 @@ commandData:
   enableCommandDebug: true
 
 roleData:
-- memberRoleId: 909588707663839302
+- guildId: 956780366063095808
+  memberRoleId: 909588707663839302
   modRoleId: 909588707663839302
   adminRoleId: 909588707663839302
   devRoleId: 909588707663839302

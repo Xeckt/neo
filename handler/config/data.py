@@ -1,87 +1,70 @@
 import yaml
 import dotenv
-from disnake.ext import commands
+
 
 
 class Data:
-    version = ''
-    token = ''
-    prefix = ''
-    mode = None
+    env_keys = ['TOKEN', 'SQL_HOST', 'SQL_PORT', 'SQL_USER', 'SQL_PASS', 'SQL_DB']
+    yaml_file = 'settings/yadps.yaml'
 
-    sql_enabled = False
-    sql_host = ''
-    sql_port = ''
-    sql_user = ''
-    sql_pass = ''
-    sql_db = ''
+    config = {
+        'version': '',
+        'token': '',
+        'prefix': '',
+        'mode': None,
+        'envFile': 'settings/.env',
+        'sql_enabled': False,
+        'sql_host': '',
+        'sql_port': '',
+        'sql_user': '',
+        'sql_pass': '',
+        'sql_db': '',
+        'enableLogging': False,
+        'botLog': '',
+        'databaseLog': '',
+        'commandLog': '',
+        'cogPath': '',
+        'userCog': '',
+        'modCog': '',
+        'adminCog': '',
+        'devCog': '',
+        'enableUserCommands': False,
+        'enableModCommands': False,
+        'enableAdminCommands': False,
+        'enableDevCommands': False,
+        'enableCommandWarnings': False,
+        'enableCommandDebug': False,
+        'guildId': 0,
+        'memberRoleId': 0,
+        'modRoleId': 0,
+        'adminRoleId': 0,
+        'devRoleId': 0,
+    }
 
-    user_commands = False
-    mod_commands = False
-    admin_commands = False
-    dev_commands = False
-    command_warnings = False
-    command_debug = False
+    def read_yaml(self):
+        with open(self.yaml_file) as settings:
+            data = yaml.load(settings, Loader=yaml.loader.Loader)
+            dicts_arr = []
+            for (bot, log, cmd, role) in zip(
+                    data["yadps"],
+                    data["logData"],
+                    data["commandData"],
+                    data["roleData"],
+            ):
+                dicts_arr.append(bot)
+                dicts_arr.append(log)
+                dicts_arr.append(cmd)
+                dicts_arr.append(role)
+            for i in range(0, len(dicts_arr)):
+                for k, v in dicts_arr[i].items():
+                    Data().config[k] = v
 
-    enable_logging = False
-    bot_log = ''
-    database_log = ''
-    command_log = ''
-
-    cog_path = ''
-    user_cog = ''
-    mod_cog = ''
-    admin_cog = ''
-    dev_cog = ''
-
-    user_id = 0
-    mod_id = 0
-    admin_id = 0
-    dev_id = 0
+    def read_env(self):
+        env = dotenv.dotenv_values(self.config['envFile'])
+        for v in self.env_keys:
+            Data.config[v.lower()] = env.get(v.upper())
 
     def read(self):
-        env_data = dotenv.dotenv_values('settings/.env')
-        Data.token = env_data.get('TOKEN')
-        Data.sql_host = env_data.get('SQL_HOST')
-        Data.sql_port = env_data.get('SQL_PORT')
-        Data.sql_user = env_data.get('SQL_USER')
-        Data.sql_pass = env_data.get('SQL_PASS')
-        Data.sql_db = env_data.get('SQL_DB')
-
-        with open("settings/yadps.yaml", "r") as settings:
-            yaml_data = yaml.load(settings, Loader=yaml.loader.Loader)
-            for (bot_data, log_data, cmd_data, role_data) in zip(
-                    yaml_data["yadps"],
-                    yaml_data["logData"],
-                    yaml_data["commandData"],
-                    yaml_data["roleData"],
-            ):
-                Data.version = bot_data['version']
-                Data.prefix = bot_data['prefix']
-                Data.sql_enabled = bot_data['databaseEnabled']
-                Data.mode = bot_data['mode']
-
-                Data.user_commands = cmd_data['enableUserCommands']
-                Data.mod_commands = cmd_data['enableModCommands']
-                Data.admin_commands = cmd_data['enableAdminCommands']
-                Data.dev_commands = cmd_data['enableDevCommands']
-                Data.command_warnings = cmd_data['enableCommandWarnings']
-                Data.command_debug = cmd_data['enableCommandDebug']
-
-                Data.enable_logging = log_data['enableLogging']
-                Data.bot_log = log_data['botLog']
-                Data.database_log = log_data['databaseLog']
-                Data.command_log = log_data['commandLog']
-
-                Data.cog_path = cmd_data['cogPath']
-                Data.user_cog = cmd_data['userCog']
-                Data.mod_cog = cmd_data['modCog']
-                Data.admin_cog = cmd_data['adminCog']
-                Data.dev_cog = cmd_data['devCog']
-
-                Data.user_id = role_data['memberRoleId']
-                Data.mod_id = role_data['modRoleId']
-                Data.admin_id = role_data['adminRoleId']
-                Data.dev_id = role_data['devRoleId']
-        settings.close()
+        Data().read_env()
+        Data().read_yaml()
         return Data()

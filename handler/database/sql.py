@@ -7,27 +7,26 @@ class Sql:
 
     def __init__(self):
         self.data = handler.config.data.Data()
-        self.log = handler.logging.log.Log().create(__name__, self.data.database_log)
+        self.log = handler.logging.log.Log().create(__name__, self.data.config["databaseLog"])
+        self.sql_data = {
+            "database": self.data.config["sql_user"],
+            "host": self.data.config["sql_host"],
+            "port": self.data.config["sql_port"],
+            "user": self.data.config["sql_user"],
+            "pass": self.data.config["sql_pass"]
+        }
         self.pool = None
+
 
     def init(self):
         global signal
-        if self.data.sql_enabled:
-            self.log.info("Initing SQL")
-            sql_data = {
-                "database": self.data.sql_db,
-                "host": self.data.sql_host,
-                "port": self.data.sql_port,
-                "user": self.data.sql_user,
-                "pass": self.data.sql_pass
-                }
-            for k, v in sql_data.items():
-                if len(v) == 0:
-                    self.log.error(f"Config error: value for {k} is empty")
-                    signal = "empty"
-                else:
-                    signal = "valid"
-            asyncio.run(self.start(signal))
+        for k, v in self.sql_data.items():
+            if len(v) == 0:
+                self.log.error(f"Config error: value for {k} is empty")
+                signal = "empty"
+            else:
+                signal = "valid"
+        asyncio.run(self.start(signal))
 
     async def start(self, signal=None):
         if signal == "empty":
@@ -42,10 +41,10 @@ class Sql:
 
     async def create_pool(self):
         return await asyncpg.create_pool(
-            f'postgresql://{self.data.sql_user}'
-            f':{self.data.sql_pass}'
-            f'@{self.data.sql_host}/'
-            f'{self.data.sql_db}',
+            f'postgresql://{self.sql_data["user"]}'
+            f':{self.sql_data["pass"]}'
+            f'@{self.sql_data["host"]}/'
+            f'{self.sql_data["database"]}',
             min_size=0,
             max_size=5,
             max_queries=30,

@@ -22,8 +22,8 @@ class CommandTool(commands.Cog):
         aliases=['cmdtool', 'ctool'],
     )
     @commands.has_any_role(
-        data.admin_id,
-        data.dev_id
+        data.config["adminRoleId"],
+        data.config["devRoleId"]
     )
     async def commandtool(self, interaction: disnake.ApplicationCommandInteraction, command_rank, command,
                           state: str):

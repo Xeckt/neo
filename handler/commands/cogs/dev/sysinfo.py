@@ -18,7 +18,7 @@ class SysInfo(commands.Cog):
         aliases=['si']
     )
     @commands.has_any_role(
-        data.dev_id
+        data.config["devRoleId"]
     )
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def sysinfo(self, ctx):

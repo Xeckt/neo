@@ -14,7 +14,7 @@ class Kick(commands.Cog):
         pass
 
     @commands.slash_command(description="Ping bot")
-    @commands.has_any_role(data.mod_id, data.admin_id)
+    @commands.has_any_role(data.config["modRoleId"], data.config["adminRoleId"])
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def kick(self, ctx, user: discord.User):
         try:
