@@ -4,7 +4,7 @@ Check [requirements.txt](https://github.com/pritam42069/yadps-chan/blob/main-(st
 
 # Description
 - YADPS-Chan Version: 0.0.4
-This project isn't maintained consistently, it's a hobby project to work on over time.
+This project isn't maintained consistently, and is a hobby project to work on over time.
 
 # Roadmap
  * [x] Create basic logging system
