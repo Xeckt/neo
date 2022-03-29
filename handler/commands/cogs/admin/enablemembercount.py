@@ -1,3 +1,4 @@
+import asyncio
 import time
 
 import disnake
@@ -30,8 +31,8 @@ class EnableMemberCount(commands.Cog):
             return
         while True:
             await channel.edit(name=count)
-            time.sleep(300.0 - ((time.time() - start_time) % 60.0))
-            # Careful of this command, there is no way implemented to stop the loop yet.
+            await asyncio.sleep(min(120, 300) - ((time.time() - start_time) % 60.0))
+            # Will implement lock checks for this to make sure a previously enabled async thread isn't active
 
 
 
