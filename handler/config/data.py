@@ -2,9 +2,9 @@ import yaml
 import dotenv
 
 
-
 class Data:
-    env_keys = ['TOKEN', 'SQL_HOST', 'SQL_PORT', 'SQL_USER', 'SQL_PASS', 'SQL_DB']
+    env_keys = ['TOKEN', 'SQL_HOST', 'SQL_PORT',
+                'SQL_USER', 'SQL_PASS', 'SQL_DB']
     yaml_file = 'settings/yadps.yaml'
 
     config = {

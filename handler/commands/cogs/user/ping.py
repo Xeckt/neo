@@ -1,5 +1,6 @@
 from disnake.ext import commands
 from handler.config.data import Data
+import disnake
 
 
 class Ping(commands.Cog):
@@ -18,7 +19,7 @@ class Ping(commands.Cog):
         data.config["memberRoleId"]
     )
     @commands.cooldown(1, 5, commands.BucketType.guild)
-    async def ping(self, inter):
+    async def ping(self, inter: disnake.ApplicationCommandInteraction):
         await inter.send("Pong!")
 
 

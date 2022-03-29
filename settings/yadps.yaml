@@ -1,33 +1,33 @@
 yadps:
-- version: 0.0.4
-  prefix: f.
-  databaseEnabled: false
-  mode: development
-  envFile: settings/.env
+  - version: 0.0.4
+    prefix: f.
+    databaseEnabled: false
+    mode: development
+    envFile: settings/.env
 
 logData:
-- enableLogging: true
-  botLog: logs/bot.log
-  databaseLog: logs/sql.log
-  commandLog: logs/commands.log
-  systemLog: logs/system.log
+  - enableLogging: true
+    botLog: logs/bot.log
+    databaseLog: logs/sql.log
+    commandLog: logs/commands.log
+    systemLog: logs/system.log
 
 commandData:
-- cogPath: handler.commands.cogs
-  userCog: user
-  modCog: mod
-  adminCog: admin
-  devCog: dev
-  enableUserCommands: true
-  enableModCommands: true
-  enableAdminCommands: true
-  enableDevCommands: true
-  enableCommandWarnings: true
-  enableCommandDebug: true
+  - cogPath: handler.commands.cogs
+    userCog: user
+    modCog: mod
+    adminCog: admin
+    devCog: dev
+    enableUserCommands: true
+    enableModCommands: true
+    enableAdminCommands: true
+    enableDevCommands: true
+    enableCommandWarnings: true
+    enableCommandDebug: true
 
 roleData:
-- guildId: 956780366063095808
-  memberRoleId: 909588707663839302
-  modRoleId: 909588707663839302
-  adminRoleId: 909588707663839302
-  devRoleId: 909588707663839302
+  - guildId: 956780366063095808
+    memberRoleId: 956780366063095811
+    modRoleId: 909588707663839302
+    adminRoleId: 956780366063095815
+    devRoleId: 909588707663839302
