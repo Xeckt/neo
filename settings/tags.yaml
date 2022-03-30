@@ -4,11 +4,11 @@ tags:
     description:
       "Use codeblocks for readability while sending code.\n\n
       For example\n
-      \\```c\n
+      \\`\\`\\`c\n
       int main() {\n
-      //some code here\n
+      \t//some code here\n
       }\n
-      \\```\n
+      \\`\\`\\`\n
       becomes\n
       ```c\n
       int main() {\n
