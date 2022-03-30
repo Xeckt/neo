@@ -1,0 +1,24 @@
+tags:
+  code:
+    title: Using a codeblock
+    description:
+      "Use codeblocks for readability while sending code.\n\n
+      For example\n
+      \\```c\n
+      int main() {\n
+      //some code here\n
+      }\n
+      \\```\n
+      becomes\n
+      ```c\n
+      int main() {\n
+      //some code here\n
+      }\n
+      ```\n
+      Note that these are backticks, not quotes."
+  paste:
+    title: Pasting large amounts of text
+    description:
+      "Sometimes the code is too big to fit into a discord codeblock, rather than uploading it as a text file, paste it on https://pastebin.com/
+      \n\n
+      After pasting the code, be sure to save it with `ctrl+s`, copy the URL and post it in the related channel."
