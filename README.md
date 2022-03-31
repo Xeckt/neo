@@ -27,4 +27,5 @@ TBD
 TBD
 
 # Contributing
-TBD
+- You can fork the repository and make a pull request with your changes if you want to contribute. 
+- Most of the decisions regarding the bot are taken on [this](https://discord.gg/zFBfXDY7RY) server, so ask there for any help.
