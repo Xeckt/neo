@@ -29,6 +29,7 @@ class EnableMemberCount(commands.Cog):
         if not isinstance(channel, disnake.VoiceChannel):
             await interaction.send("You must supply a voice channel.")
             return
+        await interaction.send(f"Enabling member count on channel: {channel.name}")
         while True:
             await channel.edit(name=count)
             await asyncio.sleep(min(120, 300) - ((time.time() - start_time) % 60.0))
