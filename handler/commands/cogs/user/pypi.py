@@ -22,6 +22,7 @@ class PyPi(commands.Cog):
     )
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def pypi(self, inter: disnake.ApplicationCommandInteraction, package):
+        print(f'https://pypi.org/pypi/{package}/json')
         r = requests.get(f"https://pypi.org/pypi/{package}/json")
         if r.status_code != 200:
             embed = disnake.Embed(
@@ -34,14 +35,17 @@ class PyPi(commands.Cog):
             title=f"{package} v{r.get('info').get('version')}",
             description=f"{r.get('info').get('summary')}"
         )
-
-        embed.add_field("Author", r.get("info").get("author"))
-        embed.add_field("Email", r.get("info").get("author_email"))
-        embed.add_field("Discontinued", r.get("info").get("yanked"))
-        embed.add_field("Keywords", r.get("info").get("keywords"))
-        embed.add_field("URL", f"[{package}]({r.get('info').get('project_url')})")
-        if r.get('info').get('bugtrack_url'):
-            embed.add_field("Bugs", f"[Click Here]({r.get('info').get('bugtrack_url')})")
+        fields = {
+            'Author': 'author',
+            'Author Email': 'author_email',
+            'Discontinued': 'yanked',
+            'Keywords': 'keywords',
+            'Bugs': 'bugtrack_url',
+            'Project URL': 'project_url',
+        }
+        for name, value in fields.items():
+            if r.get('info').get(value):
+                embed.add_field(name, r.get('info').get(value))
         await inter.send(embed=embed)
 
 

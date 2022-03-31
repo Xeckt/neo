@@ -38,6 +38,7 @@ class Yadps(commands.Bot):
         self.bot_log.info(f"Slash command: {inter.data.name} invoked by {inter.author} successful")
 
     async def on_slash_command_error(self, inter, error):
+        print(error)
         if isinstance(error, commands.MissingAnyRole):
             if self.data.config["enableCommandWarnings"]:
                 self.bot_log.warning(f"{inter.author} is missing roles for command: {inter.data.name}")
