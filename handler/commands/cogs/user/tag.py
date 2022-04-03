@@ -21,9 +21,16 @@ class Tag(commands.Cog):
         data.config["memberRoleId"]
     )
     @commands.cooldown(1, 5, commands.BucketType.guild)
-    async def tag(self, inter: disnake.ApplicationCommandInteraction, tag):
+    async def tag(self, inter: disnake.ApplicationCommandInteraction, tag: str=None):
         with open('settings/tags.yaml') as file:
             tags = yaml.load(file, Loader=yaml.loader.Loader)
+        if not tag:
+            embed = disnake.Embed(
+                title="All tags",
+                description="\n".join([i for i in tags['tags']])
+            )
+            await inter.send(embed=embed)
+            return
         try:
             embed = disnake.Embed(
                 title=tags['tags'][tag]['title'],
