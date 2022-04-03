@@ -22,3 +22,7 @@ tags:
       "Sometimes the code is too big to fit into a discord codeblock, rather than uploading it as a text file, paste it on https://pastebin.com/
       \n\n
       After pasting the code, be sure to save it with `ctrl+s`, copy the URL and post it in the related channel."
+  roles:
+    title: How to take your roles
+    description:
+      "To take your roles, run `-role {role name}` [don't include the `{}`].\n\nYou can see all available roles by running `-role`."
