@@ -3,3 +3,4 @@ PyYAML~=6.0
 python-dotenv~=0.19.1
 disnake~=2.4.0
 requests~=2.27.1
+psutil~=5.9.0
