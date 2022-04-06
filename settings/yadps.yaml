@@ -27,7 +27,7 @@ commandData:
 
 roleData:
   - guildId: 956780366063095808
-    memberRoleId: 956780366063095811
-    modRoleId: 909588707663839302
-    adminRoleId: 956780366063095815
-    devRoleId: 909588707663839302
+    memberRoleId: 956780366063095811 # Role name: Member
+    modRoleId: 957453302029754431 # Role name: moderator
+    adminRoleId: 956780366063095815 # Role name: admin
+    devRoleId: 958426039393083462 # Role name: YADPS-Contributor
