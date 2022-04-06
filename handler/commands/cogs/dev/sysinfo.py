@@ -2,6 +2,7 @@ import csv
 import psutil
 import cpuinfo
 import disnake
+import os
 from disnake.ext import commands
 from handler.config.data import Data
 
@@ -26,9 +27,13 @@ class SysInfo(commands.Cog):
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def sysinfo(self, interaction: disnake.ApplicationCommandInteraction):
         info = {}
+        file = "settings/server.info"
         mem_v = psutil.virtual_memory()
         mem_s = psutil.swap_memory()
         cpu = cpuinfo.get_cpu_info()
+        if not os.path.isfile(file):
+            await interaction.send(f"{file} doesn't exist inside settings.")
+            return
         with open("settings/server.info", "r") as release_file:
             r = csv.reader(release_file, delimiter='=')
             for k, v in r:
