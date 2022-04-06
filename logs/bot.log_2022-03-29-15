@@ -1,7 +1,0 @@
-2022-03-29 15:55:18,591 | Module: handler.bot.yadps | INFO | Initing yadps-chan
-2022-03-29 15:55:18,637 | Module: handler.bot.yadps | INFO | Valid .env configuration detected
-2022-03-29 15:55:23,169 | Module: handler.bot.yadps | INFO | yadps-chan is connected
-2022-03-29 15:55:32,018 | Module: handler.bot.yadps | INFO | Slash command: pypi invoked by pacman#7299
-2022-03-29 15:58:37,564 | Module: handler.bot.yadps | INFO | Slash command: pypi invoked by Zxi#6070
-2022-03-29 15:58:37,564 | Module: handler.bot.yadps | WARNING | Zxi#6070 is missing roles for command: pypi
-2022-03-29 15:59:35,316 | Module: handler.bot.yadps | INFO | Slash command: pypi invoked by Zxi#6070
