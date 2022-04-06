@@ -26,7 +26,7 @@ class Reminders(commands.Cog):
     async def bump(self, interaction: disnake.ApplicationCommandInteraction, channel: disnake.TextChannel):
         start_time = time.time()
         if not isinstance(channel, disnake.TextChannel):
-            await interaction.send("You must supply a voice channel.")
+            await interaction.send("You must supply a text channel.")
             return
         await interaction.send(f"Enabling bump reminders on channel: {channel.mention}")
         embed = disnake.Embed(
