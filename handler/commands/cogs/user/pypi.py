@@ -1,5 +1,3 @@
-import json
-
 import disnake
 import requests
 from disnake.ext import commands
