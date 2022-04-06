@@ -1,0 +1,9 @@
+version: '3.2'
+services:
+ yadps-chan:
+   image: yadps:latest
+   volumes:
+   - type: bind
+     source: /home/user/yadps
+     target: /var/bot/yadps
+   command: "python /var/bot/yadps/__main__.py"
