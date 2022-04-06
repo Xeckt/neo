@@ -1,0 +1,13 @@
+2022-03-30 21:13:17,467 | Module: handler.bot.yadps | INFO | Initing yadps-chan
+2022-03-30 21:13:17,561 | Module: handler.bot.yadps | INFO | Valid .env configuration detected
+2022-03-30 21:13:22,840 | Module: handler.bot.yadps | INFO | yadps-chan is connected
+2022-03-30 21:13:33,120 | Module: handler.bot.yadps | INFO | Slash command: tag invoked by pacman#7299
+2022-03-30 21:13:33,736 | Module: handler.bot.yadps | INFO | Slash command: tag invoked by pacman#7299 successful
+2022-03-30 21:13:41,727 | Module: handler.bot.yadps | INFO | Slash command: tag invoked by pacman#7299
+2022-03-30 21:13:42,747 | Module: handler.bot.yadps | INFO | Slash command: tag invoked by pacman#7299 successful
+2022-03-30 21:15:57,912 | Module: handler.bot.yadps | INFO | Slash command: enablemembercount invoked by pacman#7299
+2022-03-30 21:15:57,912 | Module: handler.bot.yadps | WARNING | pacman#7299 is missing roles for command: enablemembercount
+2022-03-30 21:16:19,008 | Module: handler.bot.yadps | INFO | Slash command: enablemembercount invoked by pacman#7299
+2022-03-30 21:25:17,416 | Module: handler.bot.yadps | INFO | Slash command: enablemembercount invoked by Zxi#6070
+2022-03-30 21:25:17,416 | Module: handler.bot.yadps | WARNING | Zxi#6070 is missing roles for command: enablemembercount
+2022-03-30 21:26:11,892 | Module: handler.bot.yadps | INFO | Slash command: enablemembercount invoked by pacman#7299

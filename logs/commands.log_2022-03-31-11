@@ -1,0 +1,4 @@
+2022-03-31 11:56:50,545 | Module: handler.commands.controller | INFO | Initing commands
+2022-03-31 11:56:50,616 | Module: handler.commands.controller | INFO | Total commands loaded: 10
+2022-03-31 11:59:48,922 | Module: handler.commands.controller | INFO | Initing commands
+2022-03-31 11:59:48,971 | Module: handler.commands.controller | INFO | Total commands loaded: 10

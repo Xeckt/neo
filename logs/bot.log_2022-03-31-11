@@ -1,0 +1,15 @@
+2022-03-31 11:56:50,545 | Module: handler.bot.yadps | INFO | Initing yadps-chan
+2022-03-31 11:56:50,617 | Module: handler.bot.yadps | INFO | Valid .env configuration detected
+2022-03-31 11:56:55,139 | Module: handler.bot.yadps | INFO | yadps-chan is connected
+2022-03-31 11:57:05,212 | Module: handler.bot.yadps | INFO | Slash command: pypi invoked by pacman#7299
+2022-03-31 11:58:24,468 | Module: handler.bot.yadps | INFO | Slash command: pypi invoked by pacman#7299
+2022-03-31 11:58:25,418 | Module: handler.bot.yadps | INFO | Slash command: pypi invoked by pacman#7299 successful
+2022-03-31 11:58:34,706 | Module: handler.bot.yadps | INFO | Slash command: pypi invoked by pacman#7299
+2022-03-31 11:58:35,728 | Module: handler.bot.yadps | INFO | Slash command: pypi invoked by pacman#7299 successful
+2022-03-31 11:58:41,864 | Module: handler.bot.yadps | INFO | Slash command: pypi invoked by pacman#7299
+2022-03-31 11:59:48,922 | Module: handler.bot.yadps | INFO | Initing yadps-chan
+2022-03-31 11:59:48,971 | Module: handler.bot.yadps | INFO | Valid .env configuration detected
+2022-03-31 11:59:53,920 | Module: handler.bot.yadps | INFO | yadps-chan is connected
+2022-03-31 11:59:56,817 | Module: handler.bot.yadps | INFO | Slash command: pypi invoked by pacman#7299
+2022-03-31 12:01:23,253 | Module: handler.bot.yadps | INFO | Slash command: pypi invoked by pacman#7299
+2022-03-31 12:01:24,480 | Module: handler.bot.yadps | INFO | Slash command: pypi invoked by pacman#7299 successful

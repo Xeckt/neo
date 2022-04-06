@@ -1,0 +1,4 @@
+2022-04-01 19:45:55,092 | Module: handler.bot.yadps | INFO | Initing yadps-chan
+2022-04-01 19:45:55,171 | Module: handler.bot.yadps | INFO | Valid .env configuration detected
+2022-04-01 19:45:59,759 | Module: handler.bot.yadps | INFO | yadps-chan is connected
+2022-04-01 19:46:01,592 | Module: handler.bot.yadps | INFO | Slash command: enablemembercount invoked by pacman#7299
