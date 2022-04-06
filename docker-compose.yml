@@ -4,6 +4,6 @@ services:
    image: yadps:latest
    volumes:
    - type: bind
-     source: /home/user/yadps
+     source: .
      target: /var/bot/yadps
    command: "python /var/bot/yadps/__main__.py"
