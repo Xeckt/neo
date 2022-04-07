@@ -16,10 +16,9 @@ class TestActions(unittest.TestCase):
             if "TOKEN" not in env:
                 print("[ERROR] -> Missing key: TOKEN")
                 return False
-            for k, v in env.items():
-                if k == "TOKEN" and len(v) == 0:
-                    print("[ERROR] -> Invalid TOKEN value")
-                    return False
+            if env["TOKEN"] and len(env["TOKEN"]) == 0:
+                print("[ERROR] -> Empty value for key TOKEN")
+                return False
             return True
         self.assertTrue(token_exists())
 
