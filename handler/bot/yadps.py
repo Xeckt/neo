@@ -20,8 +20,6 @@ class Yadps(commands.Bot):
         if self.data.config["token"] == "":
             self.bot_log.error("Token not found!")
             exit(1)
-        if self.data.config["prefix"] == "":
-            self.bot_log.warn("Prefix not found!")
         self.bot_log.info("Valid .env configuration detected")
 
     async def on_ready(self):
