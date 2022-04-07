@@ -10,7 +10,6 @@ class Data:
     config = {
         'version': '',
         'token': '',
-        'prefix': '',
         'mode': None,
         'envFile': 'settings/.env',
         'sql_enabled': False,
@@ -42,22 +41,14 @@ class Data:
     }
 
     def read_yaml(self):
-        with open(self.yaml_file) as settings:
-            data = yaml.load(settings, Loader=yaml.loader.Loader)
-            dicts_arr = []
-            for (bot, log, cmd, role) in zip(
-                    data["yadps"],
-                    data["logData"],
-                    data["commandData"],
-                    data["roleData"],
-            ):
-                dicts_arr.append(bot)
-                dicts_arr.append(log)
-                dicts_arr.append(cmd)
-                dicts_arr.append(role)
-            for i in range(0, len(dicts_arr)):
-                for k, v in dicts_arr[i].items():
-                    Data().config[k] = v
+        with open(self.yaml_file) as stream:
+            y_dict = yaml.safe_load(stream)
+            y_arr = []
+            for j in y_dict:
+                y_arr.append(j)
+                for j in range(0, len(y_arr)):
+                    for k in y_dict[y_arr[j]]:
+                        Data.config[k] = y_dict[y_arr[j]][k]
 
     def read_env(self):
         env = dotenv.dotenv_values(self.config['envFile'])
