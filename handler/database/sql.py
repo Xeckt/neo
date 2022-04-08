@@ -1,13 +1,13 @@
 import asyncpg, asyncio
-import handler.config.data
-import handler.logging.log
+from handler.config.data import Data
+from handler.logging.log import Log
 
 
 class Sql:
 
     def __init__(self):
-        self.data = handler.config.data.Data()
-        self.log = handler.logging.log.Log().create(__name__, self.data.config["databaseLog"])
+        self.data = Data()
+        self.log = Log().create(__name__, self.data.config["databaseLog"])
         self.sql_data = {
             "database": self.data.config["sql_user"],
             "host": self.data.config["sql_host"],

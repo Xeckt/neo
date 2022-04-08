@@ -4,7 +4,7 @@ import os
 
 
 class CommandController:
-    data = Data().read()
+    data = Data()
     command_log = Log().create(__name__, data.config["commandLog"])
     total_loaded = 0
 

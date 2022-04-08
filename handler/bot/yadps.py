@@ -8,7 +8,7 @@ from disnake.ext import commands
 
 
 class Yadps(commands.Bot):
-    data = Data().read()
+    data = Data()
     bot_log = Log().create(__name__, data.config["botLog"])
     sql = Sql()
     cmd_controller = CommandController

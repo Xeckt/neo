@@ -8,7 +8,7 @@ from handler.config.data import Data
 
 
 class TestActions(unittest.TestCase):
-    data = Data().read()
+    data = Data()
     log = Log().create(__name__, data.config["botLog"])
 
     def test_assertPythonVersion(self):
