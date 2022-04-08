@@ -2,7 +2,7 @@ name: Yadps-unit-test
 
 on:
   push:
-    branches: [ main-(stable) ]
+    branches: [ dev-stable ]
 
 permissions:
   contents: read
