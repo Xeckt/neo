@@ -10,8 +10,6 @@ class CommandController:
 
     def __init__(self, bot):
         self.bot = bot
-
-    def init(self):
         self.command_log.info("Initing commands")
         self.load()
 

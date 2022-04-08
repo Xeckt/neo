@@ -10,16 +10,13 @@ from disnake.ext import commands
 class Yadps(commands.Bot):
     data = Data()
     bot_log = Log().create(__name__, data.config["botLog"])
-    sql = Sql()
-    cmd_controller = CommandController
 
     def __init__(self, **options: Any):
         super().__init__(**options)
         self.bot_log.info("Initing yadps-chan")
-        self.cmd_controller(self).init()
-        self.member_count_channel = disnake.VoiceChannel
+        self.command_controller = CommandController
         if self.data.config["sql_enabled"]:
-            self.sql.init()
+            self.sql = Sql()
         if self.data.config["token"] == "":
             self.bot_log.error("Token not found!")
             exit(1)

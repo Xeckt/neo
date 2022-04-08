@@ -16,9 +16,6 @@ class Sql:
             "pass": self.data.config["sql_pass"]
         }
         self.pool = None
-
-
-    def init(self):
         global signal
         for k, v in self.sql_data.items():
             if len(v) == 0:
@@ -29,12 +26,6 @@ class Sql:
         asyncio.run(self.start(signal))
 
     async def start(self, signal=None):
-        if signal == "empty":
-            self.log.warn("Received empty config flag. SQL will not start.")
-            return
-        if signal == "error":
-            self.log.warn("Config error flag received. SQL will not start")
-            return
         if signal == "valid" or signal is None:
             self.log.info("Starting PostgreSQL Pool")
             self.pool = await self.create_pool()
