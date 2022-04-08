@@ -26,7 +26,7 @@ class TestActions(unittest.TestCase):
             self.log.error("Empty value for key TOKEN")
             self.fail()
         if len(token) != 59:
-            self.log.error(f"Token has incorrect length. Expected: 59. Got: {len(env.get('TOKEN'))}")
+            self.log.error(f"Token has incorrect length. Expected: 59. Got: {len(token)}")
             self.fail()
 
     def test_assertValidConfig(self):
