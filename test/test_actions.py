@@ -4,7 +4,7 @@ import dotenv
 import yaml
 from schema import Schema, SchemaError
 from src.yadps.logging.log import Log
-from src.yadps.config import Data
+from src.yadps.config.data import Data
 
 
 class TestActions(unittest.TestCase):
