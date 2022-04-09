@@ -13,7 +13,7 @@ class Kick(commands.Cog):
     async def on_ready(self):
         pass
 
-    @commands.slash_command(description="Ping bot")
+    @commands.slash_command(description="Kick a user from the Discord")
     @commands.has_any_role(data.config["modRoleId"], data.config["adminRoleId"])
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def kick(self, ctx, user: discord.User):
