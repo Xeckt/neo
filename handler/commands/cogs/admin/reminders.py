@@ -24,7 +24,6 @@ class Reminders(commands.Cog):
         data.config["adminRoleId"]
     )
     async def bump(self, interaction: disnake.ApplicationCommandInteraction, channel: disnake.TextChannel):
-        start_time = time.time()
         if not isinstance(channel, disnake.TextChannel):
             await interaction.send("You must supply a text channel.")
             return
