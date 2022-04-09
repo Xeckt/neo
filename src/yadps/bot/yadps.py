@@ -11,8 +11,8 @@ class Yadps(commands.Bot):
     data = Data()
     bot_log = Log().create(__name__, data.config["botLog"])
 
-    def __init__(self, **options: Any):
-        super().__init__(**options)
+    def __init__(self, *args: Any, **kwargs: Any):
+        super().__init__(*args, **kwargs)
         self.bot_log.info("YADPS-Chan is starting")
         self.command_controller = CommandController(self).load()
         if self.data.config["sql_enabled"]:
