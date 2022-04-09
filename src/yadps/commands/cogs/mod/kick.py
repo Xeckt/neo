@@ -1,4 +1,4 @@
-from handler.config.data import Data
+from src.yadps.config.data import Data
 from disnake.ext import commands
 import disnake as discord
 

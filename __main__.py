@@ -2,7 +2,7 @@ import sys
 
 import disnake
 
-from handler.bot.yadps import Yadps
+from src.yadps.bot.yadps import Yadps
 
 if __name__ == "__main__":
     if sys.version_info[0:2] != (3, 10):

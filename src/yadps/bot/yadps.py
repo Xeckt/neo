@@ -1,9 +1,9 @@
 from typing import Any
 import disnake
-from handler.logging.log import Log
-from handler.config.data import Data
-from handler.database.sql import Sql
-from handler.commands.controller import CommandController
+from src.yadps.logging.log import Log
+from src.yadps.config.data import Data
+from handler import Sql
+from handler import CommandController
 from disnake.ext import commands
 
 

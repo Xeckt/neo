@@ -1,8 +1,7 @@
 import asyncio
-import time
 
 import disnake
-from handler.config.data import Data
+from src.yadps.config.data import Data
 from disnake.ext import commands
 
 

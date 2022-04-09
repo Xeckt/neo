@@ -1,5 +1,5 @@
-from handler.config.data import Data
-from handler.logging.log import Log
+from src.yadps.config.data import Data
+from src.yadps.logging.log import Log
 import os
 
 

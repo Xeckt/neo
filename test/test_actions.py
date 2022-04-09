@@ -3,8 +3,8 @@ import unittest
 import dotenv
 import yaml
 from schema import Schema, SchemaError
-from handler.logging.log import Log
-from handler.config.data import Data
+from src.yadps.logging.log import Log
+from src.yadps.config import Data
 
 
 class TestActions(unittest.TestCase):

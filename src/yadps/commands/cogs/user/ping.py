@@ -1,5 +1,5 @@
 from disnake.ext import commands
-from handler.config.data import Data
+from src.yadps.config.data import Data
 import disnake
 
 
