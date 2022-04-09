@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from typing import Any
 import disnake
 from src.yadps.logging.log import Log
