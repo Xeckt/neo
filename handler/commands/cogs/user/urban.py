@@ -42,7 +42,7 @@ class Urban(commands.Cog):
                     "meta", {"property": "og:description"}).get("content")
             await inter.send(embed=embed)
             return
-        embed = discord.Embed(title=f"Something went wrong, {r.status_code}")
+        embed = disnake.Embed(title=f"Something went wrong, {r.status_code}")
         await inter.send(embed=embed)
 
 
