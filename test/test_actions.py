@@ -14,7 +14,7 @@ class TestActions(unittest.TestCase):
     def test_assertPythonVersion(self):
         self.assertTrue(sys.version_info[0:2] == (3, 10))
 
-    def assertTokenExists(self):
+    def assertTokenValidity(self):
         settings_file = "settings/.env"
         env = dotenv.dotenv_values(settings_file)
         token = env["TOKEN"]
