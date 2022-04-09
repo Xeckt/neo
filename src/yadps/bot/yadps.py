@@ -2,8 +2,8 @@ from typing import Any
 import disnake
 from src.yadps.logging.log import Log
 from src.yadps.config.data import Data
-from handler import Sql
-from handler import CommandController
+from src.yadps.database.sql import Sql
+from src.yadps.commands.controller import CommandController
 from disnake.ext import commands
 
 
