@@ -18,7 +18,7 @@ class Yadps(commands.Bot):
         if self.data.config["sql_enabled"]:
             self.sql = Sql()
         if self.data.config["token"] == "":
-            self.bot_log.error("Token not found!")
+            self.bot_log.critical("Token not found! Exiting!")
             exit(1)
         self.bot_log.info("Valid .env configuration detected")
 
