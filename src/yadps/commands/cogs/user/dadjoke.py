@@ -1,7 +1,7 @@
 import requests
 import disnake
 from disnake.ext import commands
-from src.yadps.config.data import Data
+from yadps.config.data import Data
 class DadJoke(commands.Cog):
 
     data = Data()

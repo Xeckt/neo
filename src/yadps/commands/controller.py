@@ -1,5 +1,5 @@
-from src.yadps.config.data import Data
-from src.yadps.logging.log import Log
+from yadps.config.data import Data
+from yadps.logging.log import Log
 import os
 
 
@@ -30,7 +30,7 @@ class CommandController:
             getattr(self.bot, "%s_extension" % state)(*arg)
         else:
             for cmd in os.listdir(self.data.config["cogPath"].replace('.', '/') + '/' + module):
-                if cmd.endswith('.py'):
+                if cmd.endswith('.py') and cmd != "__init__.py":
                     arg = {path_string + '.' + cmd[:-3]}
                     getattr(self.bot, "%s_extension" % state)(*arg)
                     self.total_loaded += 1
@@ -39,7 +39,8 @@ class CommandController:
         path = self.data.config["cogPath"].replace(".", "/")
         ranks = []
         for dir in os.listdir(path):
-            ranks.append(dir)
+            if os.path.isdir(dir):
+                ranks.append(dir)
         return ranks
 
     def get_command_list(self, rank=None) -> list:
@@ -47,12 +48,13 @@ class CommandController:
         commands = []
         if rank:
             for file in os.listdir(path + "/" + rank):
-                if file.endswith(".py"):
+                if file.endswith(".py") and file != "__init__.py":
                     commands.append(file.replace(".py", ""))
             return commands
         if rank is None:
             for dir in os.listdir(path):
-                for file in os.listdir(path + "/" + dir):
-                    if file.endswith(".py"):
-                        commands.append(file.replace(".py", ""))
+                if os.path.isdir(dir):
+                    for file in os.listdir(path + "/" + dir):
+                        if file.endswith(".py") and file != "__init__.py":
+                            commands.append(file.replace(".py", ""))
             return commands

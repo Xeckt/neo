@@ -1,5 +1,5 @@
-from src.yadps.config.data import Data
-from src.yadps.logging.log import Log
+from yadps.config.data import Data
+from yadps.logging.log import Log
 from disnake.ext import commands
 import disnake as discord
 

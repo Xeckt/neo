@@ -2,10 +2,10 @@
 
 from typing import Any
 import disnake
-from src.yadps.logging.log import Log
-from src.yadps.config.data import Data
-from src.yadps.database.sql import Sql
-from src.yadps.commands.controller import CommandController
+from yadps.logging.log import Log
+from yadps.config.data import Data
+from yadps.database.sql import Sql
+from yadps.commands.controller import CommandController
 from disnake.ext import commands
 
 

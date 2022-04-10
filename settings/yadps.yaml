@@ -12,7 +12,7 @@ logData:
   systemLog: logs/system.log
 
 commandData:
-  cogPath: handler.commands.cogs
+  cogPath: src.yadps.commands.cogs
   userCog: user
   modCog: mod
   adminCog: admin

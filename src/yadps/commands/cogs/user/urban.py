@@ -1,5 +1,5 @@
 from disnake.ext import commands
-from src.yadps.config.data import Data
+from yadps.config.data import Data
 import disnake
 import requests
 import bs4
