@@ -2,7 +2,6 @@ from disnake.ext import commands
 from yadps.config.data import Data
 import disnake
 import requests
-import bs4
 from urllib.parse import urlencode, urlparse, urlunparse
 
 
