@@ -3,8 +3,8 @@ import unittest
 import dotenv
 import yaml
 from schema import Schema, SchemaError
-from src.yadps.logging.log import Log
-from src.yadps.config.data import Data
+from yadps.logging.log import Log
+from yadps.config.data import Data
 
 
 class TestActions(unittest.TestCase):
@@ -26,7 +26,8 @@ class TestActions(unittest.TestCase):
             self.log.error("Empty value for key TOKEN")
             self.fail()
         if len(token) != 59:
-            self.log.error(f"Token has incorrect length. Expected: 59. Got: {len(token)}")
+            self.log.error(
+                f"Token has incorrect length. Expected: 59. Got: {len(token)}")
             self.fail()
 
     def test_assertValidConfig(self):

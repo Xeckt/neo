@@ -32,12 +32,15 @@ class Yadps(commands.Bot):
             return
 
     async def on_slash_command(self, inter):
-        self.bot_log.info(f"Slash command: {inter.data.name} invoked by {inter.author}")
+        self.bot_log.info(
+            f"Slash command: {inter.data.name} invoked by {inter.author}")
 
     async def on_slash_command_completion(self, inter):
-        self.bot_log.info(f"Slash command: {inter.data.name} invoked by {inter.author} successful")
+        self.bot_log.info(
+            f"Slash command: {inter.data.name} invoked by {inter.author} successful")
 
     async def on_slash_command_error(self, interaction: disnake.ApplicationCommandInteraction, error):
+        print(error)
         if isinstance(error, commands.MissingAnyRole):
             if self.data.config["enableCommandWarnings"]:
                 self.bot_log.warning(f"{interaction.author} is missing roles for command: {interaction.data.name}")

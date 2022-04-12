@@ -3,6 +3,7 @@ from yadps.config.data import Data
 import disnake
 import requests
 import bs4
+from urllib.parse import urlencode, urlparse, urlunparse
 
 
 class Urban(commands.Cog):
@@ -22,9 +23,13 @@ class Urban(commands.Cog):
     )
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def urban(self, inter: disnake.ApplicationCommandInteraction, query: str):
+        parsed_url = list(
+            urlparse("https://api.urbandictionary.com/v0/define"))
+        parsed_url[4] = urlencode({"term": query})
         r = requests.get(
-            f"https://www.urbandictionary.com/define.php?term={query.replace(' ', '+')}")
-        if r.status_code == 404:
+            urlunparse(parsed_url))
+        data = r.json().get("list")
+        if r.status_code == 404 or not data:
             embed = disnake.Embed(
                 title="404, Not Found",
                 description="Your query was not found."
@@ -32,14 +37,15 @@ class Urban(commands.Cog):
             await inter.send(embed=embed)
             return
         elif r.status_code == 200:
-            soup = bs4.BeautifulSoup(str(r.content), 'html5lib')
             embed = disnake.Embed()
-            if soup.find("meta", {"property": "og:title"}).get("content"):
-                embed.title = soup.find("meta", {"property": "og:title"}).get(
-                    "content").replace("Urban Dictionary:", "")
-            if soup.find("meta", {"property": "og:description"}).get("content"):
-                embed.description = soup.find(
-                    "meta", {"property": "og:description"}).get("content")
+            data = data[0]
+            if data.get("word"):
+                embed.title = data.get("word")
+            if data.get("definition"):
+                embed.description = data.get(
+                    "definition").replace("[", "").replace("]", "")
+            if data.get("example"):
+                embed.add_field("Example", data.get("example").replace("[", "").replace("]", ""))
             await inter.send(embed=embed)
             return
         embed = disnake.Embed(title=f"Something went wrong, {r.status_code}")
