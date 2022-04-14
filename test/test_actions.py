@@ -15,22 +15,23 @@ class TestActions(unittest.TestCase):
         self.assertTrue(sys.version_info[0:2] == (3, 10))
 
     def assertTokenValidity(self):
+        global token
         settings_file = "settings/.env"
         env = dotenv.dotenv_values(settings_file)
-        token = env["TOKEN"]
+        if len(env) != 0:
+            if not env["TOKEN"]:
+                self.log.error("Key: TOKEN not found or is empty")
+                self.fail()
+            else:
+                token = env["TOKEN"]
+            if len(token) != 59:
+                self.log.error(f"Incorrect TOKEN length. Characters found: {len(token)} expected: 59")
+                self.fail()
+        else:
+            self.log.error("Invalid env file!")
+            self.fail()
 
-        if token not in env:
-            self.log.error(f"Key: TOKEN not found in {settings_file}")
-            self.fail()
-        if len(token) == 0:
-            self.log.error("Empty value for key TOKEN")
-            self.fail()
-        if len(token) != 59:
-            self.log.error(
-                f"Token has incorrect length. Expected: 59. Got: {len(token)}")
-            self.fail()
-
-    def test_assertValidConfig(self):
+    def assertValidConfig(self):
         yadps_schema = Schema({
             "yadps": {
                 "version": str,
