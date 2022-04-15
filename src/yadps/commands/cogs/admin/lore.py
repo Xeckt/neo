@@ -17,7 +17,7 @@ class Lore(commands.Cog):
         description="Add lore to the mighty guild.",
     )
     @commands.has_any_role(
-        data.config["adminRoleId"],
+        data.adminRoleId
     )
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def lore(self, inter: disnake.ApplicationCommandInteraction, title, desc, image_url):

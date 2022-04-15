@@ -18,7 +18,7 @@ class PyPi(commands.Cog):
         description="Get information on a pypi package.",
     )
     @commands.has_any_role(
-        data.config["memberRoleId"]
+        data.memberRoleId
     )
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def pypi(self, inter: disnake.ApplicationCommandInteraction, package):

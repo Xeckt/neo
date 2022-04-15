@@ -9,7 +9,7 @@ class Ban(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.yadps_log = Log().create(__name__, self.data.config["botLog"])
+        self.yadps_log = Log().create(__name__, self.data.botLog)
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -20,7 +20,7 @@ class Ban(commands.Cog):
         hidden=True
     )
     @commands.has_any_role(
-        data.config["adminRoleId"]
+        data.adminRoleId
     )
     async def ban(self, ctx, user: discord.User):
         if user == ctx.message.author:

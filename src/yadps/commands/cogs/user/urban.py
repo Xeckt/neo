@@ -18,7 +18,7 @@ class Urban(commands.Cog):
 
     @commands.slash_command(description="Find the definition of something from urban dictionary.")
     @commands.has_any_role(
-        data.config["memberRoleId"]
+        data.memberRoleId
     )
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def urban(self, inter: disnake.ApplicationCommandInteraction, query: str):

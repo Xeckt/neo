@@ -15,7 +15,7 @@ class DadJoke(commands.Cog):
 
     @commands.slash_command(description="Retrieve a dad joke!")
     @commands.has_any_role(
-        data.config["memberRoleId"]
+        data.memberRoleId
     )
     async def dadjoke(self, inter: disnake.ApplicationCommandInteraction):
         request = requests.get("https://icanhazdadjoke.com/", headers={"Accept":"application/json"})

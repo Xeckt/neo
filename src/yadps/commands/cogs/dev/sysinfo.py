@@ -22,12 +22,12 @@ class SysInfo(commands.Cog):
         aliases=['si']
     )
     @commands.has_any_role(
-        data.config["devRoleId"]
+        data.devRoleId
     )
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def sysinfo(self, interaction: disnake.ApplicationCommandInteraction):
         info = {}
-        file = "settings/server.info"
+        file = self.data.serverInfoFile
         mem_v = psutil.virtual_memory()
         mem_s = psutil.swap_memory()
         cpu = cpuinfo.get_cpu_info()

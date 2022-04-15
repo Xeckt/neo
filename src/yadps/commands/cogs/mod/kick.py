@@ -14,7 +14,7 @@ class Kick(commands.Cog):
         pass
 
     @commands.slash_command(description="Kick a user from the Discord")
-    @commands.has_any_role(data.config["modRoleId"], data.config["adminRoleId"])
+    @commands.has_any_role(data.modRoleId, data.adminRoleId)
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def kick(self, ctx, user: discord.User):
         try:

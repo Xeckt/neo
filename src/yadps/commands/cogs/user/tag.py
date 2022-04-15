@@ -18,7 +18,7 @@ class Tag(commands.Cog):
         description="Show a tag.",
     )
     @commands.has_any_role(
-        data.config["memberRoleId"]
+        data.memberRoleId
     )
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def tag(self, inter: disnake.ApplicationCommandInteraction, tag: str=None):

@@ -11,17 +11,17 @@ from disnake.ext import commands
 
 
 class Yadps(commands.Bot):
-    data = Data()
     test = TestActions()
-    log = Log().create(__name__, data.config["botLog"])
+    test.assertTokenValidity()
+    test.assertValidConfig()
+    data = Data()
+    log = Log().create(__name__, data.botLog)
 
     def __init__(self, *args: Any, **kwargs: Any):
         super().__init__(*args, **kwargs)
         self.log.info("YADPS-Chan is starting")
-        self.test.assertTokenValidity()
-        self.test.assertValidConfig()
         self.command_controller = CommandController(self).load()
-        if self.data.config["sql_enabled"]:
+        if self.data.databaseEnabled:
             self.sql = Sql()
         else:
             self.log.warn("SQL IS DISABLED")
@@ -34,20 +34,22 @@ class Yadps(commands.Bot):
             return
 
     async def on_slash_command(self, inter):
+        if self.data.enableCommandDebug:
+            self.log.debug(f"Slash command {inter.data.name} invoked by {inter.author} result -> {inter.data}")
         self.log.info(f"Slash command: {inter.data.name} invoked by {inter.author}")
 
     async def on_slash_command_completion(self, inter):
         self.log.info(f"Slash command: {inter.data.name} invoked by {inter.author} successful")
 
     async def on_slash_command_error(self, interaction: disnake.ApplicationCommandInteraction, error):
-        print(error)
         if isinstance(error, commands.MissingAnyRole):
-            if self.data.config["enableCommandWarnings"]:
+            if self.data.enablecommandWarnings:
                 self.log.warning(f"{interaction.author} is missing roles for command: {interaction.data.name}")
-            if self.data.config["enableCommandDebug"] or self.data.config["mode"] == "development":
+            if self.data.enableCommandDebug or self.data.mode == "development":
                 self.log.debug(
                     f"Command -> {interaction.data.name} | Invoked from -> {interaction.channel_id} | By user"
                     f"-> {interaction.author} | Error -> {interaction.author} missing roles")
             await interaction.send(
                 f"{interaction.author.mention}, you don't have the required permissions for this command.")
+        self.log.error(error)
 

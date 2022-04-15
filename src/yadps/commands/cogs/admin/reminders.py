@@ -20,7 +20,7 @@ class Reminders(commands.Cog):
         hidden=True
     )
     @commands.has_any_role(
-        data.config["adminRoleId"]
+        data.adminRoleId
     )
     async def bump(self, interaction: disnake.ApplicationCommandInteraction, channel: disnake.TextChannel):
         if not isinstance(channel, disnake.TextChannel):

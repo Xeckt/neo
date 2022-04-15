@@ -3,6 +3,7 @@ yadps:
   databaseEnabled: False
   mode: development
   envFile: settings/.env
+  serverInfoFile: settings/server.info
 
 logData:
   enableLogging: true
@@ -10,6 +11,7 @@ logData:
   databaseLog: logs/sql.log
   commandLog: logs/commands.log
   systemLog: logs/system.log
+  testLog: logs/test.log
 
 commandData:
   cogPath: src.yadps.commands.cogs

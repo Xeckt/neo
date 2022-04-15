@@ -18,7 +18,7 @@ class Resource(commands.Cog):
         description="Send a link in resources channel, will be verified by mods first.",
     )
     @commands.has_any_role(
-        data.config["memberRoleId"]
+        data.memberRoleId
     )
     @commands.cooldown(1, 15*30, commands.BucketType.guild)
     async def resource(self, inter: disnake.ApplicationCommandInteraction, link: str, subject: str):

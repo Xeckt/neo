@@ -9,7 +9,7 @@ from yadps.config.data import Data
 
 class TestActions(unittest.TestCase):
     data = Data()
-    log = Log().create(__name__, data.config["botLog"])
+    log = Log().create(__name__, "logs/test.logs")
 
     def test_assertPythonVersion(self):
         self.assertTrue(sys.version_info[0:2] == (3, 10))
@@ -38,6 +38,7 @@ class TestActions(unittest.TestCase):
                 "databaseEnabled": bool,
                 "mode": str,
                 "envFile": str,
+                "serverInfoFile": str,
             },
             "logData": {
                 "enableLogging": bool,
@@ -45,6 +46,7 @@ class TestActions(unittest.TestCase):
                 "databaseLog": str,
                 "commandLog": str,
                 "systemLog": str,
+                "testLog": str,
             },
             "commandData": {
                 "cogPath": str,
