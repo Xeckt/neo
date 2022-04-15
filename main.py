@@ -9,4 +9,4 @@ if __name__ == "__main__":
               f"{str(sys.version_info.major) + '.' + str(sys.version_info.minor)}")
         exit(1)
     yadps = Yadps(test_guilds=[956780366063095808], intents=disnake.Intents.default())
-    #yadps.run(yadps.data.config["token"])
+    yadps.run(yadps.data.config["token"])
