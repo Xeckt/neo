@@ -1,5 +1,5 @@
 yadps:
-  version: 0.0.5
+  version: 0.0.6
   databaseEnabled: False
   mode: development
   envFile: settings/.env
