@@ -8,6 +8,7 @@ from yadps.database.sql import Sql
 from yadps.commands.controller import CommandController
 from test.test_actions import TestActions
 from disnake.ext import commands
+from yadps.bot.utility import collapse_embeds
 
 
 class Yadps(commands.Bot):
@@ -32,6 +33,8 @@ class Yadps(commands.Bot):
     async def on_message(self, interaction: disnake.InteractionMessage):
         if interaction.author == self.user:
             return
+        elif not interaction.author.bot:
+            await collapse_embeds(interaction)
 
     async def on_slash_command(self, inter: disnake.ApplicationCommandInteraction):
         if self.data.enableCommandDebug:
