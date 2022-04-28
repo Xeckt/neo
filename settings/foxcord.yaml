@@ -1,31 +1,34 @@
 foxcord:
-- version: 0.0.4
-  prefix: f.
-  databaseEnabled: false
+  version: 0.0.4
+  databaseEnabled: False
   mode: development
+  envFile: settings/.env
+  serverInfoFile: settings/server.info
 
 logData:
-- enableLogging: true
+  enableLogging: true
   botLog: logs/bot.log
   databaseLog: logs/sql.log
   commandLog: logs/commands.log
   systemLog: logs/system.log
+  testLog: logs/test.log
 
 commandData:
-- cogPath: handler.commands.cogs
+  cogPath: src.foxcord.commands.cogs
   userCog: user
   modCog: mod
   adminCog: admin
   devCog: dev
-  enableUserCommands: true
-  enableModCommands: true
-  enableAdminCommands: true
-  enableDevCommands: true
-  enableCommandWarnings: true
-  enableCommandDebug: true
+  enableUserCommands: True
+  enableModCommands: True
+  enableAdminCommands: True
+  enableDevCommands: True
+  enableCommandWarnings: True
+  enableCommandDebug: True
 
 roleData:
-- memberRoleId: 909588707663839302
-  modRoleId: 909588707663839302
-  adminRoleId: 909588707663839302
-  devRoleId: 909588707663839302
+  guildId: 0
+  memberRoleId: 0
+  modRoleId: 0
+  adminRoleId: 0
+  devRoleId: 0
