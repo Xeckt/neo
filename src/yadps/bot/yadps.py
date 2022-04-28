@@ -29,16 +29,16 @@ class Yadps(commands.Bot):
     async def on_ready(self):
         self.log.info("yadps-chan is connected")
 
-    async def on_message(self, interaction: disnake.ApplicationCommandInteraction):
+    async def on_message(self, interaction: disnake.InteractionMessage):
         if interaction.author == self.user:
             return
 
-    async def on_slash_command(self, inter):
+    async def on_slash_command(self, inter: disnake.ApplicationCommandInteraction):
         if self.data.enableCommandDebug:
             self.log.debug(f"Slash command {inter.data.name} invoked by {inter.author} result -> {inter.data}")
         self.log.info(f"Slash command: {inter.data.name} invoked by {inter.author}")
 
-    async def on_slash_command_completion(self, inter):
+    async def on_slash_command_completion(self, inter: disnake.ApplicationCommandInteraction):
         self.log.info(f"Slash command: {inter.data.name} invoked by {inter.author} successful")
 
     async def on_slash_command_error(self, interaction: disnake.ApplicationCommandInteraction, error):
