@@ -42,14 +42,6 @@ class Utils(commands.Cog):
                         await channel.send(embed=embed, delete_after=2*60*60)
             return
 
-
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        if not message.author.bot:
-            if not (re.match("https://.*(.gif|.mp4|.webp|.png|.jpeg|.jpg)", message.content) or re.match("<:.*:.*>", message.content) or re.match("<a:.*:.*>", message.content)):
-                await message.edit(suppress=True)
-
-
     @commands.slash_command(
         description="Send a message to a channel reminding to bump every 2 hours.",
         hidden=True
@@ -61,13 +53,13 @@ class Utils(commands.Cog):
         if not isinstance(channel, disnake.TextChannel):
             await interaction.send("You must supply a text channel.")
             return
-        
+
         if self.reminder:
             self.reminder = False
             await interaction.send(f"disabling bump reminders on channel: {channel.mention}")
             return
         await interaction.send(f"Enabling bump reminders on channel: {channel.mention}")
-        self.reminder = True        
+        self.reminder = True
 
 
 def setup(bot):
