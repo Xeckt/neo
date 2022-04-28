@@ -46,7 +46,7 @@ class Utils(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         if not message.author.bot:
-            if not re.match("https://.*(.gif|.mp4)", message.content):
+            if not (re.match("https://.*(.gif|.mp4|.webp|.png|.jpeg|.jpg)", message.content) or re.match("<:.*:.*>", message.content) or re.match("<a:.*:.*>", message.content)):
                 await message.edit(suppress=True)
 
 
