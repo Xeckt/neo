@@ -18,7 +18,7 @@ class SysInfo(commands.Cog):
         pass
 
     @commands.slash_command(
-        description="Get the server information YADPS is hosted on. Support only for Linux at the moment.",
+        description="Get the server information Foxcord is hosted on. Support only for Linux at the moment.",
         aliases=['si']
     )
     @commands.has_any_role(

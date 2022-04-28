@@ -1,7 +1,6 @@
 import sys
 import disnake
-from foxcord.bot.foxcord import Yadps
-from foxcord.config.data import Data
+from foxcord.bot.foxcord import Foxcord
 
 if __name__ == "__main__":
     if sys.version_info[0:2] != (3, 10):
