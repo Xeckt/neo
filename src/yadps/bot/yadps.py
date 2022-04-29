@@ -33,21 +33,26 @@ class Yadps(commands.Bot):
     async def on_message(self, interaction: disnake.InteractionMessage):
         if interaction.author == self.user:
             return
-        elif not interaction.author.bot:
-            await collapse_embeds(interaction)
+        print("message")
+
+        await collapse_embeds(interaction)
 
     async def on_slash_command(self, inter: disnake.ApplicationCommandInteraction):
         if self.data.enableCommandDebug:
-            self.log.debug(f"Slash command {inter.data.name} invoked by {inter.author} result -> {inter.data}")
-        self.log.info(f"Slash command: {inter.data.name} invoked by {inter.author}")
+            self.log.debug(
+                f"Slash command {inter.data.name} invoked by {inter.author} result -> {inter.data}")
+        self.log.info(
+            f"Slash command: {inter.data.name} invoked by {inter.author}")
 
     async def on_slash_command_completion(self, inter: disnake.ApplicationCommandInteraction):
-        self.log.info(f"Slash command: {inter.data.name} invoked by {inter.author} successful")
+        self.log.info(
+            f"Slash command: {inter.data.name} invoked by {inter.author} successful")
 
     async def on_slash_command_error(self, interaction: disnake.ApplicationCommandInteraction, error):
         if isinstance(error, commands.MissingAnyRole):
             if self.data.enablecommandWarnings:
-                self.log.warning(f"{interaction.author} is missing roles for command: {interaction.data.name}")
+                self.log.warning(
+                    f"{interaction.author} is missing roles for command: {interaction.data.name}")
             if self.data.enableCommandDebug or self.data.mode == "development":
                 self.log.debug(
                     f"Command -> {interaction.data.name} | Invoked from -> {interaction.channel_id} | By user"
@@ -55,4 +60,3 @@ class Yadps(commands.Bot):
             await interaction.send(
                 f"{interaction.author.mention}, you don't have the required permissions for this command.")
         self.log.error(error)
-
