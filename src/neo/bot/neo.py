@@ -2,16 +2,15 @@
 
 from typing import Any
 import disnake
-from foxcord.logging.log import Log
-from foxcord.config.data import Data
-from foxcord.database.sql import Sql
-from foxcord.commands.controller import CommandController
+from neo.logging.log import Log
+from neo.config.data import Data
+from neo.database.sql import Sql
+from neo.commands.controller import CommandController
 from test.test_actions import TestActions
 from disnake.ext import commands
-from foxcord.bot.utility import collapse_embeds
 
 
-class Foxcord(commands.Bot):
+class Neo(commands.Bot):
     test = TestActions()
     test.assertTokenValidity()
     test.assertValidConfig()
@@ -20,7 +19,7 @@ class Foxcord(commands.Bot):
 
     def __init__(self, *args: Any, **kwargs: Any):
         super().__init__(*args, **kwargs)
-        self.log.info("Foxcord is starting -> loading command controller")
+        self.log.info("Neo is starting -> loading command controller")
         self.command_controller = CommandController(self).load()
         if self.data.databaseEnabled:
             self.log.info("Database is enabled, starting")
@@ -31,7 +30,7 @@ class Foxcord(commands.Bot):
             self.log.warn("SQL IS DISABLED")
 
     async def on_ready(self):
-        self.log.info("Foxcord is now connected, enjoy your stay.")
+        self.log.info("neo is now connected, enjoy your stay.")
 
     async def on_message(self, interaction: disnake.InteractionMessage):
         if interaction.author == self.user:

@@ -1,5 +1,5 @@
 from disnake.ext import commands
-from foxcord.config.data import Data
+from neo.config.data import Data
 import disnake
 
 

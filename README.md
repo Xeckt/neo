@@ -3,9 +3,9 @@
 </p>
 
 # Description
-- Foxcord Version: 0.0.5
+- neo Version: 0.0.5
 
-Foxcord aims to be beginner-friendly, but will also fall in the category for experienced users. 
+neo aims to be beginner-friendly, but will also fall in the category for experienced users. 
 
 The objective of this bot is to keep the code as dynamic and modular as possible whilst minimising reliability between
 "modules".

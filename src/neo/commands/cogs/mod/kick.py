@@ -1,4 +1,4 @@
-from foxcord.config.data import Data
+from neo.config.data import Data
 from disnake.ext import commands
 import disnake as discord
 

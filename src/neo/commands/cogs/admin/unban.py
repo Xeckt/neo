@@ -1,12 +1,12 @@
-from foxcord.logging.log import Log
-from foxcord.config.data import Data
+from neo.logging.log import Log
+from neo.config.data import Data
 from disnake.ext import commands
 
 
 class Unban(commands.Cog):
 
     data = Data()
-    foxcord_log = Log().create(__name__, data.botLog)
+    neo_log = Log().create(__name__, data.botLog)
 
 
     def __init__(self, bot):
@@ -26,7 +26,7 @@ class Unban(commands.Cog):
     async def unban(self, ctx, userid):
         user = await self.bot.fetch_user(userid)
         await ctx.guild.unban(user)
-        self.foxcord_log.warning(f"{user} has been unbanned!")
+        self.neo_log.warning(f"{user} has been unbanned!")
         await ctx.send(f"{user} is now unbanned.")
 
 

@@ -1,4 +1,4 @@
-# Setting up Foxcord
+# Setting up neo
 
 ## Standard
 1. [First install minimum Python 3.10](https://www.python.org/downloads/)
@@ -12,7 +12,7 @@ Use `.` instead of `.[dev]` for production.
 1. [This guide is under the presumption you have Docker installed.](https://docs.docker.com/get-docker/)
 2. Setup `.env` file inside `settings/` folder with key value `TOKEN=XXX`
 3. It is heavily suggested to use `compose v2` which can be [installed from official Docker documentation](https://docs.docker.com/compose/cli-command/)
-4. Run the following command: `docker build -t "foxcord:latest" .` to build the image `foxcord:latest`
+4. Run the following command: `docker build -t "neo:latest" .` to build the image `neo:latest`
 5. Using `v2 compose` to run the bot: `docker compose up` in the same location as `docker-compose.yml`
 
 # Contributing
