@@ -1,5 +1,5 @@
 version: '3.2'
 services:
- foxcord:
-   image: foxcord:latest
+ neo:
+   image: neo:latest
    command: "python /usr/src/app/main.py"

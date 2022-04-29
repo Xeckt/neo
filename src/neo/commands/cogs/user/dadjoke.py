@@ -1,7 +1,7 @@
 import requests
 import disnake
 from disnake.ext import commands
-from foxcord.config.data import Data
+from neo.config.data import Data
 class DadJoke(commands.Cog):
 
     data = Data()

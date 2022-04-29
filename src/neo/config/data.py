@@ -5,7 +5,7 @@ class Data:
 
     env_keys = ['TOKEN', 'SQL_HOST', 'SQL_PORT',
                      'SQL_USER', 'SQL_PASS', 'SQL_DB']
-    yaml_file = 'settings/foxcord.yaml'
+    yaml_file = 'settings/neo.yaml'
 
     def __init__(self):
         self.read()
@@ -19,4 +19,3 @@ class Data:
             env = dotenv.dotenv_values(self.envFile)
             for v in self.env_keys:
                 setattr(self, v.lower(), env.get(v.upper()))
-

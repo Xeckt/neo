@@ -1,4 +1,4 @@
-foxcord:
+neo:
   version: 0.0.4
   databaseEnabled: False
   mode: development
@@ -14,7 +14,7 @@ logData:
   testLog: logs/test.log
 
 commandData:
-  cogPath: src.foxcord.commands.cogs
+  cogPath: src.neo.commands.cogs
   userCog: user
   modCog: mod
   adminCog: admin

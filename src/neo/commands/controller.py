@@ -1,5 +1,5 @@
-from foxcord.config.data import Data
-from foxcord.logging.log import Log
+from neo.config.data import Data
+from neo.logging.log import Log
 import os
 
 

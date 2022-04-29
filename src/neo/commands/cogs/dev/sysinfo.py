@@ -4,7 +4,7 @@ import cpuinfo
 import disnake
 import os
 from disnake.ext import commands
-from foxcord.config.data import Data
+from neo.config.data import Data
 
 
 class SysInfo(commands.Cog):
@@ -18,7 +18,7 @@ class SysInfo(commands.Cog):
         pass
 
     @commands.slash_command(
-        description="Get the server information Foxcord is hosted on. Support only for Linux at the moment.",
+        description="Get the server information neo is hosted on. Support only for Linux at the moment.",
         aliases=['si']
     )
     @commands.has_any_role(

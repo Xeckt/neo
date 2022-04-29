@@ -3,8 +3,8 @@ import unittest
 import dotenv
 import yaml
 from schema import Schema, SchemaError
-from foxcord.logging.log import Log
-from foxcord.config.data import Data
+from neo.logging.log import Log
+from neo.config.data import Data
 
 
 class TestActions(unittest.TestCase):
@@ -32,8 +32,8 @@ class TestActions(unittest.TestCase):
             self.fail()
 
     def assertValidConfig(self):
-        foxcord_schema = Schema({
-            "foxcord": {
+        neo_schema = Schema({
+            "neo": {
                 "version": str,
                 "databaseEnabled": bool,
                 "mode": str,
@@ -69,10 +69,10 @@ class TestActions(unittest.TestCase):
                 "devRoleId": int,
             }
         })
-        with open("settings/foxcord.yaml", 'r') as stream:
+        with open("settings/neo.yaml", 'r') as stream:
             y = yaml.safe_load(stream)
         try:
-            foxcord_schema.validate(y)
+            neo_schema.validate(y)
         except SchemaError as err:
             self.log.error(err)
             self.fail()

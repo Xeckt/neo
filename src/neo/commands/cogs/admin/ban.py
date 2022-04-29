@@ -1,5 +1,5 @@
-from foxcord.config.data import Data
-from foxcord.logging.log import Log
+from neo.config.data import Data
+from neo.logging.log import Log
 from disnake.ext import commands
 import disnake as discord
 
@@ -9,7 +9,7 @@ class Ban(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.foxcord_log = Log().create(__name__, self.data.botLog)
+        self.neo_log = Log().create(__name__, self.data.botLog)
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -27,7 +27,7 @@ class Ban(commands.Cog):
             await ctx.send(f"You can't ban yourself, {ctx.message.author.mention}")
             return
         await ctx.guild.ban(user)
-        self.foxcord_log.warning(f"{user} has been banned!")
+        self.neo_log.warning(f"{user} has been banned!")
         await ctx.send(f"{ctx.message.author.mention} gave the banhammer to {user}")
 
 
