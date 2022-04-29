@@ -20,7 +20,6 @@ class Utils(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.author.bot:
-            print("bot")
             for i in message.embeds:
                 if i.description:
                     if "Bump done" in i.description and self.reminder:

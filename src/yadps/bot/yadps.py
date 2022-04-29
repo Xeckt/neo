@@ -33,7 +33,6 @@ class Yadps(commands.Bot):
     async def on_message(self, interaction: disnake.InteractionMessage):
         if interaction.author == self.user:
             return
-        print("message")
 
         await collapse_embeds(interaction)
 
