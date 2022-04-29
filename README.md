@@ -1,7 +1,3 @@
-<p align="center">
-<img src="https://i.imgur.com/DGLrWwX.png/" height="500" width="500" >
-</p>
-
 # Description
 - neo Version: 0.0.5
 
