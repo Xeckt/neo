@@ -11,11 +11,11 @@ async def collapse_embeds(interaction: disnake.InteractionMessage):
     links = re.findall("[A-Za-z]+:\/\/\S+\/?", interaction.content)
     if links:
         _message = await interaction.channel.send("Removing embeds..")
-        await interaction.delete()
         message = interaction.content
         for i in links:
             message = message.replace(i, f"<{i}>")
-        webhook = await interaction.channel.create_webhook(name=interaction.author.name, avatar=await interaction.author.avatar.read())
-        await webhook.send(message)
+        webhook = await interaction.channel.create_webhook(name=interaction.author.name)
+        await webhook.send(message, embed=None)
+        await interaction.delete()
         await _message.delete()
         await webhook.delete()
