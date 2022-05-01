@@ -11,7 +11,7 @@ class Utils(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.reminder = False
+        self.reminder = True
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -55,10 +55,10 @@ class Utils(commands.Cog):
 
         if self.reminder:
             self.reminder = False
-            await interaction.send(f"disabling bump reminders on channel: {channel.mention}")
+            await interaction.send(f"Disabled bump reminders on channel: {channel.mention}")
             return
-        await interaction.send(f"Enabling bump reminders on channel: {channel.mention}")
         self.reminder = True
+        await interaction.send(f"Enabled bump reminders on channel: {channel.mention}")
 
 
 def setup(bot):
