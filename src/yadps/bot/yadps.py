@@ -8,7 +8,6 @@ from yadps.database.sql import Sql
 from yadps.commands.controller import CommandController
 from test.test_actions import TestActions
 from disnake.ext import commands
-from yadps.bot.utility import collapse_embeds
 
 
 class Yadps(commands.Bot):
