@@ -18,7 +18,6 @@ class Emojis(commands.Cog):
 
     @commands.slash_command(
         description="Add emojis to a server",
-        hidden=True
     )
     @commands.has_any_role(
         data.adminRoleId
@@ -29,7 +28,7 @@ class Emojis(commands.Cog):
         except:
             await inter.send("Invalid emoji URL.")
         try:
-            emoji = await inter.guild.create_custom_emoji(name="test", image=r.content)
+            emoji = await inter.guild.create_custom_emoji(name=emoji_name, image=r.content)
             if emoji.animated:
                 await inter.send(f"Success: <a:{emoji.name}:{emoji.id}>.")
             else:
