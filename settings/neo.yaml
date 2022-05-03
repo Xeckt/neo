@@ -27,8 +27,8 @@ commandData:
   enableCommandDebug: True
 
 roleData:
-  guildId: 0
-  memberRoleId: 0
-  modRoleId: 0
-  adminRoleId: 0
-  devRoleId: 0
+  guildId: 958392384796889190
+  memberRoleId: 958392385350545423
+  modRoleId: 958392385350545423
+  adminRoleId: 958392385350545423
+  devRoleId: 958392385350545423

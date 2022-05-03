@@ -46,7 +46,7 @@ class Neo(commands.Bot):
 
     async def on_slash_command_error(self, interaction: disnake.ApplicationCommandInteraction, error):
         if isinstance(error, commands.MissingAnyRole):
-            if self.data.enablecommandWarnings:
+            if self.data.enableCommandWarnings:
                 self.log.warning(f"{interaction.author} is missing roles for command: {interaction.data.name}")
             if self.data.enableCommandDebug or self.data.mode == "development":
                 self.log.debug(
