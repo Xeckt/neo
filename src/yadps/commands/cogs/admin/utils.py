@@ -23,7 +23,7 @@ class Utils(commands.Cog):
         if message.author.bot:
             for i in message.embeds:
                 if i.description:
-                    if "Bump done" in i.content and self.reminder.is_set():
+                    if "Bump done" in i.description and self.reminder.is_set():
                         channel = await self.bot.fetch_channel(message.channel.id)
                         msg = await channel.fetch_message(message.id)
                         embed = disnake.Embed(
