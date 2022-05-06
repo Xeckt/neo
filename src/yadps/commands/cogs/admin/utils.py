@@ -11,18 +11,19 @@ class Utils(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.reminder = True
+        self.reminder = asyncio.Event()
+        self.reminder.set()
 
     @commands.Cog.listener()
     async def on_ready(self):
         pass
 
     @commands.Cog.listener()
-    async def on_message(self, message):
+    async def on_message(self, message: disnake.Message):
         if message.author.bot:
             for i in message.embeds:
                 if i.description:
-                    if "Bump done" in i.description and self.reminder:
+                    if "Bump done" in i.content and self.reminder.is_set():
                         channel = await self.bot.fetch_channel(message.channel.id)
                         msg = await channel.fetch_message(message.id)
                         embed = disnake.Embed(
@@ -32,7 +33,8 @@ class Utils(commands.Cog):
                         await asyncio.sleep(2*60*60)
                         embed = disnake.Embed(
                             title="Bump us!",
-                            description="""
+                            description=
+                            """
                             Bumping helps the server grow. You can bump a server every 2 hours.
                             To bump a server, type `/bump`. You can also go [here](https://disboard.org/server/956780366063095808) to bump us!
                             Note that `/bump` is a slash command and not a text based command.
@@ -48,17 +50,13 @@ class Utils(commands.Cog):
     @commands.has_any_role(
         data.adminRoleId
     )
-    async def bump(self, interaction: disnake.ApplicationCommandInteraction, channel: disnake.TextChannel):
-        if not isinstance(channel, disnake.TextChannel):
-            await interaction.send("You must supply a text channel.")
+    async def bump(self, interaction: disnake.ApplicationCommandInteraction):
+        if self.reminder.is_set():
+            self.reminder.clear()
+            await interaction.send(f"Disabled bump reminders.")
             return
-
-        if self.reminder:
-            self.reminder = False
-            await interaction.send(f"Disabled bump reminders on channel: {channel.mention}")
-            return
-        self.reminder = True
-        await interaction.send(f"Enabled bump reminders on channel: {channel.mention}")
+        self.reminder.set()
+        await interaction.send(f"Enabled bump reminders.")
 
 
 def setup(bot):
