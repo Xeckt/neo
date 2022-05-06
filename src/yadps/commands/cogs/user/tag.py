@@ -4,11 +4,14 @@ from yadps.config.data import Data
 import yaml
 
 
-class Tag(commands.Cog):
+class Tags(commands.Cog):
     data = Data()
 
     def __init__(self, bot):
         self.bot = bot
+        with open('settings/tags.yaml') as file:
+            self.tags = yaml.load(file, Loader=yaml.loader.Loader)
+        self.tag_list = [i for i in self.tags['tags']]
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -21,20 +24,19 @@ class Tag(commands.Cog):
         data.memberRoleId
     )
     @commands.cooldown(1, 5, commands.BucketType.guild)
-    async def tag(self, inter: disnake.ApplicationCommandInteraction, tag: str=None):
-        with open('settings/tags.yaml') as file:
-            tags = yaml.load(file, Loader=yaml.loader.Loader)
+    async def tags(self, inter: disnake.ApplicationCommandInteraction, tag: str = None):
+
         if not tag:
             embed = disnake.Embed(
                 title="All tags",
-                description="\n".join([i for i in tags['tags']])
+                description="\n".join([i for i in self.tags['tags']])
             )
             await inter.send(embed=embed)
             return
         try:
             embed = disnake.Embed(
-                title=tags['tags'][tag]['title'],
-                description=tags['tags'][tag]['description']
+                title=self.tags['tags'][tag]['title'],
+                description=self.tags['tags'][tag]['description']
             )
             await inter.send(embed=embed)
         except KeyError:
@@ -43,6 +45,10 @@ class Tag(commands.Cog):
             )
             await inter.send(embed=embed)
 
+    @tags.autocomplete("tag")
+    async def autocomplete_tags(self, inter: disnake.ApplicationCommandInteraction, user_input: str):
+        return [i for i in self.tag_list if user_input in i.lower()]
+
 
 def setup(bot):
-    bot.add_cog(Tag(bot))
+    bot.add_cog(Tags(bot))
