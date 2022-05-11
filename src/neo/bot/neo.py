@@ -15,13 +15,13 @@ class Neo(commands.Bot):
     test.assertTokenValidity()
     test.assertValidConfig()
     data = Data()
+    command_controller = CommandController
     log = Log().create(__name__, data.botLog)
 
     def __init__(self, *args: Any, **kwargs: Any):
         super().__init__(*args, **kwargs)
         self.log.info("Neo is starting")
-        self.command_controller = CommandController(self)
-        self.command_controller.load_cmds()
+        self.command_controller(self).load_cmds()
         if self.data.databaseEnabled:
             self.log.info("Database is enabled, starting")
             self.sql = Sql()
