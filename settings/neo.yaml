@@ -24,7 +24,7 @@ commandData:
   enableAdminCommands: True
   enableDevCommands: True
   enableCommandWarnings: True
-  enableCommandDebug: True
+  enableCommandDebug: False
 
 roleData:
   guildId: 958392384796889190

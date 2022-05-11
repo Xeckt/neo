@@ -20,7 +20,8 @@ class Neo(commands.Bot):
     def __init__(self, *args: Any, **kwargs: Any):
         super().__init__(*args, **kwargs)
         self.log.info("Neo is starting")
-        self.command_controller = CommandController(self).load()
+        self.command_controller = CommandController(self)
+        self.command_controller.load_cmds()
         if self.data.databaseEnabled:
             self.log.info("Database is enabled, starting")
             self.sql = Sql()

@@ -1,5 +1,4 @@
 import sys
-import disnake
 from neo.bot.neo import Neo
 
 if __name__ == "__main__":
@@ -7,5 +6,6 @@ if __name__ == "__main__":
         print(f"Python version must be minimum 3.10. Currently detected version: "
               f"{str(sys.version_info.major) + '.' + str(sys.version_info.minor)}")
         exit(1)
-    neo = Neo(test_guilds=[956780366063095808], intents=disnake.Intents.default())
+    neo = Neo(test_guilds=[])
     neo.run(neo.data.token)
+
