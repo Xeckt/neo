@@ -3,7 +3,7 @@
 
 Neo is a template bot for users wanting a stable bot they can work on and host quickly without relying on others.
 
-This won't be a bot with a frontend or anything like that. It's a template bot only, so you will have to create everything else yourself.
+This isn't a full fledged bot with a frontend or anything like that. It's a template bot only, so you will have to create everything else yourself.
 
 The objective of this bot is to keep the code as dynamic and modular as possible whilst minimising reliability between
 "modules".

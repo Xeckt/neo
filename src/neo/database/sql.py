@@ -36,3 +36,8 @@ class Sql:
             self.pool = await self.create_pool()
         async with self.pool.acquire() as connection:
             return await connection.fetch(query)
+
+    async def send_transaction(self):
+        async with self.pool.acquire as connection:
+            async with connection.transaction():
+                await connection.execute("TRANSACTION_QUERY")
