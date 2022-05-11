@@ -8,5 +8,7 @@ if __name__ == "__main__":
         print(f"Python version must be minimum 3.10. Currently detected version: "
               f"{str(sys.version_info.major) + '.' + str(sys.version_info.minor)}")
         exit(1)
-    yadps = Yadps(test_guilds=[956780366063095808], intents=disnake.Intents.default())
+    intents = disnake.Intents.default()
+    intents.members = True
+    yadps = Yadps(test_guilds=[956780366063095808], intents=intents)
     yadps.run(yadps.data.token)
