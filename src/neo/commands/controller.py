@@ -41,11 +41,8 @@ class CommandController:
                 getattr(self.bot, "%s_extension" % state)(*{path_string + f".{cmd[:-3]}"})
                 self.total_loaded += 1
 
-    def set_command_state(self, cog, state, command: str) -> bool:
+    def set_command_state(self, cog, state, command: str):
         cog = self.data.cogPath + '.' + cog
         for c in os.listdir(cog.replace('.', os.path.sep)):
             if c != "__init__.py" and c == command:
                 getattr(self.bot, "%s_extension" % state)(*{cog + f".{command[:-3]}"})
-                return True
-            else:
-                return False
