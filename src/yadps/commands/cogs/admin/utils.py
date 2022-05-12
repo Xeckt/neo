@@ -21,11 +21,12 @@ class Utils(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        channel = self.bot.fetch_channel(self.channel)
+        channel = await self.bot.fetch_channel(self.channel)
         embed = disnake.Embed(
             title="Welcome!",
             description="Here are some channels to help you get started:\n<#966124424719892491> : Take your self roles from here.\n<#956780367392698414> : Read the rules and the guidelines on how to ask for help.\n<#957058222248828968> : You can ask for programming related help here.\n<#972542371738816572> : Want to start conversation on a topic? Just start a thread!"
         )
+        embed.set_thumbnail(url="https://c.tenor.com/He0gqI6JInIAAAAS/discord-discord-rules.gif")
         await channel.send(f"{member.mention}", embed=embed)
 
     @commands.Cog.listener()
