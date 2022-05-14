@@ -19,4 +19,3 @@ class Data:
             env = dotenv.dotenv_values(self.envFile)
             for v in self.env_keys:
                 setattr(self, v.lower(), env.get(v.upper()))
-

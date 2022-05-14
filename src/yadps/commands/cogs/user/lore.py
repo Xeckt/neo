@@ -7,7 +7,7 @@ class Lore(commands.Cog):
     data = Data()
 
     def __init__(self, bot):
-        self.bot = bot
+        self.bot: disnake.Bot = bot
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -17,17 +17,19 @@ class Lore(commands.Cog):
         description="Add lore to the mighty guild.",
     )
     @commands.has_any_role(
-        data.adminRoleId
+        data.memberRoleId
     )
-    @commands.cooldown(1, 5, commands.BucketType.guild)
-    async def lore(self, inter: disnake.ApplicationCommandInteraction, title, desc, image_url):
+    @commands.cooldown(1, 30*60, commands.BucketType.guild)
+    async def loretest(self, inter: disnake.ApplicationCommandInteraction, title, desc, image_url):
+        data = Data()
         lore_embed = disnake.Embed(
             title=title,
             description=desc,
         )
         if len(image_url) != 0:
             lore_embed.set_image(url=image_url)
-        await inter.send(embed=lore_embed)
+        channel = await self.bot.fetch_channel(data.loreChannel)
+        await channel.send(embed=lore_embed)
 
 
 def setup(bot):

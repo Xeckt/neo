@@ -1,6 +1,6 @@
 yadps:
   version: 0.0.6
-  databaseEnabled: False
+  databaseEnabled: True
   mode: development
   envFile: settings/.env
   serverInfoFile: settings/server.info
@@ -32,3 +32,6 @@ roleData:
   modRoleId: 957453302029754431
   adminRoleId: 956780366063095815
   devRoleId: 958426039393083462
+
+channelData:
+  loreChannel: 959654884699951175

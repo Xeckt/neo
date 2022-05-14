@@ -1,5 +1,6 @@
 import sys
 import disnake
+from disnake.ext import commands
 from yadps.bot.yadps import Yadps
 from yadps.config.data import Data
 
@@ -10,5 +11,5 @@ if __name__ == "__main__":
         exit(1)
     intents = disnake.Intents.default()
     intents.members = True
-    yadps = Yadps(test_guilds=[956780366063095808], intents=intents)
+    yadps = Yadps(command_prefix=commands.when_mentioned_or("-"), test_guilds=[956780366063095808], intents=intents)
     yadps.run(yadps.data.token)

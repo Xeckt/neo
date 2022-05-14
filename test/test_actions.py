@@ -67,6 +67,9 @@ class TestActions(unittest.TestCase):
                 "modRoleId": int,
                 "adminRoleId": int,
                 "devRoleId": int,
+            },
+            "channelData": {
+                "loreChannel": int
             }
         })
         with open("settings/yadps.yaml", 'r') as stream:
