@@ -20,7 +20,7 @@ class Lore(commands.Cog):
         data.memberRoleId
     )
     @commands.cooldown(1, 30*60, commands.BucketType.guild)
-    async def loretest(self, inter: disnake.ApplicationCommandInteraction, title, desc, image_url):
+    async def lore(self, inter: disnake.ApplicationCommandInteraction, title, desc, image_url):
         data = Data()
         lore_embed = disnake.Embed(
             title=title,
