@@ -15,7 +15,7 @@ class BookMark(commands.Cog):
         pass
 
     @commands.command(aliases=["bm"])
-    async def bookmark(self, ctx: commands.Context, *,name: str="bookmark"):
+    async def bookmark(self, ctx: commands.Context, *, name: str="bookmark"):
         if not ctx.message.reference:
             embed = disnake.Embed(
                 title="Error",

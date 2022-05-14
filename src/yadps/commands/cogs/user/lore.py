@@ -30,6 +30,7 @@ class Lore(commands.Cog):
             lore_embed.set_image(url=image_url)
         channel = await self.bot.fetch_channel(data.loreChannel)
         await channel.send(embed=lore_embed)
+        await inter.send("Posted.")
 
 
 def setup(bot):
