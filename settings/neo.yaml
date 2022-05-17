@@ -14,7 +14,7 @@ logData:
   testLog: logs/test.log
 
 commandData:
-  cogPath: src.neo.commands.cogs
+  cogPath: src.neo.commands
   userCog: user
   modCog: mod
   adminCog: admin

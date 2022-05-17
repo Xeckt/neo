@@ -18,5 +18,3 @@ class Log:
         logger.addHandler(rotate_handler)
         logger.addHandler(console_handler)
         return logger
-
-

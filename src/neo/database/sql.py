@@ -9,7 +9,6 @@ class Sql:
         self.data = Data()
         self.log = Log().create(__name__, self.data.databaseLog)
         self.loaded = False
-        asyncio.run(self.start())
 
     async def start(self, signal=None):
         if signal == "valid" or signal is None:

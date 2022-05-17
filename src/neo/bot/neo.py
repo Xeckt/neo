@@ -44,18 +44,16 @@ class Neo(commands.Bot):
         self.log.info(f"Slash command: {inter.data.name} invoked by {inter.author} successful")
 
     async def on_slash_command_error(self, interaction: disnake.ApplicationCommandInteraction, error):
-        if isinstance(error, commands.MissingAnyRole):
-            if self.data.enableCommandWarnings:
-                self.log.warning(f"{interaction.author} is missing roles for command: {interaction.data.name}")
-            if self.data.enableCommandDebug or self.data.mode == "development":
-                self.log.debug(error)
-            await interaction.send(f"{interaction.author.mention}, you don't have the required permissions for this command.")
-        elif isinstance(error, commands.MissingRequiredArgument):
-            await interaction.send(f"You are missing a required argument in your command.")
-        elif isinstance(error, commands.ArgumentParsingError):
-            await interaction.send("I seem to have an issue parsing the arguments you have given me for your command.")
-        else:
-            await interaction.send("There was an error trying to use this command. Contact an Administrator to check "
+        match error:
+            case commands.MissingAnyRole
+                if self.data.enableCommandWarnings:
+                    self.log.warning(f"{interaction.author} is missing roles for command: {interaction.data.name}")
+            case commands.MissingRequiredArgument:
+                await interaction.send(f"You are missing a required argument in your command.")
+            case commands.ArgumentParsingError:
+                await interaction.send("I seem to have an issue parsing the arguments you have given me for your command.")
+            case _:
+                await interaction.send("There was an error trying to use this command. Contact an Administrator to check "
                                    "the logs.")
-        self.log.error(error)
+                self.log.error(error)
 

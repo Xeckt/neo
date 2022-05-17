@@ -43,6 +43,6 @@ class CommandController:
 
     def set_command_state(self, cog, state, command: str):
         cog = self.data.cogPath + '.' + cog
-        for c in os.listdir(cog.replace('.', os.path.sep)):
-            if c != "__init__.py" and c == command:
+        for cmd in os.listdir(cog.replace('.', os.path.sep)):
+            if cmd != "__init__.py" and cmd == command:
                 getattr(self.bot, "%s_extension" % state)(*{cog + f".{command[:-3]}"})
