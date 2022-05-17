@@ -25,8 +25,9 @@ class Neo(commands.Bot):
         if self.data.databaseEnabled:
             self.log.info("Database is enabled, starting")
             self.sql = Sql()
-            if self.sql.loaded:
-                self.log.info("Database successfully started")
+            if not self.sql.loaded:
+                self.log.warn("SQL hasn't loaded.")
+            self.log.warn("SQL has started!")
         else:
             self.log.warn("SQL IS DISABLED")
 
@@ -45,7 +46,7 @@ class Neo(commands.Bot):
 
     async def on_slash_command_error(self, interaction: disnake.ApplicationCommandInteraction, error):
         match error:
-            case commands.MissingAnyRole
+            case commands.MissingAnyRole:
                 if self.data.enableCommandWarnings:
                     self.log.warning(f"{interaction.author} is missing roles for command: {interaction.data.name}")
             case commands.MissingRequiredArgument:
