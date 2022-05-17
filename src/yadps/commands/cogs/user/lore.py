@@ -19,12 +19,12 @@ class Lore(commands.Cog):
     @commands.has_any_role(
         data.memberRoleId
     )
-    @commands.cooldown(1, 30*60, commands.BucketType.guild)
-    async def lore(self, inter: disnake.ApplicationCommandInteraction, title, desc, image_url):
+    @commands.cooldown(1, 30*60, commands.BucketType.user)
+    async def lore(self, inter: disnake.ApplicationCommandInteraction, title, image_url):
         data = Data()
         lore_embed = disnake.Embed(
             title=title,
-            description=desc,
+            description=inter.author.name,
         )
         if len(image_url) != 0:
             lore_embed.set_image(url=image_url)

@@ -46,6 +46,9 @@ class Yadps(commands.Bot):
             f"Slash command: {inter.data.name} invoked by {inter.author} successful")
 
     async def on_slash_command_error(self, interaction: disnake.ApplicationCommandInteraction, error):
+        match error:
+            case commands.MissingAnyRole:
+                pass
         if isinstance(error, commands.MissingAnyRole):
             if self.data.enableCommandWarnings:
                 self.log.warning(
