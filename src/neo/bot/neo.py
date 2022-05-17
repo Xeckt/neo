@@ -27,7 +27,7 @@ class Neo(commands.Bot):
             self.sql = Sql()
             if not self.sql.loaded:
                 self.log.warn("SQL hasn't loaded.")
-            self.log.warn("SQL has started!")
+            self.log.info("SQL has started!")
         else:
             self.log.warn("SQL IS DISABLED")
 
