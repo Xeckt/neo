@@ -1,14 +1,13 @@
-import disnake
+import disnake as discord
 from disnake.ext import commands
 from yadps.config.data import Data
 from yadps.logging.log import Log
 
-discord = disnake # so both disnake and discord can be used
 
 
-class Menu(disnake.ui.View):
+class Menu(discord.ui.View):
 	# Directly taken from @DisnakeDev/disnake -> /examples/views/button/paginator.py
-    def __init__(self, embeds: List[disnake.Embed]):
+    def __init__(self, embeds: List[discord.Embed]):
         super().__init__(timeout=None)
         self.embeds = embeds
         self.embed_count = 0
@@ -20,8 +19,8 @@ class Menu(disnake.ui.View):
         for i, embed in enumerate(self.embeds):
             embed.set_footer(text=f"Page {i + 1} of {len(self.embeds)}")
 
-    @disnake.ui.button(emoji="⏪", style=disnake.ButtonStyle.blurple)
-    async def first_page(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
+    @discord.ui.button(emoji="⏪", style=discord.ButtonStyle.blurple)
+    async def first_page(self, button: discord.ui.Button, interaction: discord.MessageInteraction):
         self.embed_count = 0
         embed = self.embeds[self.embed_count]
         embed.set_footer(text=f"Page 1 of {len(self.embeds)}")
@@ -32,8 +31,8 @@ class Menu(disnake.ui.View):
         self.last_page.disabled = False
         await interaction.response.edit_message(embed=embed, view=self)
 
-    @disnake.ui.button(emoji="◀", style=disnake.ButtonStyle.secondary)
-    async def prev_page(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
+    @discord.ui.button(emoji="◀", style=discord.ButtonStyle.secondary)
+    async def prev_page(self, button: discord.ui.Button, interaction: discord.MessageInteraction):
         self.embed_count -= 1
         embed = self.embeds[self.embed_count]
 
@@ -44,12 +43,12 @@ class Menu(disnake.ui.View):
             self.prev_page.disabled = True
         await interaction.response.edit_message(embed=embed, view=self)
 
-    @disnake.ui.button(emoji="❌", style=disnake.ButtonStyle.red)
-    async def remove(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
+    @discord.ui.button(emoji="❌", style=discord.ButtonStyle.red)
+    async def remove(self, button: discord.ui.Button, interaction: discord.MessageInteraction):
         await interaction.response.edit_message(view=None)
 
-    @disnake.ui.button(emoji="▶", style=disnake.ButtonStyle.secondary)
-    async def next_page(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
+    @discord.ui.button(emoji="▶", style=discord.ButtonStyle.secondary)
+    async def next_page(self, button: discord.ui.Button, interaction: discord.MessageInteraction):
         self.embed_count += 1
         embed = self.embeds[self.embed_count]
 
@@ -60,8 +59,8 @@ class Menu(disnake.ui.View):
             self.last_page.disabled = True
         await interaction.response.edit_message(embed=embed, view=self)
 
-    @disnake.ui.button(emoji="⏩", style=disnake.ButtonStyle.blurple)
-    async def last_page(self, button: disnake.ui.Button, interaction: disnake.MessageInteraction):
+    @discord.ui.button(emoji="⏩", style=discord.ButtonStyle.blurple)
+    async def last_page(self, button: discord.ui.Button, interaction: discord.MessageInteraction):
         self.embed_count = len(self.embeds) - 1
         embed = self.embeds[self.embed_count]
 
