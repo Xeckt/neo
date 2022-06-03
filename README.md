@@ -9,6 +9,7 @@
  * [x] Create docker build images and docker-compose for launching the bot
  * [x] Create project setup ready for contributions
  * [ ] Backend bot interface
+ * [ ] Fix shitty code sorta lost wrote
 
 # Contribution, installation and setup
 See [CONTRIBUTING.md](CONTRIBUTING.md)

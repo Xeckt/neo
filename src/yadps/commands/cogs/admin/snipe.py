@@ -2,8 +2,7 @@ import disnake as discord
 from disnake.ext import commands
 from yadps.config.data import Data
 from yadps.logging.log import Log
-
-
+from typing import List
 
 class Menu(discord.ui.View):
 	# Directly taken from @DisnakeDev/disnake -> /examples/views/button/paginator.py
@@ -70,12 +69,6 @@ class Menu(discord.ui.View):
         self.last_page.disabled = True
         await interaction.response.edit_message(embed=embed, view=self)
 
-
-        
-       
-        
-
-
 class Snipe(commands.Cog):
     data = Data()
 
@@ -84,62 +77,49 @@ class Snipe(commands.Cog):
         self.yadps_log = Log().create(__name__, self.data.botLog)
         self.lastmsg = {}
 
-        
-        
-        
-	def generate_snipe_embed(self,ctx,guild):
+    def generate_snipe_embed(self,ctx: discord.MessageInteraction ,guild):
         # nostalgic stuff 😥
-		eb = []
-		try:
-			snipes = self.lastmsg[guild]
-		except KeyError:
-			self.lastmsg.update({guild:[]})
-			return []
-		if snipes==[]:
-			return []
-		i=0
-		for m in snipes:
-			i+=1
-			embed = discord.Embed(title=f"Snipe {i}/{len(snipes)}")
-			embed.add_field(name="Author", value=m.author.mention,inline=False)
-			embed.add_field(name="Message",value=f"{m.content}\n",inline=False)
-			embed.add_field(name="Channel",value=m.channel.mention,inline=False)
-			embed.set_footer(text=ctx.author.name,icon_url=ctx.author.avatar_url)
-			eb.append(embed)
-		return eb[::-1]
+        eb = []
+        try:
+            snipes = self.lastmsg[guild]
+        except KeyError:
+            self.lastmsg.update({guild:[]})
+            return []
+        if snipes==[]:
+            return []
+        i=0
+        for m in snipes:
+            i+=1
+            embed = discord.Embed(title=f"Snipe {i}/{len(snipes)}")
+            embed.add_field(name="Author", value=m.author.mention,inline=False)
+            embed.add_field(name="Message",value=f"{m.content}\n",inline=False)
+            embed.add_field(name="Channel",value=m.channel.mention,inline=False)
+            embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar)
+            eb.append(embed)
+        return eb[::-1]
 
-    
-    
     @commands.Cog.listener()
     async def on_ready(self):
         pass
     
-
-    
     @commands.Cog.listener()
-	async def on_message_delete(self,message:discord.Message):
-		if message.author.bot is True:
-			return
-		try:
-			self.lastmsg[message.guild.id].append(message)
-		except KeyError:
-			self.lastmsg.update({message.guild.id:[]})
-			self.lastmsg[message.guild.id].append(message)
+    async def on_message_delete(self,message:discord.Message):
+        if message.author.bot is True:
+            return
+        try:
+            self.lastmsg[message.guild.id].append(message)
+        except KeyError:
+            self.lastmsg.update({message.guild.id:[]})
+            self.lastmsg[message.guild.id].append(message)
 
-
-    
-    
     @commands.command(help="Snipe deleted messages!")
-    @commands.has_any_role(data.adminRoleId)
+    @commands.has_any_role(data.memberRoleId)
+    @commands.cooldown(1, 10, commands.BucketType.guild)
     async def snipe(self, ctx):
-        snipe_embeds = self.generate_snipe_embeds(ctx,ctx.guild.id)
-		if snipe_embeds is []:
-			return await ctx.send("***There is no message to snipe!! Most Likely it's not in my Hitman's Range (Cache) :frowning:...***",delete_after=5)
+        snipe_embeds = self.generate_snipe_embed(ctx,ctx.guild.id)
+        if snipe_embeds is []:
+            return await ctx.send("***There is no message to snipe!! Most Likely it's not in my Hitman's Range (Cache) :frowning:...***",delete_after=5)
         await ctx.send(embed=snipe_embeds[0], view=Menu(snipe_embeds))
-
-
-        
+  
 def setup(bot):
     bot.add_cog(Snipe(bot))
-
-

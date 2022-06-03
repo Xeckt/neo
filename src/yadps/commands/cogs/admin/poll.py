@@ -4,14 +4,12 @@ import disnake as discord
 from yadps.config.data import Data
 from yadps.logging.log import Log
 
-
-
-
 class Polls(commands.Cog):
     """Poll voting system."""
 
     def __init__(self, bot):
         self.bot = bot
+        self.data = Data()
         self.yadps_log = Log().create(__name__, self.data.botLog)
 
     def to_emoji(self,c):
@@ -51,8 +49,8 @@ class Polls(commands.Cog):
             pass # no perms for gods sake
 
         answer = '\n'.join(f'{keycap}: {content}' for keycap, content in answers)
-        actual_poll = await ctx.send(embed=discord.Embed(title=f'"{question.title()}"',description=f'{answer}',colour=discord.Colour.random()).set_author(name=f"A poll by {ctx.author.name}",icon_url=ctx.author.avatar_url))
-        await actual_poll.edit(embed=discord.Embed(title=f'"{question.title()}"',description=f'{answer}',colour=discord.Colour.random()).set_author(name=f"A poll by {ctx.author.name}",icon_url=ctx.author.avatar_url).set_footer(text=f"Poll ID: {actual_poll.id}"))
+        actual_poll = await ctx.send(embed=discord.Embed(title=f'"{question.title()}"',description=f'{answer}',colour=discord.Colour.random()).set_author(name=f"A poll by {ctx.author.name}",icon_url=ctx.author.avatar))
+        await actual_poll.edit(embed=discord.Embed(title=f'"{question.title()}"',description=f'{answer}',colour=discord.Colour.random()).set_author(name=f"A poll by {ctx.author.name}",icon_url=ctx.author.avatar).set_footer(text=f"Poll ID: {actual_poll.id}"))
         for emoji, _ in answers:
             await actual_poll.add_reaction(emoji) # AND CHILL
             
@@ -87,7 +85,6 @@ class Polls(commands.Cog):
         output = 'Results of the poll for {}:\n'.format(embed.title) + \
                 '\n'.join(['{}: {}'.format(opt_dict[key], tally[key]) for key in tally.keys()])
         await ctx.send(embed=discord.Embed(description=output))
-
 
     @commands.command()
     @commands.guild_only()

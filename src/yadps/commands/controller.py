@@ -30,7 +30,7 @@ class CommandController:
             getattr(self.bot, "%s_extension" % state)(*arg)
         else:
             for cmd in os.listdir(self.data.cogPath.replace('.', '/') + '/' + module):
-                if cmd.endswith('.py') and cmd != "__init__.py":
+                if cmd.endswith('.py') and not cmd.startswith("_"):
                     arg = {path_string + '.' + cmd[:-3]}
                     getattr(self.bot, "%s_extension" % state)(*arg)
                     self.total_loaded += 1
@@ -48,13 +48,13 @@ class CommandController:
         commands = []
         if rank:
             for file in os.listdir(path + "/" + rank):
-                if file.endswith(".py") and file != "__init__.py":
+                if file.endswith(".py") and not file.startswith("_"):
                     commands.append(file.replace(".py", ""))
             return commands
         if rank is None:
             for dir in os.listdir(path):
                 if os.path.isdir(dir):
                     for file in os.listdir(path + "/" + dir):
-                        if file.endswith(".py") and file != "__init__.py":
+                        if file.endswith(".py") and not file.startswith("_"):
                             commands.append(file.replace(".py", ""))
             return commands
