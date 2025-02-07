@@ -5,13 +5,9 @@ from config.neoconfig import NeoConfig
 from logger.log import Log
 from database.sql import Sql
 from commands.controller import CommandController
-from test.test_actions import TestActions
 from disnake.ext import commands
 
 class Neo(commands.Bot):
-    test = TestActions()
-    test.assertTokenValidity()
-    test.assertValidConfig()
     data = NeoConfig()
     command_controller = CommandController
     log = Log().create(__name__, data.botLog)
@@ -22,15 +18,16 @@ class Neo(commands.Bot):
         self.command_controller(self).load_cmds()
         if self.data.databaseEnabled:
             self.log.info("Database is enabled, starting")
-            self.sql = Sql()
-            if not self.sql.loaded:
-                self.log.warn("SQL hasn't loaded.")
+            sql = Sql()
+            if not sql.start():
+                self.log.warn("SQL couldn't start or didn't update status to loaded, exiting.")
+                exit(1)
             self.log.info("SQL has started!")
         else:
-            self.log.warn("SQL IS DISABLED")
+            self.log.warn("SQL is disabled, skipping")
 
     async def on_ready(self):
-        self.log.info("Neo is now connected, enjoy your stay.")
+        self.log.info("Neo is connected")
 
     async def on_message(self, interaction: disnake.InteractionMessage):
         if interaction.author == self.user:
@@ -45,8 +42,7 @@ class Neo(commands.Bot):
     async def on_slash_command_error(self, interaction: disnake.ApplicationCommandInteraction, error):
         match error:
             case commands.MissingAnyRole:
-                if self.data.enableCommandWarnings:
-                    self.log.warning(f"{interaction.author} is missing roles for command: {interaction.data.name}")
+                self.log.warning(f"{interaction.author} is missing roles for command: {interaction.data.name}")
             case commands.MissingRequiredArgument:
                 await interaction.send(f"You are missing a required argument in your command.")
             case commands.ArgumentParsingError:
