@@ -1,7 +1,7 @@
 # Description
 - Neo Version: 0.0.5
 
-Neo is a template bot for users wanting a stable bot they can work on and host quickly without relying on others.
+Neo is a template bot for users wanting a stable bot they can work on and host quickly.
 
 This isn't a full fledged bot with a frontend or anything like that. It's a template bot only, so you will have to create everything else yourself.
 
