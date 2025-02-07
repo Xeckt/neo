@@ -17,7 +17,7 @@ The main objective I had with this bot was to make it user friendly and modular,
 2. Set `TOKEN` environment variable with Discord token inside `settings/.env` file
 3. Then run `python main.py`
 
-You can adjust how the data is loaded inside `config\neoconfig.py` `read()` function if necessary.
+You can adjust how the data is loaded inside `config\neoconfig.py` `read()` function if necessary
 
 ## Local development - with Docker
 1. Run `docker build . -t neo:latest`
