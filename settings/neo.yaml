@@ -2,8 +2,6 @@ neo:
   version: 0.0.5
   databaseEnabled: False
   mode: development
-  envFile: settings/.env
-  serverInfoFile: settings/server.info
 
 logData:
   enableLogging: true
@@ -12,19 +10,6 @@ logData:
   commandLog: logs/commands.log
   systemLog: logs/system.log
   testLog: logs/test.log
-
-commandData:
-  cogPath: commands
-  userCog: user
-  modCog: mod
-  adminCog: admin
-  devCog: dev
-  enableUserCommands: True
-  enableModCommands: True
-  enableAdminCommands: True
-  enableDevCommands: True
-  enableCommandWarnings: True
-  enableCommandDebug: False
 
 roleData:
   guildId: 958392384796889190
