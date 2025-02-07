@@ -9,6 +9,15 @@ if __name__ == "__main__":
               f"{str(sys.version_info.major) + '.' + str(sys.version_info.minor)}")
         exit(1)
 
+
     data = NeoConfig()
+
+    if data.token is None or len(data.token) == 0:
+        print("Empty token, exiting")
+        exit(1)
+
     neo = Neo(test_guilds=[data.guildId])
-    neo.run(neo.data.token)
+
+    neo.run(data.token)
+
+    data.token = ""
