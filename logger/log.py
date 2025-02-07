@@ -1,8 +1,5 @@
 import logging
 from logging.handlers import TimedRotatingFileHandler
-import time
-
-
 class Log:
 
     formatter = logging.Formatter("%(asctime)s | Module: %(name)s | %(levelname)s | %(message)s")

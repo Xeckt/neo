@@ -1,16 +1,15 @@
 import os
-from neo.config.data import Data
-from neo.logging.log import Log
+from config.neoconfig import NeoConfig
+from logger.log import Log
 
 class CommandController:
-    data = Data()
+    data = NeoConfig()
     command_log = Log().create(__name__, data.commandLog)
     total_loaded = 0
 
     _state_load = "load"
     _state_reload = "reload"
     _state_unload = "unload"
-
 
     def __init__(self, bot):
         self.bot = bot

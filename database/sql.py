@@ -1,12 +1,10 @@
-import asyncpg, asyncio
-from neo.config.data import Data
-from neo.logging.log import Log
-
+import asyncpg
+from config.neoconfig import NeoConfig
+from logger.log import Log
 
 class Sql:
-
     def __init__(self):
-        self.data = Data()
+        self.data = NeoConfig()
         self.log = Log().create(__name__, self.data.databaseLog)
         self.loaded = False
 

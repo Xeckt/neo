@@ -1,20 +1,18 @@
 #!/usr/bin/env python
-
-from typing import Any
 import disnake
-from neo.logging.log import Log
-from neo.config.data import Data
-from neo.database.sql import Sql
-from neo.commands.controller import CommandController
+from typing import Any
+from config.neoconfig import NeoConfig
+from logger.log import Log
+from database.sql import Sql
+from commands.controller import CommandController
 from test.test_actions import TestActions
 from disnake.ext import commands
-
 
 class Neo(commands.Bot):
     test = TestActions()
     test.assertTokenValidity()
     test.assertValidConfig()
-    data = Data()
+    data = NeoConfig()
     command_controller = CommandController
     log = Log().create(__name__, data.botLog)
 
