@@ -1,6 +1,8 @@
 import os
-from bot.settings import NeoConfig
-from bot.log import Log
+from settings import NeoConfig
+from log import Log
+
+# flake8 hates this file. TODO: fix
 
 class CommandController:
     cog_path = "commands"
@@ -27,31 +29,21 @@ class CommandController:
         path_string = self.cog_path + '.' + cog
 
         for cmd in os.listdir(path_string.replace('.', os.path.sep)):
-
             if cmd.endswith('.py') and cmd != "__init__.py":
-
                 getattr(self.bot, "%s_extension" % state)(*{path_string + f".{cmd[:-3]}"})
-                self.command_log.debug(f"Set %s command %s state to %s", cog, cmd[:-3], state)
-
+                self.command_log.debug(f"Set {cog} command {cmd[:-3]} state to {state}")
                 if state == self.STATE_LOAD:
                     self.total_loaded += 1
-
                 elif state == self.STATE_UNLOAD:
                     self.total_loaded -= 1
 
     def set_command_state(self, cog, state, command: str):
         cog = self.cog_path + '.' + cog
-
         for cmd in os.listdir(cog.replace('.', os.path.sep)):
-
             if cmd != "__init__.py" and cmd == command:
-
                 getattr(self.bot, "%s_extension" % state)(*{cog + f".{command[:-3]}"})
-
-                self.command_log.debug(f"Set %s command %s state to %s", cog, command[:-3], state)
-
+                self.command_log.debug(f"Set {cog} command {command[:-3]} state to {state}")
                 if state == self.STATE_LOAD:
                     self.total_loaded += 1
-
                 elif state == self.STATE_UNLOAD:
                     self.total_loaded -= 1
