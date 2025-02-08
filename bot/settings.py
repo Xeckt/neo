@@ -42,7 +42,7 @@ class NeoConfig:
         # database
 
         # token
-        self.token = "" # This var gets cleared once loaded into the Discord connection
+        self.token = "" # TODO: This var should get cleared once loaded into the Discord connection
         #
 
         self.read()
