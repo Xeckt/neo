@@ -52,8 +52,8 @@ class Neo(commands.InteractionBot):
     async def on_slash_command_completion(self, inter: disnake.ApplicationCommandInteraction):
         self.log.info(f"Slash command: {inter.data.name} invoked by {inter.author} successful")
 
-    async def on_slash_command_error(self, interaction: disnake.ApplicationCommandInteraction, error):
-        match error:
+    async def on_slash_command_error(self, interaction: disnake.ApplicationCommandInteraction, exception):
+        match exception:
             case commands.MissingAnyRole:
                 self.log.warning(f"{interaction.author} is missing roles for command: {interaction.data.name}")
             case commands.MissingRequiredArgument:
@@ -63,15 +63,6 @@ class Neo(commands.InteractionBot):
             case _:
                 await interaction.send("There was an error trying to use this command. Contact an Administrator to check "
                                    "the logs.")
-                self.log.error(error)
-
-
-
-if sys.version_info.major < 3 and sys.version_info.minor < 10:
-
-    print(f"Python version must be minimum 3.10. Currently detected version: "
-            f"{str(sys.version_info.major) + '.' + str(sys.version_info.minor)}")
-    exit(1)
-
+                self.log.error(exception)
 
 Neo().run_bot()
