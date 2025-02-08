@@ -1,6 +1,6 @@
 import asyncpg
 
-from bot.settings import NeoConfig
+from settings import NeoConfig
 from log import Log
 
 class Sql:
