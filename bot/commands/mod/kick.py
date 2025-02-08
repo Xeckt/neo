@@ -1,4 +1,4 @@
-from config.neoconfig import NeoConfig
+from bot.settings import NeoConfig
 from disnake.ext import commands
 import disnake as discord
 

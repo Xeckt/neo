@@ -1,7 +1,7 @@
 import requests
 import disnake
 from disnake.ext import commands
-from config.neoconfig import NeoConfig
+from bot.settings import NeoConfig
 class DadJoke(commands.Cog):
 
     data = NeoConfig()

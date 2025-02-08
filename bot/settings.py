@@ -4,7 +4,7 @@ import dotenv
 
 class NeoConfig:
     env_keys = ['TOKEN', 'SQL_HOST', 'SQL_PORT', 'SQL_USER', 'SQL_PASS', 'SQL_DB']
-    yaml_file = 'settings/neo.yaml'
+    yaml_file = 'neo.yaml'
 
     def __init__(self):
         # Neo config vars read() will attach to

@@ -1,11 +1,8 @@
 import os
-from config.neoconfig import NeoConfig
-from logger.log import Log
+from bot.settings import NeoConfig
+from bot.log import Log
 
 class CommandController:
-    data = NeoConfig()
-    command_log = Log().create(__name__, data.commandLog)
-
     cog_path = "commands"
     total_loaded = 0
 
@@ -13,8 +10,10 @@ class CommandController:
     STATE_RELOAD = "reload"
     STATE_UNLOAD = "unload"
 
-    def __init__(self, bot):
+    def __init__(self, bot, config: NeoConfig):
         self.bot = bot
+        self.data = config
+        self.command_log = Log().create(__name__, self.data.commandLog)
 
     def load_cmds(self):
         self.command_log.info("Loading command cogs")

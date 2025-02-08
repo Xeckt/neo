@@ -1,10 +1,11 @@
 import asyncpg
-from config.neoconfig import NeoConfig
-from logger.log import Log
+
+from bot.settings import NeoConfig
+from log import Log
 
 class Sql:
-    def __init__(self):
-        self.data = NeoConfig()
+    def __init__(self, config: NeoConfig):
+        self.data = config
         self.log = Log().create(__name__, self.data.databaseLog)
         self.loaded = False
 

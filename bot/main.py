@@ -1,30 +1,43 @@
 #!/usr/bin/env python
+import sys
+
 import disnake
 from typing import Any
-from config.neoconfig import NeoConfig
-from logger.log import Log
-from database.sql import Sql
+from settings import NeoConfig
+from log import Log
+from sql import Sql
 from commands.controller import CommandController
 from disnake.ext import commands
 
-class Neo(commands.Bot):
+class Neo(commands.InteractionBot):
     data = NeoConfig()
     command_controller = CommandController
     log = Log().create(__name__, data.botLog)
 
     def __init__(self, *args: Any, **kwargs: Any):
         super().__init__(*args, **kwargs)
+
+    def run_bot(self):
+        if self.data.token is None or len(self.data.token) == 0:
+            self.log.error("Token not found or is empty, exiting")
+            exit(1)
+
         self.log.info("Neo is starting")
-        self.command_controller(self).load_cmds()
+        self.command_controller(self, self.data).load_cmds()
+
         if self.data.databaseEnabled:
             self.log.info("Database is enabled, starting")
-            sql = Sql()
+            sql = Sql(self.data)
+
             if not sql.start():
                 self.log.warn("SQL couldn't start or didn't update status to loaded, exiting.")
                 exit(1)
+
             self.log.info("SQL has started!")
         else:
             self.log.warn("SQL is disabled, skipping")
+
+        self.run(self.data.token)
 
     async def on_ready(self):
         self.log.info("Neo is connected")
@@ -52,3 +65,13 @@ class Neo(commands.Bot):
                                    "the logs.")
                 self.log.error(error)
 
+
+
+if sys.version_info.major < 3 and sys.version_info.minor < 10:
+
+    print(f"Python version must be minimum 3.10. Currently detected version: "
+            f"{str(sys.version_info.major) + '.' + str(sys.version_info.minor)}")
+    exit(1)
+
+
+Neo().run_bot()

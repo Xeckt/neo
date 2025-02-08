@@ -1,5 +1,5 @@
 from disnake.ext import commands
-from config.neoconfig import NeoConfig
+from bot.settings import NeoConfig
 import disnake
 
 

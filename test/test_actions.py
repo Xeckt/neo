@@ -1,10 +1,8 @@
-import sys
 import unittest
-import dotenv
 import yaml
 from schema import Schema, SchemaError
-from logger.log import Log
-from config.neoconfig import NeoConfig
+from bot.logger import Log
+from bot.settings import NeoConfig
 
 
 class TestActions(unittest.TestCase):
@@ -33,7 +31,7 @@ class TestActions(unittest.TestCase):
                 "devRoleId": int,
             }
         })
-        
+
         with open("settings/neo.yaml", 'r') as stream:
             y = yaml.safe_load(stream)
         try:
