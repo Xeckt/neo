@@ -1,6 +1,5 @@
 import yaml
 import dotenv
-from mypy.typeops import false_only
 
 
 class NeoConfig:
@@ -24,7 +23,6 @@ class NeoConfig:
         self.databaseLog = ""
         self.commandLog = ""
         self.systemLog = ""
-        self.testLog = ""
         # logData
 
         # roleData
