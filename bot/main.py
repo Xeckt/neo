@@ -3,38 +3,39 @@ import sys
 
 import disnake
 from typing import Any
-from settings import NeoConfig
+
+import globals
 from log import Log
 from sql import Sql
 from commands.controller import CommandController
 from disnake.ext import commands
 
 class Neo(commands.InteractionBot):
-    data = NeoConfig()
+    globals.init()
     command_controller = CommandController
-    log = Log().create(__name__, data.botLog)
+    log = Log().create(__name__, globals.neo_config.botLog)
 
     def __init__(self, *args: Any, **kwargs: Any):
         super().__init__(*args, **kwargs)
 
     def run_bot(self):
-        if self.data.token is None or len(self.data.token) == 0:
+        if globals.neo_config.token is None or len(globals.neo_config.token) == 0:
             self.log.error("Token not found or is empty, exiting")
             exit(1)
 
         self.log.info("Neo is starting")
-        self.command_controller(self, self.data).load_cmds()
+        self.command_controller(self).load_cmds()
 
-        if self.data.databaseEnabled:
+        if globals.neo_config.databaseEnabled:
             self.log.info("Database is enabled, starting")
-            sql = Sql(self.data)
+            sql = Sql(globals.neo_config)
             if not sql.start():
                 self.log.warn("SQL couldn't start or didn't update status to loaded, exiting.")
                 exit(1)
             self.log.info("SQL has started!")
         else:
             self.log.warn("SQL is disabled, skipping")
-        self.run(self.data.token)
+        self.run(globals.neo_config.token)
 
     async def on_ready(self):
         self.log.info("Neo is connected")
