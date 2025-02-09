@@ -1,4 +1,4 @@
-from settings import NeoConfig
+from config import NeoConfig
 
 neo_config = NeoConfig()
 
