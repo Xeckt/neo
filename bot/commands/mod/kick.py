@@ -1,10 +1,8 @@
-from bot.settings import NeoConfig
 from disnake.ext import commands
 import disnake as discord
+import globals
 
 class Kick(commands.Cog):
-
-    data = NeoConfig()
 
     def __init__(self, bot):
         self.bot = bot
@@ -14,7 +12,7 @@ class Kick(commands.Cog):
         pass
 
     @commands.slash_command(description="Kick a user from the Discord")
-    @commands.has_any_role(data.modRoleId, data.adminRoleId)
+    @commands.has_any_role(globals.neo_config.adminRoleId, globals.neo_config.modRoleId)
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def kick(self, ctx, user: discord.User):
         try:

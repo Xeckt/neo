@@ -1,5 +1,5 @@
 import os
-from settings import NeoConfig
+import globals
 from log import Log
 
 # flake8 hates this file. TODO: fix
@@ -12,10 +12,9 @@ class CommandController:
     STATE_RELOAD = "reload"
     STATE_UNLOAD = "unload"
 
-    def __init__(self, bot, config: NeoConfig):
+    def __init__(self, bot):
         self.bot = bot
-        self.data = config
-        self.command_log = Log().create(__name__, self.data.commandLog)
+        self.command_log = Log().create(__name__, globals.neo_config.commandLog)
 
     def load_cmds(self):
         self.command_log.info("Loading command cogs")

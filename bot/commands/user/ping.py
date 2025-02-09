@@ -1,12 +1,8 @@
 from disnake.ext import commands
-from bot.settings import NeoConfig
 import disnake
-
+import globals
 
 class Ping(commands.Cog):
-
-    data = NeoConfig()
-
     def __init__(self, bot):
         self.bot = bot
 
@@ -15,13 +11,10 @@ class Ping(commands.Cog):
         pass
 
     @commands.slash_command(description="Ping bot")
-    @commands.has_any_role(
-        data.memberRoleId
-    )
+    @commands.has_any_role(globals.neo_config.memberRoleId)
     @commands.cooldown(1, 5, commands.BucketType.guild)
     async def ping(self, inter: disnake.ApplicationCommandInteraction):
         await inter.send("Pong!")
-
 
 def setup(bot):
     bot.add_cog(Ping(bot))

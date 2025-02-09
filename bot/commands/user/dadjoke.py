@@ -1,10 +1,9 @@
 import requests
 import disnake
+import globals
 from disnake.ext import commands
-from bot.settings import NeoConfig
-class DadJoke(commands.Cog):
 
-    data = NeoConfig()
+class DadJoke(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
@@ -14,9 +13,7 @@ class DadJoke(commands.Cog):
         pass
 
     @commands.slash_command(description="Retrieve a dad joke!")
-    @commands.has_any_role(
-        data.memberRoleId
-    )
+    @commands.has_any_role(globals.neo_config.memberRoleId)
     async def dadjoke(self, inter: disnake.ApplicationCommandInteraction):
         request = requests.get("https://icanhazdadjoke.com/", headers={"Accept":"application/json"})
         joke = request.json()["joke"]
