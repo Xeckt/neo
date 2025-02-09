@@ -5,11 +5,11 @@ neo:
 
 logData:
   enableLogging: true
-  botLog: ../logs/bot.log
-  databaseLog: ../logs/sql.log
-  commandLog: ../logs/commands.log
-  systemLog: ../logs/system.log
-  testLog: ../logs/test.log
+  botLog: logs/bot.log
+  databaseLog: logs/sql.log
+  commandLog: logs/commands.log
+  systemLog: logs/system.log
+  testLog: logs/test.log
 
 roleData:
   guildId: 958392384796889190
