@@ -5,4 +5,4 @@ if ! type poetry > /dev/null; then
 fi
 
 poetry install
-poetry run python bot/main.py
+poetry run python neo/main.py
