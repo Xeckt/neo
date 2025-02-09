@@ -1,20 +1,22 @@
+import os
+
 import yaml
 import dotenv
 
 
 class NeoConfig:
     env_keys = ['TOKEN', 'SQL_HOST', 'SQL_PORT', 'SQL_USER', 'SQL_PASS', 'SQL_DB']
-    yaml_file = '../neo.yaml'
+    yaml_file = './conf/neo.yaml'
 
     def __init__(self):
         # Neo config vars read() will attach to
         # This isn't actually necessary but makes it resolvable in the source
         # So if you don't care about unresolved syntax errors you can remove all the definitions
 
-        # neo:
+        # bot:
         self.version = 0
         self.databaseEnabled = False
-        # neo
+        # bot
 
         # logData
         self.enableLogging = False
@@ -43,13 +45,13 @@ class NeoConfig:
         # token
         self.token = "" # TODO: This var should get cleared once loaded into the Discord connection
         # token
-
+        print(os.getcwd())
         with open(self.yaml_file) as stream:
             y_dict = yaml.safe_load(stream)
             for block in y_dict.values():
                 for key, value in block.items():
                     setattr(self, key, value)
-            env = dotenv.dotenv_values("../.env")
+            env = dotenv.dotenv_values("./conf/.env")
             for v in self.env_keys:
                 setattr(self, v.lower(), env.get(v.upper()))
 
