@@ -1,13 +1,10 @@
 #!/usr/bin/env python
-import asyncio
-import sys
 
 import disnake
 import globals
 
 from typing import Any
 from log import Log
-from sql import Sql
 from commands.controller import CommandController
 from disnake.ext import commands
 
