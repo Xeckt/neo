@@ -55,5 +55,4 @@ class Neo(commands.InteractionBot):
                                        f"See console log for more details.")
                 self.log.error(exception)
 
-
 Neo().run_bot()
