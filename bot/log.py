@@ -1,13 +1,24 @@
 import logging
+import globals
 from logging.handlers import TimedRotatingFileHandler
+
+
 class Log:
 
     formatter = "%(asctime)s | Module: %(name)s | %(levelname)s | %(message)s"
 
-    def create(self, name, log_file, level=logging.DEBUG):
-        # handler for file output
-        rotate_handler = TimedRotatingFileHandler(filename=log_file, when='h', interval=1, backupCount=2)
-        rotate_handler.setFormatter(logging.Formatter(self.formatter))
+    def create(self, name, log_file):
+        level = 0
+
+        match globals.neo_config.logMode:
+            case "info":
+                level = logging.INFO
+            case "debug":
+                level = logging.DEBUG
+            case "warn":
+                level = logging.WARNING
+            case "error":
+                level = logging.ERROR
 
         # handler for console output
         console_handler = logging.StreamHandler()
@@ -16,7 +27,12 @@ class Log:
         logger = logging.getLogger(name)
         logger.setLevel(level)
 
-        logger.addHandler(rotate_handler)
+        # handler for file output, only when "enabledLogging" is true in the yaml config
+        if globals.neo_config.enableLogging:
+            rotate_handler = TimedRotatingFileHandler(filename=log_file, when='h', interval=1, backupCount=2)
+            rotate_handler.setFormatter(logging.Formatter(self.formatter))
+            logger.addHandler(rotate_handler)
+
         logger.addHandler(console_handler)
 
         return logger
