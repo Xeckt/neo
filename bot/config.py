@@ -45,7 +45,7 @@ class NeoConfig:
         # token
         self.token = "" # TODO: This var should get cleared once loaded into the Discord connection
         # token
-        print(os.getcwd())
+
         with open(self.yaml_file) as stream:
             y_dict = yaml.safe_load(stream)
             for block in y_dict.values():
@@ -54,4 +54,3 @@ class NeoConfig:
             env = dotenv.dotenv_values("./conf/.env")
             for v in self.env_keys:
                 setattr(self, v.lower(), env.get(v.upper()))
-
