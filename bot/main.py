@@ -2,9 +2,9 @@
 import sys
 
 import disnake
-from typing import Any
-
 import globals
+
+from typing import Any
 from log import Log
 from sql import Sql
 from commands.controller import CommandController
@@ -27,14 +27,14 @@ class Neo(commands.InteractionBot):
         self.command_controller(self).load_cmds()
 
         if globals.neo_config.databaseEnabled:
-            self.log.info("Database is enabled, starting")
-            sql = Sql(globals.neo_config)
+            self.log.info("Starting postgres database")
+            sql = Sql()
             if not sql.start():
-                self.log.warn("SQL couldn't start or didn't update status to loaded, exiting.")
+                self.log.warn("postgres couldn't start or didn't update status to loaded, exiting.")
                 exit(1)
-            self.log.info("SQL has started!")
+            self.log.info("postgres has started")
         else:
-            self.log.warn("SQL is disabled, skipping")
+            self.log.debug("postgres is disabled, skipping")
         self.run(globals.neo_config.token)
 
     async def on_ready(self):
@@ -56,11 +56,16 @@ class Neo(commands.InteractionBot):
                 self.log.warning(f"{interaction.author} is missing roles for command: {interaction.data.name}")
             case commands.MissingRequiredArgument:
                 await interaction.send(f"You are missing a required argument in your command.")
+                self.log.debug(f"Command data: {interaction.data}\n"
+                               f"Author: {interaction.author}\n")
             case commands.ArgumentParsingError:
-                await interaction.send("I seem to have an issue parsing the arguments you have given me for your command.")
+                await interaction.send("I seem to have an issue parsing the arguments "
+                                       "you have given me for your command.")
                 self.log.error(exception)
             case _:
-                await interaction.send(f"There was an error trying to use this command. See console log for more details.")
+                await interaction.send(f"There was an error trying to use this command. "
+                                       f"See console log for more details.")
                 self.log.error(exception)
+
 
 Neo().run_bot()
