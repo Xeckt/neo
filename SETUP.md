@@ -1,5 +1,5 @@
 # Setting up Neo
-First, Neo uses `Poetry` for it's package / dependency management. You can 
+Neo uses `Poetry` for it's package / dependency management. You can 
 [visit the poetry website](https://python-poetry.org/docs/) to install it.
 
 After it is installed, setup the project:
