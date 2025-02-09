@@ -13,6 +13,7 @@ class Sql:
             self.log.info("Starting PostgreSQL Pool")
             self.pool = await self.create_pool()
             self.loaded = True
+            self.log.debug(f"postgres pool: {self.pool}")
 
     async def create_pool(self):
         return await asyncpg.create_pool(
