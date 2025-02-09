@@ -28,15 +28,12 @@ class Neo(commands.InteractionBot):
         if self.data.databaseEnabled:
             self.log.info("Database is enabled, starting")
             sql = Sql(self.data)
-
             if not sql.start():
                 self.log.warn("SQL couldn't start or didn't update status to loaded, exiting.")
                 exit(1)
-
             self.log.info("SQL has started!")
         else:
             self.log.warn("SQL is disabled, skipping")
-
         self.run(self.data.token)
 
     async def on_ready(self):
@@ -60,9 +57,9 @@ class Neo(commands.InteractionBot):
                 await interaction.send(f"You are missing a required argument in your command.")
             case commands.ArgumentParsingError:
                 await interaction.send("I seem to have an issue parsing the arguments you have given me for your command.")
+                self.log.error(exception)
             case _:
-                await interaction.send("There was an error trying to use this command. Contact an Administrator to check "
-                                   "the logs.")
+                await interaction.send(f"There was an error trying to use this command. See console log for more details.")
                 self.log.error(exception)
 
 Neo().run_bot()

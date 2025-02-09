@@ -43,7 +43,7 @@ class NeoConfig:
 
         # token
         self.token = "" # TODO: This var should get cleared once loaded into the Discord connection
-        #
+        # token
 
         self.read()
 
