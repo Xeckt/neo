@@ -1,7 +1,6 @@
 neo:
   version: 0.0.5
   databaseEnabled: False
-  mode: development
 
 logData:
   enableLogging: true
