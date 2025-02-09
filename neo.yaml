@@ -5,6 +5,7 @@ neo:
 
 logData:
   enableLogging: true
+  logMode: "info"
   botLog: logs/bot.log
   databaseLog: logs/sql.log
   commandLog: logs/commands.log
