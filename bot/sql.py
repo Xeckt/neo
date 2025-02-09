@@ -1,12 +1,11 @@
 import asyncpg
-
-from settings import NeoConfig
+import globals
 from log import Log
 
 class Sql:
-    def __init__(self, config: NeoConfig):
-        self.data = config
-        self.log = Log().create(__name__, self.data.databaseLog)
+    def __init__(self):
+        self.pool = None
+        self.log = Log().create(__name__, globals.neo_config.databaseLog)
         self.loaded = False
 
     async def start(self, signal=None):
@@ -17,10 +16,10 @@ class Sql:
 
     async def create_pool(self):
         return await asyncpg.create_pool(
-            f'postgresql://{self.data.sql_user}'
-            f':{self.data.sql_pass}'
-            f'@{self.data.sql_host}/'
-            f'{self.data.sql_db}',
+            f'postgresql://{globals.neo_config.sql_user}'
+            f':{globals.neo_config.sql_pass}'
+            f'@{globals.neo_config.sql_host}/'
+            f'{globals.neo_config.sql_db}',
             min_size=0,
             max_size=5,
             max_queries=30,
