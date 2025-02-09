@@ -1,5 +1,5 @@
 # Description
-- Neo Version: 0.0.5
+- Neo Version: 1.0.0
 
 Neo is a templated Discord bot written in python.
 
