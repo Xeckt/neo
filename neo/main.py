@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import asyncio
 import sys
 
 import disnake
@@ -25,16 +26,6 @@ class Neo(commands.InteractionBot):
 
         self.log.info("Neo is starting")
         self.command_controller(self).load_cmds()
-
-        if globals.neo_config.databaseEnabled:
-            self.log.info("Starting postgres database")
-            sql = Sql()
-            if not sql.start():
-                self.log.warn("postgres couldn't start or didn't update status to loaded, exiting.")
-                exit(1)
-            self.log.info("postgres has started")
-        else:
-            self.log.debug("postgres is disabled, skipping")
         self.run(globals.neo_config.token)
 
     async def on_ready(self):

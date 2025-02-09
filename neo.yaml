@@ -1,10 +1,9 @@
 neo:
   version: 0.0.5
-  databaseEnabled: False
 
 logData:
   enableLogging: true
-  logMode: "info"
+  logMode: "debug"
   botLog: logs/bot.log
   databaseLog: logs/sql.log
   commandLog: logs/commands.log
