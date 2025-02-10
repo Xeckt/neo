@@ -12,4 +12,5 @@ The main objective I had with this bot was to make it as beginner / user-friendl
  * [x] Docker support
  * [ ] Compiled static binary for production deployments
 
+# Setup
 For setting up the project please see: [SETUP.md](SETUP.md)
